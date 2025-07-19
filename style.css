@@ -1,15 +1,15 @@
 
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f5fdf7;
-  color: #111;
+  font-family: 'Poppins', 'Lexend';
+  background-color: rgb(20, 20, 20);
+  color: rgb(255, 255, 255);
 }
 header {
   padding: 2rem;
   text-align: center;
-  background: #e0f6e9;
-  border-bottom: 1px solid #d0eddc;
+  background: rgb(2, 75, 58);
+  border-bottom: 0px solid #d0eddc;
 }
 .grid {
   display: grid;
@@ -19,9 +19,9 @@ header {
 }
 .card {
   position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  overflow: hidden; 
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgb(2, 75, 58);
 }
 .card img {
   width: 100%;
@@ -35,8 +35,8 @@ header {
 .overlay {
   position: absolute;
   bottom: 0;
-  background: rgba(0,128,96,0.85);
-  color: white;
+  background: rgb(1, 1, 1,1);
+  color: rgb(2, 75, 58);
   width: 100%;
   padding: 1rem;
   text-align: center;
