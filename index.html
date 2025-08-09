@@ -1,29 +1,228 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>— Your Name — Portfolio</title>
+  <meta name="description" content="A crisp, high-performance portfolio showcasing selected projects and photography." />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="— Your Name — Portfolio" />
+  <meta property="og:description" content="Selected works in product design, UI/UX, and photography." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicons (place your own in /assets) -->
+  <link rel="icon" href="assets/favicon.png" />
+
+  <!-- Preload hero image for immediate paint -->
+  <link rel="preload" as="image" href="assets/hero@2x.webp" imagesrcset="assets/hero.webp 1x, assets/hero@2x.webp 2x">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Tomas Roos Portfolio</h1>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header" data-elevate>
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Home">Your&nbsp;Name</a>
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul id="nav-menu" class="nav__list">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  <main class="grid">
-    <a href="project1.html" class="card">
-      <img src="project1.jpg" alt="Project 1" />
-      <div class="overlay">Project 1</div>
-    </a>
-    <a href="project2.html" class="card">
-      <img src="frogpokemon.png" alt="Project 2" />
-      <div class="overlay">Project 2</div>
-    </a>
-    <a href="project3.html" class="card">
-      <img src="Juan.png" alt="Project 3" />
-      <div class="overlay">Project 3</div>
-    </a>
+
+  <main id="content">
+    <!-- HERO -->
+    <section id="top" class="hero">
+      <div class="wrap">
+        <h1 class="hero__title reveal-up">Design that looks effortless, because the hard work is invisible.</h1>
+        <p class="hero__subtitle reveal-up delay-1">
+          I craft product experiences that are fast, accessible, and delightful. Below are a few favorites.
+        </p>
+        <div class="hero__actions reveal-up delay-2">
+          <a class="btn btn--primary" href="#work">See Work</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <picture class="hero__image reveal-fade">
+        <source type="image/webp" srcset="assets/hero.webp 1x, assets/hero@2x.webp 2x">
+        <img src="assets/hero.jpg" alt="Abstract light and shadow composition" loading="eager" decoding="async">
+      </picture>
+    </section>
+
+    <!-- FEATURED WORK -->
+    <section id="work" class="section">
+      <div class="wrap section__header">
+        <h2 class="eyebrow">Selected Work</h2>
+        <p class="section__lead">A tight, evolving set of projects. Case studies focus on outcomes, not fluff.</p>
+      </div>
+
+      <div class="grid projects">
+        <!-- PROJECT CARD 1 -->
+        <article class="card reveal-up" tabindex="0">
+          <a class="card__cover" href="case-study-example.html" aria-label="Open case study: BugMap">
+            <img src="assets/project-bugmap.webp" alt="BugMap issue triage board UI" loading="lazy" width="1280" height="800">
+          </a>
+          <div class="card__body">
+            <h3 class="card__title"><a href="case-study-example.html">BugMap</a></h3>
+            <p class="card__meta">Chrome Extension · Product Design · 2025</p>
+            <p class="card__desc">
+              Turn chaotic bug intake into a calm, prioritized board. Result: -37% time-to-triage.
+            </p>
+            <ul class="tags">
+              <li>UX Strategy</li><li>Design System</li><li>Web Perf</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- PROJECT CARD 2 -->
+        <article class="card reveal-up" tabindex="0">
+          <a class="card__cover" href="#" aria-label="Open case study: Event Invites App">
+            <img src="assets/project-invites.webp" alt="Event invites app—clean white UI" loading="lazy" width="1280" height="800">
+          </a>
+          <div class="card__body">
+            <h3 class="card__title"><a href="#">Invites</a></h3>
+            <p class="card__meta">Mobile · UX/UI · 2025</p>
+            <p class="card__desc">
+              Create & send beautiful invites in seconds. Focus: deliverability, flows, and retention loops.
+            </p>
+            <ul class="tags">
+              <li>Flows</li><li>Retention</li><li>Accessibility</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- PROJECT CARD 3 -->
+        <article class="card reveal-up" tabindex="0">
+          <a class="card__cover" href="#" aria-label="Open case study: Clipboard Manager">
+            <img src="assets/project-clipboard.webp" alt="Clipboard manager minimal UI" loading="lazy" width="1280" height="800">
+          </a>
+          <div class="card__body">
+            <h3 class="card__title"><a href="#">Clipboard Manager</a></h3>
+            <p class="card__meta">Chrome Extension · 2025</p>
+            <p class="card__desc">
+              Templates, folders, and right‑click access. Built for speed under heavy agent load.
+            </p>
+            <ul class="tags">
+              <li>Interaction</li><li>Information Architecture</li><li>DX</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section id="photos" class="section section--alt">
+      <div class="wrap section__header">
+        <h2 class="eyebrow">Photography</h2>
+        <p class="section__lead">Handpicked frames. Click any image to open the lightbox.</p>
+      </div>
+      <div class="grid gallery" aria-live="polite">
+        <!-- 12 sample tiles -->
+        <button class="tile reveal-fade" data-lightbox="assets/photo-01.webp" aria-label="Open photo 1">
+          <img src="assets/photo-01-thumb.webp" alt="Photo 1" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-02.webp" aria-label="Open photo 2">
+          <img src="assets/photo-02-thumb.webp" alt="Photo 2" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-03.webp" aria-label="Open photo 3">
+          <img src="assets/photo-03-thumb.webp" alt="Photo 3" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-04.webp" aria-label="Open photo 4">
+          <img src="assets/photo-04-thumb.webp" alt="Photo 4" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-05.webp" aria-label="Open photo 5">
+          <img src="assets/photo-05-thumb.webp" alt="Photo 5" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-06.webp" aria-label="Open photo 6">
+          <img src="assets/photo-06-thumb.webp" alt="Photo 6" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-07.webp" aria-label="Open photo 7">
+          <img src="assets/photo-07-thumb.webp" alt="Photo 7" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-08.webp" aria-label="Open photo 8">
+          <img src="assets/photo-08-thumb.webp" alt="Photo 8" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-09.webp" aria-label="Open photo 9">
+          <img src="assets/photo-09-thumb.webp" alt="Photo 9" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-10.webp" aria-label="Open photo 10">
+          <img src="assets/photo-10-thumb.webp" alt="Photo 10" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-11.webp" aria-label="Open photo 11">
+          <img src="assets/photo-11-thumb.webp" alt="Photo 11" loading="lazy" width="480" height="600">
+        </button>
+        <button class="tile reveal-fade" data-lightbox="assets/photo-12.webp" aria-label="Open photo 12">
+          <img src="assets/photo-12-thumb.webp" alt="Photo 12" loading="lazy" width="480" height="600">
+        </button>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="wrap grid about">
+        <div class="about__copy reveal-up">
+          <h2 class="eyebrow">About</h2>
+          <p>
+            Product designer with 6+ years in UX/UI. I build clean systems and ship fast. Comfortable from research to motion.
+          </p>
+          <p>
+            Tools: Figma, React/React Native, Chrome Extensions, PostHog. Accessibility: WCAG AA.
+          </p>
+          <a class="btn btn--ghost" href="assets/Your-Name-CV.pdf">Download CV</a>
+        </div>
+        <picture class="about__image reveal-fade">
+          <source type="image/webp" srcset="assets/about.webp 1x, assets/about@2x.webp 2x">
+          <img src="assets/about.jpg" alt="Portrait" loading="lazy" width="1200" height="1500">
+        </picture>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section--tight">
+      <div class="wrap contact reveal-up">
+        <h2 class="eyebrow">Contact</h2>
+        <p class="section__lead">Tell me about your project. I usually reply within a day.</p>
+        <form class="contact__form" name="contact" method="post" data-netlify="true">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button class="btn btn--primary" type="submit">Send</button>
+        </form>
+        <p class="contact__note">Prefer email? <a href="mailto:you@yourdomain.com">you@yourdomain.com</a></p>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> Your Name · <a href="#">LinkedIn</a> · <a href="#">GitHub</a> · <a href="#">Dribbble</a></p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <dialog class="lightbox" aria-label="Image Viewer">
+    <button class="lightbox__close" aria-label="Close lightbox">×</button>
+    <img class="lightbox__img" src="" alt="Expanded image" />
+  </dialog>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>
