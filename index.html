@@ -8,7 +8,7 @@
       name="description"
       content="A crisp, high-performance portfolio showcasing selected projects and photography."
     />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#0A0A0A" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="— Tomas Roos — Portfolio" />
@@ -18,26 +18,821 @@
     />
     <meta property="og:type" content="website" />
 
-    <!-- Favicons (place your own in /assets) -->
+    <!-- Favicons -->
     <link rel="icon" href="assets/favicon.png" />
 
-    <!-- Preload hero image for immediate paint -->
-    <link
-      rel="preload"
-      as="image"
-      href="assets/hero@2x.webp"
-      imagesrcset="assets/hero.webp 1x, assets/hero@2x.webp 2x"
-    />
+    <!-- Preload hero image -->
+    <link rel="preload" as="image" href="assets/port-folio.png" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        /* Colors - Sophisticated dark theme with accent */
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #111111;
+        --bg-tertiary: #1a1a1a;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --text-muted: #888888;
+        --accent: #00ff88;
+        --accent-hover: #00cc6a;
+        --border: #333333;
+        --shadow: rgba(0, 255, 136, 0.1);
+
+        /* Typography */
+        --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        --font-mono: "SF Mono", Monaco, "Cascadia Code", monospace;
+
+        /* Spacing */
+        --section-padding: clamp(60px, 12vw, 120px);
+        --container-max: 1200px;
+
+        /* Animations */
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Skip Link */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--accent);
+        color: var(--bg-primary);
+        padding: 8px;
+        text-decoration: none;
+        z-index: 100;
+        border-radius: 4px;
+      }
+      .skip-link:focus {
+        top: 6px;
+      }
+
+      /* Header */
+      .site-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .site-header.scrolled {
+        background: rgba(10, 10, 10, 0.95);
+      }
+
+      .header-wrap {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+      }
+
+      .brand {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        position: relative;
+      }
+
+      .brand::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s var(--ease-out-expo);
+      }
+
+      .brand:hover::after {
+        width: 100%;
+      }
+
+      .nav__toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .nav__list {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      .nav__list a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        position: relative;
+        transition: color 0.3s var(--ease-out-expo);
+      }
+
+      .nav__list a:hover {
+        color: var(--text-primary);
+      }
+
+      .nav__list a::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--accent);
+        opacity: 0;
+        transition: opacity 0.3s var(--ease-out-expo);
+      }
+
+      .nav__list a:hover::after {
+        opacity: 1;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 120px 0 80px;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(0, 255, 136, 0.05) 0%,
+          transparent 50%
+        );
+      }
+
+      .hero-wrap {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero__content {
+        max-width: 600px;
+      }
+
+      .hero__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 50px;
+        font-size: 12px;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: slideUpFade 0.8s 0.2s both var(--ease-out-expo);
+      }
+
+      .hero__badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      .hero__title {
+        font-size: clamp(48px, 8vw, 72px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        background: linear-gradient(
+          135deg,
+          var(--text-primary) 0%,
+          rgba(255, 255, 255, 0.7) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0;
+        animation: slideUpFade 0.8s 0.4s both var(--ease-out-expo);
+      }
+
+      .hero__subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+        margin-bottom: 40px;
+        line-height: 1.6;
+        opacity: 0;
+        animation: slideUpFade 0.8s 0.6s both var(--ease-out-expo);
+      }
+
+      .hero__actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: slideUpFade 0.8s 0.8s both var(--ease-out-expo);
+      }
+
+      .hero__image {
+        width: 400px;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        opacity: 0;
+        animation: slideUpFade 0.8s 1s both var(--ease-out-expo);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s var(--ease-out-expo);
+      }
+
+      .hero__image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s var(--ease-out-expo);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn--primary {
+        background: var(--accent);
+        color: var(--bg-primary);
+        border: 1px solid var(--accent);
+      }
+
+      .btn--primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .btn--primary:hover::before {
+        left: 100%;
+      }
+
+      .btn--primary:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+      }
+
+      .btn--ghost {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn--ghost:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      /* Sections */
+      .section {
+        padding: var(--section-padding) 0;
+        position: relative;
+      }
+
+      .section--alt {
+        background: var(--bg-secondary);
+      }
+
+      .wrap {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+      }
+
+      .section__header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .eyebrow {
+        font-size: 14px;
+        color: var(--accent);
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        opacity: 0;
+        animation: slideUpFade 0.6s both var(--ease-out-expo);
+      }
+
+      .section__lead {
+        font-size: 20px;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: slideUpFade 0.6s 0.2s both var(--ease-out-expo);
+      }
+
+      /* Project Grid */
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+      }
+
+      .card {
+        background: var(--bg-tertiary);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s var(--ease-out-expo);
+        border: 1px solid var(--border);
+        opacity: 0;
+        animation: slideUpFade 0.6s both var(--ease-out-expo);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent);
+      }
+
+      .card__cover {
+        display: block;
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .card__cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s var(--ease-out-expo);
+      }
+
+      .card:hover .card__cover img {
+        transform: scale(1.05);
+      }
+
+      .card__body {
+        padding: 32px;
+      }
+
+      .card__title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .card__title a {
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.3s var(--ease-out-expo);
+      }
+
+      .card__title a:hover {
+        color: var(--accent);
+      }
+
+      .card__meta {
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+        font-family: var(--font-mono);
+      }
+
+      .card__desc {
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        list-style: none;
+      }
+
+      .tags li {
+        padding: 6px 12px;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 50px;
+        font-size: 12px;
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* Gallery */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .tile {
+        aspect-ratio: 4/5;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.4s var(--ease-out-expo);
+        opacity: 0;
+        animation: slideUpFade 0.6s both var(--ease-out-expo);
+      }
+
+      .tile:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .tile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s var(--ease-out-expo);
+      }
+
+      .tile:hover img {
+        transform: scale(1.05);
+      }
+
+      /* About Section */
+      .about {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .about__copy {
+        max-width: 500px;
+      }
+
+      .about__copy h2 {
+        margin-bottom: 32px;
+      }
+
+      .about__copy p {
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .about__image {
+        width: 300px;
+        height: 400px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .about__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Contact Form */
+      .contact {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .contact__form {
+        display: grid;
+        gap: 24px;
+        margin: 48px 0;
+        text-align: left;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      .field input,
+      .field textarea {
+        padding: 16px 20px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 16px;
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+      }
+
+      .contact__note {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-top: 24px;
+      }
+
+      .contact__note a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* Footer */
+      .site-footer {
+        background: var(--bg-secondary);
+        padding: 40px 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .site-footer p {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      .site-footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .lightbox[open] {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .lightbox__close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 32px;
+        cursor: pointer;
+        z-index: 1001;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.5);
+        transition: background 0.3s var(--ease-out-expo);
+      }
+
+      .lightbox__close:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .lightbox__img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 12px;
+      }
+
+      /* Animations */
+      @keyframes slideUpFade {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        :root {
+          --section-padding: clamp(40px, 8vw, 80px);
+        }
+
+        .nav__toggle {
+          display: block;
+        }
+
+        .nav__list {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: var(--bg-primary);
+          border-top: 1px solid var(--border);
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .nav__list.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .hero-wrap {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 40px;
+        }
+
+        .hero__image {
+          width: 100%;
+          max-width: 300px;
+          height: 350px;
+          margin: 0 auto;
+        }
+
+        .hero__title {
+          font-size: clamp(36px, 10vw, 48px);
+        }
+
+        .hero__subtitle {
+          width: 100% !important;
+        }
+
+        .projects {
+          grid-template-columns: 1fr;
+        }
+
+        .about {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 40px;
+        }
+
+        .about__image {
+          width: 250px;
+          height: 300px;
+          margin: 0 auto;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 16px;
+        }
+
+        .hero__actions {
+          justify-content: center;
+        }
+
+        .btn {
+          padding: 12px 24px;
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card__body {
+          padding: 24px;
+        }
+
+        .hero__actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 280px;
+          justify-content: center;
+        }
+      }
+
+      /* Smooth reveal animations on scroll */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s var(--ease-out-expo);
+      }
+
+      .reveal-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-fade {
+        opacity: 0;
+        transition: opacity 0.6s var(--ease-out-expo);
+      }
+
+      .reveal-fade.visible {
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
-    <header class="site-header" data-elevate>
-      <div class="wrap">
-        <a class="brand" href="#top" aria-label="Home">Tomas&nbsp;Roos</a>
+    <header class="site-header">
+      <div class="header-wrap">
+        <a class="brand" href="#top">Tomas&nbsp;Roos</a>
         <nav class="nav" aria-label="Primary">
           <button
             class="nav__toggle"
@@ -48,7 +843,7 @@
           </button>
           <ul id="nav-menu" class="nav__list">
             <li><a href="#work">Work</a></li>
-            <li><a href="#photos">Photos</a></li>
+            <li><a href="#photos">Designs</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -59,414 +854,328 @@
     <main id="content">
       <!-- HERO -->
       <section id="top" class="hero">
-        <div class="wrap">
-          <h1 class="hero__title reveal-up">
-            Design that can be used.
-          </h1>
-          <p class="hero__subtitle reveal-up delay-1" style="width: 40%;">
-            I craft product experiences that are fast, accessible, and
-            delightful. Below are a few favorites.
-          </p>
-          <div class="hero__actions reveal-up delay-2">
-            <a class="btn btn--primary" href="#work">See Work</a>
-            <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        <div class="hero-wrap">
+          <div class="hero__content">
+            <div class="hero__badge">Available for projects</div>
+            <h1 class="hero__title">Design that can be used.</h1>
+            <p class="hero__subtitle" style="width: 100%">
+              I craft product experiences that are fast, accessible, and
+              delightful. Below are a few favorites.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#work">See Work</a>
+              <a class="btn btn--ghost" href="#contact">Get in touch</a>
+            </div>
+          </div>
+          <div class="hero__image">
+            <img
+              src="assets/port-folio.png"
+              alt="Design portfolio showcase"
+              loading="eager"
+            />
           </div>
         </div>
-        <picture class="hero__image reveal-fade">
-          <source
-            type="image/webp"
-            srcset="assets/port-folio.png 1x, assets/port-folio.png 2x"
-          />
-          <img
-            src="assets/port-folio.png"
-            alt="Abstract light and shadow composition"
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
       </section>
 
       <!-- FEATURED WORK -->
       <section id="work" class="section">
-        <div class="wrap section__header">
-          <h2 class="eyebrow">Selected Work</h2>
-          <p class="section__lead">
-            A tight, evolving set of projects. Case studies focus on outcomes,
-            not fluff.
-          </p>
-        </div>
+        <div class="wrap">
+          <div class="section__header">
+            <h2 class="eyebrow">Selected Work</h2>
+            <p class="section__lead">
+              A tight, evolving set of projects. Case studies focus on outcomes,
+              not fluff.
+            </p>
+          </div>
 
-        <div class="grid projects">
-          <!-- PROJECT CARD 1 -->
-          <article class="card reveal-up" tabindex="0">
-            <a
-              class="card__cover"
-              href="brael-page.html"
-              aria-label="Open case study: BugMap"
-            >
-              <img
-                src="assets/brael.png"
-                alt="BugMap issue triage board UI"
-                loading="lazy"
-              />
-            </a>
-            <div class="card__body">
-              <h3 class="card__title">
-                <a href="case-study-example.html">BugMap</a>
-              </h3>
-              <p class="card__meta">Chrome Extension · Product Design · 2025</p>
-              <p class="card__desc">
-                Turn chaotic bug intake into a calm, prioritized board. Result:
-                -37% time-to-triage.
-              </p>
-              <ul class="tags">
-                <li>UX Strategy</li>
-                <li>Design System</li>
-                <li>Web Perf</li>
-              </ul>
-            </div>
-          </article>
+          <div class="projects">
+            <!-- PROJECT CARD 1 -->
+            <article class="card reveal-up">
+              <a
+                class="card__cover"
+                href="brael-page.html"
+                aria-label="Open case study: BugMap"
+              >
+                <img
+                  src="assets/brael.png"
+                  alt="BugMap issue triage board UI"
+                  loading="lazy"
+                />
+              </a>
+              <div class="card__body">
+                <h3 class="card__title">
+                  <a href="case-study-example.html">BugMap</a>
+                </h3>
+                <p class="card__meta">
+                  Chrome Extension · Product Design · 2025
+                </p>
+                <p class="card__desc">
+                  Turn chaotic bug intake into a calm, prioritized board.
+                  Result: -37% time-to-triage.
+                </p>
+                <ul class="tags">
+                  <li>UX Strategy</li>
+                  <li>Design System</li>
+                  <li>Web Perf</li>
+                </ul>
+              </div>
+            </article>
 
-          <!-- PROJECT CARD 2 -->
-          <article class="card reveal-up" tabindex="0">
-            <a
-              class="tidings_cover"
-              href="tidings-page.html"
-              aria-label="Open case study: Event Invites App"
-            >
-              <img
-                src="assets/tidings.png"
-                alt="Event invites app—clean white UI"
-                loading="lazy"
-              />
-            </a>
-            <div class="card__body">
-              <h3 class="card__title">
-                <a href="#">Tidings - News your own way</a>
-              </h3>
-              <p class="card__meta">Mobile · UX/UI · 2024</p>
-              <p class="card__desc">
-                Create your own news consumption schedules in any format. Focus:
-                deliverability, flows, and retention loops.
-              </p>
-              <ul class="tags">
-                <li>Flows</li>
-                <li>Retention</li>
-                <li>Accessibility</li>
-              </ul>
-            </div>
-          </article>
+            <!-- PROJECT CARD 2 -->
+            <article class="card reveal-up">
+              <a
+                class="card__cover"
+                href="tidings-page.html"
+                aria-label="Open case study: Tidings News App"
+              >
+                <img
+                  src="assets/tidings.png"
+                  alt="Tidings news app clean interface"
+                  loading="lazy"
+                />
+              </a>
+              <div class="card__body">
+                <h3 class="card__title">
+                  <a href="#">Tidings - News your own way</a>
+                </h3>
+                <p class="card__meta">Mobile · UX/UI · 2024</p>
+                <p class="card__desc">
+                  Create your own news consumption schedules in any format.
+                  Focus: deliverability, flows, and retention loops.
+                </p>
+                <ul class="tags">
+                  <li>Flows</li>
+                  <li>Retention</li>
+                  <li>Accessibility</li>
+                </ul>
+              </div>
+            </article>
 
-          <!-- PROJECT CARD 3 -->
-          <article class="card reveal-up" tabindex="0">
-            <a
-              class="card__cover"
-              href="#"
-              aria-label="Open case study: Clipboard Manager"
-            >
-              <img
-                src="assets/Desktop.png"
-                alt="Clipboard manager minimal UI"
-                loading="lazy"
-              />
-            </a>
-            <div class="card__body">
-              <h3 class="card__title">
-                <a href="assets/Sharely.png">Clipboard Manager</a>
-              </h3>
-              <p class="card__meta">Chrome Extension · 2025</p>
-              <p class="card__desc">
-                Templates, folders, and right‑click access. Built for speed
-                under heavy agent load.
-              </p>
-              <ul class="tags">
-                <li>Interaction</li>
-                <li>Information Architecture</li>
-                <li>DX</li>
-              </ul>
-            </div>
-          </article>
+            <!-- PROJECT CARD 3 -->
+            <article class="card reveal-up">
+              <a
+                class="card__cover"
+                href="#"
+                aria-label="Open case study: Clipboard Manager"
+              >
+                <img
+                  src="assets/Desktop.png"
+                  alt="Clipboard manager minimal UI"
+                  loading="lazy"
+                />
+              </a>
+              <div class="card__body">
+                <h3 class="card__title">
+                  <a href="assets/Sharely.png">Clipboard Manager</a>
+                </h3>
+                <p class="card__meta">Chrome Extension · 2025</p>
+                <p class="card__desc">
+                  Templates, folders, and right‑click access. Built for speed
+                  under heavy agent load.
+                </p>
+                <ul class="tags">
+                  <li>Interaction</li>
+                  <li>Information Architecture</li>
+                  <li>DX</li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- PHOTO GALLERY -->
+      <!-- DESIGN GALLERY -->
       <section id="photos" class="section section--alt">
-        <div class="wrap section__header">
-          <h2 class="eyebrow">More Designs</h2>
-          <p class="section__lead">
-            Handpicked frames. Click any image to open the lightbox.
-          </p>
+        <div class="wrap">
+          <div class="section__header">
+            <h2 class="eyebrow">More Designs</h2>
+            <p class="section__lead">
+              Handpicked frames. Click any image to open the lightbox.
+            </p>
+          </div>
+          <div class="gallery">
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/burkxceed.png"
+              aria-label="Open design 1"
+            >
+              <img
+                src="assets/burkxceed.png"
+                alt="Design showcase 1"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/phonescreenshot.png"
+              aria-label="Open design 2"
+            >
+              <img
+                src="assets/phonescreenshot.png"
+                alt="Mobile app design"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/tidings-slide.jpg"
+              aria-label="Open design 3"
+            >
+              <img
+                src="assets/tidings-slide.jpg"
+                alt="Presentation slide design"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/brael-erbjudande.png"
+              aria-label="Open design 4"
+            >
+              <img
+                src="assets/brael-erbjudande.png"
+                alt="Brael offer design"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/Juan.png"
+              aria-label="Open design 5"
+            >
+              <img
+                src="assets/Juan.png"
+                alt="User interface design"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/chrome-clipboard.png"
+              aria-label="Open design 6"
+            >
+              <img
+                src="assets/chrome-clipboard.png"
+                alt="Chrome extension design"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/brygg-hemsida.png"
+              aria-label="Open design 7"
+            >
+              <img
+                src="assets/brygg-hemsida.png"
+                alt="Website design"
+                loading="lazy"
+              />
+            </button>
+
+            <button
+              class="tile reveal-fade"
+              data-lightbox="assets/portolio-design.png"
+              aria-label="Open design 8"
+            >
+              <img
+                src="assets/portolio-design.png"
+                alt="Portfolio design concept"
+                loading="lazy"
+              />
+            </button>
+          </div>
         </div>
-        <div class="grid gallery" aria-live="polite">
-          
-          <!-- 12 sample tiles -->
-          <style>
-            .tile {
-              display: block;
-              width: 380px; /* match your intended box size */
-              height: 400px;
-              overflow: hidden;
-            }
-            .tile img {
-              width: 1000%;
-              height: 100%;
-              object-fit: cover;
-              display: block;
-            }
-          </style>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-01.webp"
-            aria-label="Open photo 1"
-          >
-            <img
-              src="assets/burkxceed.png"
-              alt="Photo 1"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/phonescreenshot.png"
-            aria-label="Open photo 2"
-          >
-            <img
-              src="assets/phonescreenshot.png"
-              alt="Photo 2"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-03.webp"
-            aria-label="Open photo 3"
-          >
-            <img
-              src="assets/tidings-slide.jpg"
-              alt="Photo 3"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-04.webp"
-            aria-label="Open photo 4"
-          >
-            <img
-              src="assets/brael-erbjudande.png"
-              alt="Photo 4"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-05.webp"
-            aria-label="Open photo 5"
-          >
-            <img
-              src="assets/Juan.png"
-              alt="Photo 5"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-06.webp"
-            aria-label="Open photo 6"
-          >
-            <img
-              src="assets/chrome-clipboard.png"
-              alt="Photo 6"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-07.webp"
-            aria-label="Open photo 7"
-          >
-            <img
-              src="assets/brygg-hemsida.png"
-              alt="Photo 7"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-08.webp"
-            aria-label="Open photo 8"
-          >
-            <img
-              src="assets/portolio-design.png"
-              alt="Photo 8"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          
-        <!-- 
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-09.webp"
-            aria-label="Open photo 9"
-          >
-            <img
-              src="assets/photo-09-thumb.webp"
-              alt="Photo 9"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-10.webp"
-            aria-label="Open photo 10"
-          >
-            <img
-              src="assets/photo-10-thumb.webp"
-              alt="Photo 10"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-11.webp"
-            aria-label="Open photo 11"
-          >
-            <img
-              src="assets/photo-11-thumb.webp"
-              alt="Photo 11"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-          <button
-            class="tile reveal-fade"
-            data-lightbox="assets/photo-12.webp"
-            aria-label="Open photo 12"
-          >
-            <img
-              src="assets/photo-12-thumb.webp"
-              alt="Photo 12"
-              loading="lazy"
-              width="480"
-              height="600"
-            />
-          </button>
-        </div>
-      -->
       </section>
 
       <!-- ABOUT -->
       <section id="about" class="section">
-        <div class="wrap grid about">
-          <div class="about__copy reveal-up">
-            <h2 class="eyebrow">About</h2>
-            <p>
-              Product designer with 6+ years in UX/UI. I build clean systems and
-              ship fast. Comfortable from research to motion.
-            </p>
-            <p>
-              Tools: Figma, React/React Native, Chrome Extensions, PostHog.
-              Accessibility: WCAG AA.
-            </p>
-            <a class="btn btn--ghost" href="assets/tomas-roos-cv.pdf"
-              >Download CV</a
-            >
+        <div class="wrap">
+          <div class="about">
+            <div class="about__copy reveal-up">
+              <h2 class="eyebrow">About</h2>
+              <p>
+                Product designer with 6+ years in UX/UI. I build clean systems
+                and ship fast. Comfortable from research to motion.
+              </p>
+              <p>
+                Tools: Figma, React/React Native, Chrome Extensions, PostHog.
+                Accessibility: WCAG AA.
+              </p>
+              <a class="btn btn--ghost" href="assets/tomas-roos-cv.pdf">
+                Download CV
+              </a>
+            </div>
+            <div class="about__image reveal-fade">
+              <img
+                src="assets/picture-of-me.JPG"
+                alt="Portrait of Tomas Roos"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <picture class="about__image reveal-fade">
-            <source
-              type="image/webp"
-              srcset="assets/picture of me.JPG 1x, assets/picture of me.JPG 2x"
-            />
-            <img
-              src="assets/picture-of-me.JPG"
-              alt="Portrait"
-              loading="lazy"
-              width="1200"
-              height="1500"
-            />
-          </picture>
         </div>
       </section>
 
       <!-- CONTACT -->
-      <section id="contact" class="section section--tight">
-        <div class="wrap contact reveal-up">
-          <h2 class="eyebrow">Contact</h2>
-          <p class="section__lead">
-            Tell me about your project. I usually reply within a day.
-          </p>
-          <form
-            class="contact__form"
-            name="contact"
-            method="post"
-            data-netlify="true"
-          >
-            <div class="field">
-              <label for="name">Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            <button class="btn btn--primary" type="submit">Send</button>
-          </form>
-          <p class="contact__note">
-            Prefer email?
-            <a href="mailto:tomas.roosguerra@gmail.com"
-              >tomas.roosguerra@gmail.com</a
+      <section id="contact" class="section">
+        <div class="wrap">
+          <div class="contact reveal-up">
+            <h2 class="eyebrow">Contact</h2>
+            <p class="section__lead">
+              Tell me about your project. I usually reply within a day.
+            </p>
+            <form
+              class="contact__form"
+              name="contact"
+              method="post"
+              data-netlify="true"
             >
-          </p>
+              <div class="field">
+                <label for="name">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button class="btn btn--primary" type="submit">
+                Send Message
+              </button>
+            </form>
+            <p class="contact__note">
+              Prefer email?
+              <a href="mailto:tomas.roosguerra@gmail.com">
+                tomas.roosguerra@gmail.com
+              </a>
+            </p>
+          </div>
         </div>
       </section>
     </main>
@@ -475,7 +1184,7 @@
       <div class="wrap">
         <p>
           © <span id="year"></span> Tomas Roos ·
-          <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a> ·
+          <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a>
         </p>
       </div>
     </footer>
@@ -486,6 +1195,175 @@
       <img class="lightbox__img" src="" alt="Expanded image" />
     </dialog>
 
-    <script src="js/main.js" defer></script>
+    <script>
+      // Set current year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Mobile menu toggle
+      const navToggle = document.querySelector(".nav__toggle");
+      const navMenu = document.querySelector(".nav__list");
+
+      navToggle?.addEventListener("click", () => {
+        const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
+        navToggle.setAttribute("aria-expanded", !isExpanded);
+        navMenu?.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking nav links
+      document.querySelectorAll(".nav__list a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navToggle?.setAttribute("aria-expanded", "false");
+          navMenu?.classList.remove("active");
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector(".site-header");
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > 100) {
+          header?.classList.add("scrolled");
+        } else {
+          header?.classList.remove("scrolled");
+        }
+
+        lastScrollY = currentScrollY;
+      });
+
+      // Smooth reveal animations on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all reveal elements
+      document.querySelectorAll(".reveal-up, .reveal-fade").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Staggered animations for cards and tiles
+      document.querySelectorAll(".card").forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      document.querySelectorAll(".tile").forEach((tile, index) => {
+        tile.style.animationDelay = `${index * 0.05}s`;
+      });
+
+      // Lightbox functionality
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImg = document.querySelector(".lightbox__img");
+      const lightboxClose = document.querySelector(".lightbox__close");
+
+      document.querySelectorAll("[data-lightbox]").forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const imageSrc = trigger.getAttribute("data-lightbox");
+          const imageAlt =
+            trigger.querySelector("img")?.getAttribute("alt") ||
+            "Expanded image";
+
+          lightboxImg.src = imageSrc;
+          lightboxImg.alt = imageAlt;
+          lightbox?.showModal();
+        });
+      });
+
+      lightboxClose?.addEventListener("click", () => {
+        lightbox?.close();
+      });
+
+      lightbox?.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.close();
+        }
+      });
+
+      // Keyboard navigation for lightbox
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox?.open) {
+          lightbox.close();
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Form enhancement
+      const form = document.querySelector(".contact__form");
+      form?.addEventListener("submit", function (e) {
+        const submitBtn = this.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.textContent = "Sending...";
+          submitBtn.disabled = true;
+        }
+      });
+
+      // Enhanced hover effects for better interactivity
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-8px) rotateX(2deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) rotateX(0)";
+        });
+      });
+
+      // Preload critical images for better performance
+      const criticalImages = [
+        "assets/port-folio.png",
+        "assets/brael.png",
+        "assets/tidings.png",
+        "assets/Desktop.png",
+      ];
+
+      criticalImages.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+
+      // Enhanced accessibility: Focus management
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") {
+          document.body.classList.add("keyboard-navigation");
+        }
+      });
+
+      document.addEventListener("mousedown", () => {
+        document.body.classList.remove("keyboard-navigation");
+      });
+
+      // Add focus styles for keyboard navigation
+      const focusStyle = document.createElement("style");
+      focusStyle.textContent = `
+        .keyboard-navigation *:focus {
+          outline: 2px solid var(--accent) !important;
+          outline-offset: 2px !important;
+        }
+      `;
+      document.head.appendChild(focusStyle);
+    </script>
   </body>
 </html>
