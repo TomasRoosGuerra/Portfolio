@@ -8,18 +8,22 @@
 */
 
 :root {
-  --bg: #ffffff;
-  --bg-alt: #fafafa;
-  --text: #0d0d0f;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --brand: #2563eb;
-  --brand-ink: #0b3aa3;
+  /* Calm beige palette */
+  --bg: #f5efe6; /* matte beige */
+  --bg-alt: #f8f4ee; /* lighter ivory */
+  --text: #2b2a28; /* soft charcoal */
+  --muted: #6e6a65; /* muted taupe */
+  --line: #e6dfd6; /* linen border */
+  --brand: #9e8f7a; /* desaturated brown accent */
+  --brand-ink: #6f6151; /* deeper accent for text */
   --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 10px;
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.08);
+  /* Softer, broader shadows to feel tactile */
+  --shadow-1: 0 1px 2px rgba(54, 47, 45, 0.04),
+    0 0 0 1px rgba(114, 103, 96, 0.06);
+  --shadow-2: 0 10px 28px rgba(54, 47, 45, 0.1),
+    0 2px 8px rgba(54, 47, 45, 0.06);
 }
 
 * {
@@ -31,15 +35,20 @@ body {
 }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
     Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
   color: var(--text);
-  background: var(--bg);
+  /* subtle linen-like gradient texture */
+  background: radial-gradient(
+      1200px 800px at 20% -10%,
+      #fbf8f3 0%,
+      rgba(0, 0, 0, 0) 60%
+    ),
+    radial-gradient(1000px 700px at 120% 10%, #f3ede5 0%, rgba(0, 0, 0, 0) 50%),
+    var(--bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  padding-right: 2%;
-  padding-left: 2%;
 }
 
 img,
@@ -69,16 +78,16 @@ a:hover {
   margin: 0 0 0.75rem;
 }
 .section {
-  padding: 72px 0;
+  padding: clamp(48px, 8vw, 80px) 0;
 }
 .section--alt {
   background: var(--bg-alt);
 }
 .section--tight {
-  padding: 56px 0;
+  padding: clamp(32px, 6vw, 56px) 0;
 }
 .section__header {
-  margin-bottom: 24px;
+  margin-bottom: clamp(32px, 5vw, 48px);
 }
 .section__lead {
   color: var(--muted);
@@ -91,8 +100,8 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: saturate(1.2) blur(8px);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(1.1) blur(6px);
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap {
@@ -120,7 +129,7 @@ a:hover {
   border-radius: 8px;
 }
 .nav__list a:hover {
-  background: #f3f4f6;
+  background: #f2eee7;
   text-decoration: none;
 }
 
@@ -199,26 +208,26 @@ a:hover {
   text-decoration: none;
 }
 .btn--primary {
-  background: linear-gradient(135deg, #ff77e9, #ffe27a);
-  border: none; /* optional: cleaner look */
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(255, 119, 233, 0.4),
-    0 2px 6px rgba(255, 226, 122, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    #efe7dc;
+  color: #2b2a28;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.04), var(--shadow-1);
+  transition: transform 120ms ease-out, box-shadow 180ms ease-out;
 }
-
 .btn--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(255, 119, 233, 0.5),
-    0 3px 10px rgba(255, 226, 122, 0.4);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05), var(--shadow-2);
 }
 
 .btn--ghost {
-  background: #fff;
+  background: transparent;
 }
 .btn--ghost:hover {
-  background: #f8fafc;
+  background: rgba(158, 143, 122, 0.08);
   text-decoration: none;
 }
 
@@ -267,7 +276,12 @@ a:hover {
 
 /* Cards */
 .card {
-  background: #fff;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.7)
+    ),
+    #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -317,7 +331,7 @@ a:hover {
   border: 1px solid var(--line);
   padding: 6px 10px;
   border-radius: 999px;
-  background: #fff;
+  background: #faf7f2;
 }
 
 /* Gallery tiles */
@@ -385,12 +399,12 @@ textarea {
   padding: 12px 14px;
   border-radius: 12px;
   font: inherit;
-  background: #fff;
+  background: #fffdf9;
 }
 input:focus,
 textarea:focus {
   outline: 2px solid transparent;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 0 3px rgba(158, 143, 122, 0.28);
 }
 .contact__note {
   color: var(--muted);
@@ -414,12 +428,12 @@ textarea:focus {
   border: none;
   padding: 0;
   width: min(96vw, 1200px);
-  background: #fff;
+  background: #fffefb;
   border-radius: 16px;
   box-shadow: var(--shadow-2);
 }
 .lightbox::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(43, 42, 40, 0.55);
 }
 .lightbox__img {
   width: 100%;
@@ -434,8 +448,8 @@ textarea:focus {
   font-size: 28px;
   line-height: 1;
   border: 0;
-  background: #000;
-  color: #fff;
+  background: #2b2a28;
+  color: #fffaf0;
   width: 40px;
   height: 40px;
   border-radius: 999px;
@@ -445,12 +459,12 @@ textarea:focus {
 /* Motion */
 .reveal-up {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+  transform: translateY(12px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 .reveal-fade {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 1s ease;
 }
 .reveal-in {
   opacity: 1;

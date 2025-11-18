@@ -1,0 +1,176 @@
+/* Shared Case Study Styles - Clean & Professional */
+
+.cs-hero {
+  padding: clamp(80px, 12vw, 120px) 0 clamp(40px, 6vw, 60px);
+  text-align: center;
+}
+
+.cs-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.cs-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--muted);
+  margin: 0 0 2rem;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cs-meta {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin: 0 0 3rem;
+}
+
+.cs-cover {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.cs-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-mockup {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+  margin: 2rem 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cs-mockup img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin: 2rem 0;
+}
+
+.workflow-step {
+  background: var(--bg-alt);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+}
+
+.workflow-step h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.workflow-step p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+
+.outcome-box {
+  background: linear-gradient(
+    135deg,
+    rgba(158, 143, 122, 0.08),
+    rgba(158, 143, 122, 0.03)
+  );
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.outcome-box h3 {
+  margin: 0 0 1rem;
+  color: var(--brand);
+  font-size: 1.25rem;
+}
+
+.outcome-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand);
+  margin: 0 0 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.timeline-item {
+  padding-bottom: 2rem;
+  border-left: 2px solid var(--line);
+  padding-left: 1.5rem;
+  margin-left: 0.75rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--brand);
+  border: 2px solid var(--bg);
+}
+
+.timeline-item:last-child {
+  border-left: none;
+  padding-bottom: 0;
+}
+
+.timeline-item h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .cs-grid {
+    grid-template-columns: 1fr;
+  }
+  .outcome-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,67 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Case Study — Example</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    .cs-hero{ padding:56px 0 20px }
-    .cs-title{ font-size:clamp(28px,4vw,44px); margin:0 0 10px }
-    .cs-meta{ color:var(--muted); margin:0 0 12px }
-    .cs-cover{ border-radius:16px; overflow:hidden; box-shadow:var(--shadow-2); margin:18px 0 }
-    .cs-grid{ display:grid; gap:24px; grid-template-columns: 1fr 1fr }
-    @media (max-width: 900px){ .cs-grid{ grid-template-columns: 1fr } }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="index.html">Tomas Roos</a>
-      <nav class="nav"><ul class="nav__list"><li><a href="index.html#work">Back to Work</a></li></ul></nav>
-    </div>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Tidings: News Consumption App UX Case Study | Tomas Roos Portfolio
+    </title>
+    <meta
+      name="description"
+      content="A comprehensive UX case study of Tidings, a React Native news consumption app designed for clarity and user control."
+    />
+    <meta
+      name="keywords"
+      content="Tidings, news app, React Native, UX design, mobile app design, product design, Tomas Roos"
+    />
+    <meta name="author" content="Tomas Roos" />
 
-  <main class="wrap">
-    <section class="cs-hero">
-      <h1 class="cs-title">Tidings — consume news in your own way</h1>
-      <p class="cs-meta">Role: Product Designer · 2024</p>
-      <div class="cs-cover">
-        <img src="assets/tidings.png" alt="Tidings cover">
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Tidings: News Consumption App UX Case Study"
+    />
+    <meta
+      property="og:description"
+      content="A React Native news app designed for clarity and user control."
+    />
+    <meta property="og:image" content="assets/tidings/tidings.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Tidings: News Consumption App UX Case Study"
+    />
+    <meta
+      name="twitter:description"
+      content="A React Native news app designed for clarity and user control."
+    />
+    <meta name="twitter:image" content="assets/tidings/tidings.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/case-study.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="index.html">Tomas Roos</a>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li><a href="index.html#work">Back to Work</a></li>
+          </ul>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <h2 class="eyebrow">Summary</h2>
-      <p>BugMap helps teams triage user-reported issues without drowning in noise. The goal: make prioritization obvious and fast.</p>
-      <div class="cs-grid">
-        <div>
-          <h3>Problem</h3>
-          <p>Incoming issues were scattered across channels; lack of signal caused slow triage and missed high-impact problems.</p>
+    <main class="wrap">
+      <section class="cs-hero">
+        <h1 class="cs-title">Tidings</h1>
+        <p class="cs-subtitle">
+          A news consumption app that puts users in control. Built with React
+          Native for clarity and personalization, without algorithmic
+          manipulation.
+        </p>
+        <div class="cs-meta">
+          <span><strong>Role:</strong> Product Designer</span>
+          <span><strong>Year:</strong> 2024</span>
+          <span><strong>Platform:</strong> iOS & Android</span>
+          <span><strong>Impact:</strong> +32% engagement</span>
         </div>
-        <div>
-          <h3>Outcome</h3>
-          <p>Time-to-triage dropped by 37%. The team agreed on a common language for urgency and ownership.</p>
+        <div class="cs-cover">
+          <img src="assets/tidings/tidings.png" alt="Tidings app interface" />
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <h2 class="eyebrow">Process</h2>
-      <ol>
-        <li>Mapped sources of bug reports; defined a normalized schema.</li>
-        <li>Designed board with clear lanes; added filters for churn risk.</li>
-        <li>Built a minimum lovable version as a Chrome extension.</li>
-      </ol>
-    </section>
+      <section class="section">
+        <h2 class="eyebrow">Overview</h2>
+        <p class="section__lead">
+          Existing news apps prioritized engagement over clarity. Users were
+          overwhelmed by endless feeds and algorithmic manipulation. Tidings
+          gives users control over what they read and how they read it.
+        </p>
+        <div class="cs-grid">
+          <div class="workflow-step">
+            <h3>Problem</h3>
+            <p>
+              Users struggled with information overload, unclear sources, and
+              lack of control. Many felt manipulated by algorithms pushing
+              sensational content.
+            </p>
+          </div>
+          <div class="workflow-step">
+            <h3>Solution</h3>
+            <p>
+              A minimal interface where users choose their sources and customize
+              their feed. No algorithms, just news the way you want it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <h2 class="eyebrow">User Experience</h2>
+        <div class="timeline-item">
+          <h3>Onboarding & Source Selection</h3>
+          <p>
+            Simple flow helps users select preferred news sources from curated
+            categories. Users can add or remove sources anytime.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h3>Feed Customization</h3>
+          <p>
+            Fully customizable feed with priority organization, custom
+            categories, and reading preferences. Clear visual hierarchy shows
+            what matters to the user.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h3>Reading Experience</h3>
+          <p>
+            Clean, distraction-free reader mode with adjustable text size and
+            dark mode. Each article clearly displays source, date, and reading
+            time.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h3>Discovery</h3>
+          <p>
+            Discovery section suggests articles based on user-selected interests
+            (not behavior tracking). Users explore without feeling manipulated.
+          </p>
+        </div>
+        <div class="cs-mockup" style="max-width: 400px; margin: 2rem auto">
+          <img
+            src="assets/tidings/tidings-phone.png"
+            alt="Tidings mobile interface"
+            style="width: 100%; height: auto; display: block"
+          />
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="eyebrow">Key Features</h2>
+        <div class="cs-grid">
+          <div class="workflow-step">
+            <h3>Source Transparency</h3>
+            <p>
+              Every article prominently displays source, publication date, and
+              author. Transparency builds trust.
+            </p>
+          </div>
+          <div class="workflow-step">
+            <h3>Customizable Feed</h3>
+            <p>
+              Full control over feed organization. Prioritize sources, create
+              categories, filter content. No hidden algorithms.
+            </p>
+          </div>
+          <div class="workflow-step">
+            <h3>Reading Modes</h3>
+            <p>
+              Multiple modes (list, card, article view) let users choose how
+              they consume news. Reader mode strips distractions.
+            </p>
+          </div>
+          <div class="workflow-step">
+            <h3>Offline Support</h3>
+            <p>
+              Save articles for offline reading. Perfect for commutes or areas
+              with poor connectivity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <h2 class="eyebrow">Outcomes</h2>
+        <div class="outcome-box">
+          <h3>Results</h3>
+          <p>
+            Significant improvements in engagement and satisfaction. The focus
+            on clarity and control resonated with users frustrated by existing
+            news apps.
+          </p>
+          <div class="outcome-stats">
+            <div class="stat">
+              <div class="stat-value">+32%</div>
+              <div class="stat-label">Engagement</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">4.7/5</div>
+              <div class="stat-label">App Store</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">85%</div>
+              <div class="stat-label">Daily Active</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">-40%</div>
+              <div class="stat-label">Time to Find</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer class="site-footer">
       <div class="wrap">
-        <p>© <span id="year"></span> Your Name</p>
+        <p>
+          © <span id="year"></span> Tomas Roos ·
+          <a href="index.html#work">View More Work</a> ·
+          <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a>
+        </p>
       </div>
     </footer>
-  </main>
 
-  <script src="js/main.js" defer></script>
-</body>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

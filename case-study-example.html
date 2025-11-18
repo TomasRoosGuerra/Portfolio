@@ -1,67 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Case Study — Example</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    .cs-hero{ padding:56px 0 20px }
-    .cs-title{ font-size:clamp(28px,4vw,44px); margin:0 0 10px }
-    .cs-meta{ color:var(--muted); margin:0 0 12px }
-    .cs-cover{ border-radius:16px; overflow:hidden; box-shadow:var(--shadow-2); margin:18px 0 }
-    .cs-grid{ display:grid; gap:24px; grid-template-columns: 1fr 1fr }
-    @media (max-width: 900px){ .cs-grid{ grid-template-columns: 1fr } }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="index.html">Your Name</a>
-      <nav class="nav"><ul class="nav__list"><li><a href="index.html#work">Back to work</a></li></ul></nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="cs-hero">
-      <h1 class="cs-title">BugMap — Issue intake that doesn’t overwhelm</h1>
-      <p class="cs-meta">Role: Product Designer · 2025</p>
-      <div class="cs-cover">
-        <img src="assets/project-bugmap.webp" alt="BugMap board">
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="eyebrow">Summary</h2>
-      <p>BugMap helps teams triage user-reported issues without drowning in noise. The goal: make prioritization obvious and fast.</p>
-      <div class="cs-grid">
-        <div>
-          <h3>Problem</h3>
-          <p>Incoming issues were scattered across channels; lack of signal caused slow triage and missed high-impact problems.</p>
-        </div>
-        <div>
-          <h3>Outcome</h3>
-          <p>Time-to-triage dropped by 37%. The team agreed on a common language for urgency and ownership.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="eyebrow">Process</h2>
-      <ol>
-        <li>Mapped sources of bug reports; defined a normalized schema.</li>
-        <li>Designed board with clear lanes; added filters for churn risk.</li>
-        <li>Built a minimum lovable version as a Chrome extension.</li>
-      </ol>
-    </section>
-
-    <footer class="site-footer">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Case Study: Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .cs-hero {
+        padding: 56px 0 20px;
+      }
+      .cs-title {
+        font-size: clamp(28px, 4vw, 44px);
+        margin: 0 0 10px;
+      }
+      .cs-meta {
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .cs-cover {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-2);
+        margin: 18px 0;
+      }
+      .cs-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 900px) {
+        .cs-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
       <div class="wrap">
-        <p>© <span id="year"></span> Your Name</p>
+        <a class="brand" href="index.html">Your Name</a>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li><a href="index.html#work">Back to work</a></li>
+          </ul>
+        </nav>
       </div>
-    </footer>
-  </main>
+    </header>
 
-  <script src="js/main.js" defer></script>
-</body>
+    <main class="wrap">
+      <section class="cs-hero">
+        <h1 class="cs-title">BugMap: Issue intake that doesn't overwhelm</h1>
+        <p class="cs-meta">Role: Product Designer · 2025</p>
+        <div class="cs-cover">
+          <img src="assets/project-bugmap.webp" alt="BugMap board" />
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="eyebrow">Summary</h2>
+        <p>
+          BugMap helps teams triage user-reported issues without drowning in
+          noise. The goal: make prioritization obvious and fast.
+        </p>
+        <div class="cs-grid">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              Incoming issues were scattered across channels; lack of signal
+              caused slow triage and missed high-impact problems.
+            </p>
+          </div>
+          <div>
+            <h3>Outcome</h3>
+            <p>
+              Time-to-triage dropped by 37%. The team agreed on a common
+              language for urgency and ownership.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="eyebrow">Process</h2>
+        <ol>
+          <li>Mapped sources of bug reports; defined a normalized schema.</li>
+          <li>
+            Designed board with clear lanes; added filters for churn risk.
+          </li>
+          <li>Built a minimum lovable version as a Chrome extension.</li>
+        </ol>
+      </section>
+
+      <footer class="site-footer">
+        <div class="wrap">
+          <p>© <span id="year"></span> Your Name</p>
+        </div>
+      </footer>
+    </main>
+
+    <script src="js/main.js" defer></script>
+  </body>
 </html>

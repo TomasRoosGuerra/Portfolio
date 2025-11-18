@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>— Tomas Roos — Portfolio</title>
+    <title>Tomas Roos Portfolio</title>
     <meta
       name="description"
       content="A crisp, high-performance portfolio showcasing selected projects and photography."
@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#0A0A0A" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="— Tomas Roos — Portfolio" />
+    <meta property="og:title" content="Tomas Roos Portfolio" />
     <meta
       property="og:description"
       content="Selected works in product design, UI/UX, and Illustrations."
@@ -22,8 +22,18 @@
     <link rel="icon" href="assets/favicon.png" />
 
     <!-- Preload hero image -->
-    <link rel="preload" as="image" href="assets/port-folio.png" />
+    <link rel="preload" as="image" href="assets/other/port-folio.png" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       /* Reset & Base Styles */
       * {
@@ -33,29 +43,45 @@
       }
 
       :root {
-        /* Colors - Sophisticated dark theme with accent */
-        --bg-primary: #0a0a0a;
-        --bg-secondary: #111111;
-        --bg-tertiary: #1a1a1a;
-        --text-primary: #ffffff;
-        --text-secondary: #cccccc;
-        --text-muted: #888888;
-        --accent: #00ff88;
-        --accent-hover: #00cc6a;
-        --border: #333333;
-        --shadow: rgba(0, 255, 136, 0.1);
+        /* Beige palette and typography */
+        --bg-primary: #f5efe6; /* matte beige */
+        --bg-secondary: #f8f4ee; /* ivory */
+        --bg-tertiary: #fffaf2; /* soft cream */
+        --text-primary: #2b2a28; /* soft charcoal */
+        --text-secondary: #4a4744;
+        --text-muted: #6e6a65; /* muted taupe */
+        --accent: #9e8f7a; /* desaturated brown */
+        --accent-hover: #8a7c68;
+        --border: #e6dfd6;
+        --shadow: rgba(54, 47, 45, 0.1);
 
         /* Typography */
-        --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
+        --font-primary: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
         --font-mono: "SF Mono", Monaco, "Cascadia Code", monospace;
 
-        /* Spacing */
-        --section-padding: clamp(60px, 12vw, 120px);
+        /* Spacing - Professional, balanced */
+        --section-padding: clamp(48px, 8vw, 80px);
         --container-max: 1200px;
+        --spacing-xs: 8px;
+        --spacing-sm: 16px;
+        --spacing-md: 24px;
+        --spacing-lg: 32px;
+        --spacing-xl: 48px;
+
+        /* Typography Scale - Modular */
+        --text-xs: 0.75rem; /* 12px */
+        --text-sm: 0.875rem; /* 14px */
+        --text-base: 1rem; /* 16px */
+        --text-lg: 1.125rem; /* 18px */
+        --text-xl: 1.25rem; /* 20px */
+        --text-2xl: 1.5rem; /* 24px */
+        --text-3xl: 1.875rem; /* 30px */
+        --text-4xl: 2.25rem; /* 36px */
+        --text-5xl: clamp(2.5rem, 5vw, 3rem); /* 40-48px */
 
         /* Animations */
-        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-out-expo: cubic-bezier(0.2, 0.6, 0.2, 1);
         --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
       }
 
@@ -66,26 +92,21 @@
 
       body {
         font-family: var(--font-primary);
-        background: var(--bg-primary);
         color: var(--text-primary);
+        font-size: var(--text-base);
         line-height: 1.6;
         overflow-x: hidden;
-      }
-
-      /* Skip Link */
-      .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--accent);
-        color: var(--bg-primary);
-        padding: 8px;
-        text-decoration: none;
-        z-index: 100;
-        border-radius: 4px;
-      }
-      .skip-link:focus {
-        top: 6px;
+        background: radial-gradient(
+            1200px 800px at 20% -10%,
+            #fbf8f3 0%,
+            rgba(0, 0, 0, 0) 60%
+          ),
+          radial-gradient(
+            1000px 700px at 120% 10%,
+            #f3ede5 0%,
+            rgba(0, 0, 0, 0) 50%
+          ),
+          var(--bg-primary);
       }
 
       /* Header */
@@ -94,14 +115,15 @@
         top: 0;
         width: 100%;
         z-index: 50;
-        background: rgba(10, 10, 10, 0.8);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(12px) saturate(1.05);
         border-bottom: 1px solid var(--border);
-        transition: all 0.3s var(--ease-out-expo);
+        transition: background 0.4s var(--ease-out-expo),
+          border-color 0.4s var(--ease-out-expo);
       }
 
       .site-header.scrolled {
-        background: rgba(10, 10, 10, 0.95);
+        background: rgba(255, 255, 255, 0.86);
       }
 
       .header-wrap {
@@ -193,7 +215,7 @@
         padding: 120px 0 80px;
         background: radial-gradient(
           ellipse at top,
-          rgba(0, 255, 136, 0.05) 0%,
+          rgba(158, 143, 122, 0.12) 0%,
           transparent 50%
         );
       }
@@ -217,8 +239,8 @@
         align-items: center;
         gap: 8px;
         padding: 6px 16px;
-        background: rgba(0, 255, 136, 0.1);
-        border: 1px solid rgba(0, 255, 136, 0.2);
+        background: rgba(158, 143, 122, 0.08);
+        border: 1px solid rgba(158, 143, 122, 0.18);
         border-radius: 50px;
         font-size: 12px;
         color: var(--accent);
@@ -228,47 +250,124 @@
         animation: slideUpFade 0.8s 0.2s both var(--ease-out-expo);
       }
 
+      /* Subtle 80s-inspired geometric accents */
       .hero__badge::before {
         content: "";
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
         background: var(--accent);
-        border-radius: 50%;
-        animation: pulse 2s infinite;
+        border-radius: 2px;
+        margin-right: 8px;
+        transform: rotate(45deg);
+      }
+
+      .eyebrow::before {
+        content: "◆";
+        margin-right: 8px;
+        color: var(--accent);
+        font-size: 0.8em;
       }
 
       .hero__title {
-        font-size: clamp(48px, 8vw, 72px);
-        font-weight: 700;
+        font-family: "Fraunces", ui-serif, Georgia, serif;
+        font-size: var(--text-5xl);
+        font-weight: 600;
+        font-style: italic;
         line-height: 1.1;
-        margin-bottom: 24px;
-        background: linear-gradient(
-          135deg,
-          var(--text-primary) 0%,
-          rgba(255, 255, 255, 0.7) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        letter-spacing: -0.02em;
+        margin-bottom: var(--spacing-md);
+        color: var(--text-primary);
         opacity: 0;
+        text-align: center;
         animation: slideUpFade 0.8s 0.4s both var(--ease-out-expo);
       }
 
       .hero__subtitle {
-        font-size: 18px;
+        font-size: var(--text-lg);
         color: var(--text-secondary);
-        margin-bottom: 40px;
+        margin-bottom: var(--spacing-lg);
         line-height: 1.6;
         opacity: 0;
+        text-align: center;
         animation: slideUpFade 0.8s 0.6s both var(--ease-out-expo);
       }
 
       .hero__actions {
         display: flex;
         gap: 16px;
+        justify-content: center;
         flex-wrap: wrap;
         opacity: 0;
         animation: slideUpFade 0.8s 0.8s both var(--ease-out-expo);
+      }
+
+      /* CTA color to echo reference */
+      .btn--cta {
+        background: #ff7a1a;
+        color: #fff;
+        border: 1px solid #ff7a1a;
+        box-shadow: 0 10px 30px rgba(255, 122, 26, 0.25);
+      }
+      .btn--cta:hover {
+        background: #e96e17;
+        border-color: #e96e17;
+        transform: translateY(-2px);
+        box-shadow: 0 14px 34px rgba(233, 110, 23, 0.3);
+      }
+
+      /* Floating images around hero */
+      .hero-floats {
+        pointer-events: none;
+      }
+      .float-img {
+        position: absolute;
+        width: clamp(120px, 16vw, 220px);
+        aspect-ratio: 4/5;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+        transform-origin: center;
+        animation: gentleFloat 12s ease-in-out infinite;
+      }
+      .float-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .float-tl {
+        top: 14%;
+        left: 6%;
+        transform: rotate(-18deg);
+        animation-delay: 0s;
+      }
+      .float-tr {
+        top: 10%;
+        right: 8%;
+        transform: rotate(18deg);
+        animation-delay: 1.2s;
+      }
+      .float-bl {
+        bottom: 8%;
+        left: 12%;
+        transform: rotate(10deg);
+        animation-delay: 0.6s;
+      }
+      .float-br {
+        bottom: 14%;
+        right: 10%;
+        transform: rotate(-12deg);
+        animation-delay: 1.8s;
+      }
+
+      @keyframes gentleFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(var(--rot, 0deg));
+        }
+        50% {
+          transform: translateY(-8px) rotate(var(--rot, 0deg));
+        }
       }
 
       .hero__image {
@@ -309,9 +408,14 @@
       }
 
       .btn--primary {
-        background: var(--accent);
-        color: var(--bg-primary);
-        border: 1px solid var(--accent);
+        background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.6),
+            rgba(255, 255, 255, 0.6)
+          ),
+          #efe7dc;
+        color: var(--text-primary);
+        border: 1px solid var(--border);
       }
 
       .btn--primary::before {
@@ -335,9 +439,14 @@
       }
 
       .btn--primary:hover {
-        background: var(--accent-hover);
+        background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.7)
+          ),
+          #e9e0d4;
         transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        box-shadow: 0 10px 30px rgba(54, 47, 45, 0.15);
       }
 
       .btn--ghost {
@@ -347,8 +456,8 @@
       }
 
       .btn--ghost:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: var(--accent);
+        background: rgba(158, 143, 122, 0.08);
+        border-color: var(--border);
         transform: translateY(-2px);
       }
 
@@ -370,34 +479,70 @@
 
       .section__header {
         text-align: center;
-        margin-bottom: 80px;
+        margin-bottom: var(--spacing-xl);
       }
 
       .eyebrow {
-        font-size: 14px;
-        color: var(--accent);
+        font-size: var(--text-xs);
+        color: var(--text-muted);
         font-weight: 600;
-        letter-spacing: 2px;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        margin-bottom: 16px;
+        margin-bottom: var(--spacing-sm);
         opacity: 0;
-        animation: slideUpFade 0.6s both var(--ease-out-expo);
+        animation: slideUpFade 0.9s both var(--ease-out-expo);
       }
 
       .section__lead {
-        font-size: 20px;
+        font-size: var(--text-lg);
         color: var(--text-secondary);
-        max-width: 600px;
+        max-width: 65ch;
         margin: 0 auto;
+        line-height: 1.7;
         opacity: 0;
         animation: slideUpFade 0.6s 0.2s both var(--ease-out-expo);
       }
 
       /* Project Grid */
       .projects {
+        /* Tunable tokens for best-practice layout */
+        --work-min: 360px; /* minimum card width on desktop */
+        --work-gap: 40px; /* gutter on desktop */
+        --work-max-cols: 4; /* hard cap of columns */
+
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 40px;
+        gap: var(--work-gap);
+        /* Auto-fit tracks, centered; clamp min size and prevent over-expansion */
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(min(100%, var(--work-min)), 1fr)
+        );
+        justify-content: center;
+        width: 100%;
+        /* Container width equals N tracks + (N-1) gaps; centers 1–3 items nicely */
+        max-width: calc(
+          var(--work-max-cols) * var(--work-min) + (var(--work-max-cols) - 1) *
+            var(--work-gap)
+        );
+        margin-inline: auto;
+      }
+
+      /* Tablet: max 3 columns, slightly smaller cards and gutters */
+      @media (max-width: 1024px) {
+        .projects {
+          --work-min: 320px;
+          --work-gap: 32px;
+          --work-max-cols: 3;
+        }
+      }
+
+      /* Mobile: max 2 columns, compact spacing */
+      @media (max-width: 640px) {
+        .projects {
+          --work-min: 280px;
+          --work-gap: 20px;
+          --work-max-cols: 2;
+        }
       }
 
       .card {
@@ -408,12 +553,34 @@
         border: 1px solid var(--border);
         opacity: 0;
         animation: slideUpFade 0.6s both var(--ease-out-expo);
+        position: relative;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          transparent,
+          var(--accent)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .card:hover::before {
+        opacity: 1;
       }
 
       .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        border-color: var(--accent);
+        transform: translateY(-4px);
+        box-shadow: 0 14px 40px rgba(54, 47, 45, 0.16);
+        border-color: var(--border);
       }
 
       .card__cover {
@@ -435,13 +602,14 @@
       }
 
       .card__body {
-        padding: 32px;
+        padding: var(--spacing-lg);
       }
 
       .card__title {
-        font-size: 24px;
+        font-size: var(--text-2xl);
         font-weight: 600;
-        margin-bottom: 8px;
+        margin-bottom: var(--spacing-xs);
+        line-height: 1.3;
       }
 
       .card__title a {
@@ -451,19 +619,20 @@
       }
 
       .card__title a:hover {
-        color: var(--accent);
+        color: var(--text-primary);
       }
 
       .card__meta {
-        font-size: 14px;
+        font-size: var(--text-sm);
         color: var(--text-muted);
-        margin-bottom: 16px;
+        margin-bottom: var(--spacing-sm);
         font-family: var(--font-mono);
       }
 
       .card__desc {
+        font-size: var(--text-base);
         color: var(--text-secondary);
-        margin-bottom: 24px;
+        margin-bottom: var(--spacing-md);
         line-height: 1.6;
       }
 
@@ -487,8 +656,18 @@
       /* Gallery */
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Limit to max 4 columns */
+      @media (min-width: 1000px) {
+        .gallery {
+          grid-template-columns: repeat(4, 1fr);
+          max-width: 1000px;
+        }
       }
 
       .tile {
@@ -522,38 +701,120 @@
       /* About Section */
       .about {
         display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 80px;
-        align-items: center;
+        grid-template-columns: 1.1fr 1.3fr;
+        gap: 32px;
+        align-items: start;
       }
 
-      .about__copy {
-        max-width: 500px;
+      /* Panel cards */
+      .panel {
+        background: var(--bg-alt);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow-1);
       }
 
-      .about__copy h2 {
-        margin-bottom: 32px;
+      .about__left {
+        padding: 28px;
       }
 
-      .about__copy p {
-        color: var(--text-secondary);
-        margin-bottom: 24px;
-        font-size: 18px;
-        line-height: 1.7;
+      .about__profile {
+        display: grid;
+        gap: 20px;
+        place-items: center;
+        text-align: center;
       }
 
-      .about__image {
-        width: 300px;
-        height: 400px;
-        border-radius: 20px;
+      .about__avatar {
+        width: min(100%, 440px);
+        aspect-ratio: 1/1;
+        border-radius: 28px;
         overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        background: var(--bg);
+        display: grid;
+        place-items: center;
       }
-
-      .about__image img {
+      .about__avatar img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        filter: grayscale(20%);
+      }
+
+      .about__identity h3 {
+        margin: 0 0 6px 0;
+        font-weight: 600;
+      }
+      .about__identity .muted {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .about__right {
+        display: grid;
+        gap: 24px;
+      }
+
+      .about__bio {
+        padding: 28px;
+      }
+      .about__meta {
+        padding: 24px 28px;
+      }
+
+      .about__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        color: var(--accent);
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .about__heading {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+      }
+
+      .about__bio p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .role-list {
+        display: grid;
+        gap: 16px;
+        margin: 12px 0 8px 0;
+      }
+      .role {
+        display: grid;
+        gap: 4px;
+      }
+      .role .title {
+        font-weight: 600;
+      }
+      .role .org {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .app-list {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .app-chip {
+        padding: 6px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--bg);
+        font-size: 12px;
       }
 
       /* Contact Form */
@@ -584,7 +845,7 @@
       .field input,
       .field textarea {
         padding: 16px 20px;
-        background: var(--bg-secondary);
+        background: #fffdf9;
         border: 1px solid var(--border);
         border-radius: 12px;
         color: var(--text-primary);
@@ -596,8 +857,8 @@
       .field input:focus,
       .field textarea:focus {
         outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        border-color: var(--border);
+        box-shadow: 0 0 0 3px rgba(158, 143, 122, 0.18);
       }
 
       .contact__note {
@@ -607,7 +868,7 @@
       }
 
       .contact__note a {
-        color: var(--accent);
+        color: var(--text-muted);
         text-decoration: none;
       }
 
@@ -742,6 +1003,10 @@
           gap: 40px;
         }
 
+        .float-img {
+          display: none;
+        }
+
         .hero__image {
           width: 100%;
           max-width: 300px;
@@ -758,24 +1023,26 @@
         }
 
         .projects {
-          grid-template-columns: 1fr;
+          /* Use variable overrides instead of redefining grid */
+          --work-min: 280px;
+          --work-gap: 24px;
+          --work-max-cols: 2;
         }
 
         .about {
           grid-template-columns: 1fr;
-          text-align: center;
-          gap: 40px;
+          gap: 20px;
         }
-
-        .about__image {
-          width: 250px;
-          height: 300px;
-          margin: 0 auto;
+        .about__left {
+          padding: 20px;
+        }
+        .about__right {
+          gap: 16px;
         }
 
         .gallery {
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 16px;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
 
         .hero__actions {
@@ -828,8 +1095,6 @@
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#content">Skip to content</a>
-
     <header class="site-header">
       <div class="header-wrap">
         <a class="brand" href="#top">Tomas&nbsp;Roos</a>
@@ -846,6 +1111,11 @@
             <li><a href="#photos">Designs</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li>
+              <a href="admin.html" style="opacity: 0.6; font-size: 0.9em"
+                >Admin</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
@@ -854,23 +1124,35 @@
     <main id="content">
       <!-- HERO -->
       <section id="top" class="hero">
-        <div class="hero-wrap">
-          <div class="hero__content">
-            <div class="hero__badge">Available for projects</div>
-            <h1 class="hero__title">Design that can be used.</h1>
-            <p class="hero__subtitle" style="width: 100%">
-              I craft product experiences that are fast, accessible, and
-              delightful. Below are a few favorites.
-            </p>
+        <div
+          class="hero-wrap"
+          style="grid-template-columns: 1fr; text-align: center"
+        >
+          <div class="hero__content" style="margin: 0 auto; max-width: 820px">
+            <div class="hero__badge">This is Tomas</div>
+            <h1 class="hero__title">Visual and<br />Product designer</h1>
+            <p class="hero__subtitle">startups can count on</p>
             <div class="hero__actions">
-              <a class="btn btn--primary" href="#work">See Work</a>
-              <a class="btn btn--ghost" href="#contact">Get in touch</a>
+              <a class="btn btn--cta" href="#work">Check out my works</a>
             </div>
           </div>
-          <div class="hero__image">
+        </div>
+
+        <!-- Floating images -->
+        <div class="hero-floats" aria-hidden="true">
+          <div class="float-img float-tl" style="--rot: -18deg">
+            <img src="assets/other/Preview-01.jpg" alt="" loading="eager" />
+          </div>
+          <div class="float-img float-tr" style="--rot: 18deg">
+            <img src="assets/sharely/Sharely.png" alt="" loading="eager" />
+          </div>
+          <div class="float-img float-bl" style="--rot: 10deg">
+            <img src="assets/brygg/brygg-hemsida.png" alt="" loading="eager" />
+          </div>
+          <div class="float-img float-br" style="--rot: -12deg">
             <img
-              src="assets/Preview-01.jpg"
-              alt="Design portfolio showcase"
+              src="assets/tidings/tidings-slide.jpg"
+              alt=""
               loading="eager"
             />
           </div>
@@ -881,105 +1163,15 @@
       <section id="work" class="section">
         <div class="wrap">
           <div class="section__header">
-            <h2 class="eyebrow">Selected Work</h2>
+            <h2 class="eyebrow">What I've Been Working On</h2>
             <p class="section__lead">
-              A tight, evolving set of projects. Case studies focus on outcomes,
-              not fluff.
+              A few projects I'm particularly proud of. Each one taught me
+              something new about making technology feel more human.
             </p>
           </div>
 
           <div class="projects">
-            <!-- PROJECT CARD 1 -->
-            <article class="card reveal-up">
-              <a
-                class="card__cover"
-                href="brael-page.html"
-                aria-label="Open case study: BugMap"
-              >
-                <img
-                  src="assets/brael.png"
-                  alt="BugMap issue triage board UI"
-                  loading="lazy"
-                />
-              </a>
-              <div class="card__body">
-                <h3 class="card__title">
-                  <a href="case-study-example.html">BugMap</a>
-                </h3>
-                <p class="card__meta">
-                  Chrome Extension · Product Design · 2025
-                </p>
-                <p class="card__desc">
-                  Turn chaotic bug intake into a calm, prioritized board.
-                  Result: -37% time-to-triage.
-                </p>
-                <ul class="tags">
-                  <li>UX Strategy</li>
-                  <li>Design System</li>
-                  <li>Web Perf</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- PROJECT CARD 2 -->
-            <article class="card reveal-up">
-              <a
-                class="card__cover"
-                href="tidings-page.html"
-                aria-label="Open case study: Tidings News App"
-              >
-                <img
-                  src="assets/tidings.png"
-                  alt="Tidings news app clean interface"
-                  loading="lazy"
-                />
-              </a>
-              <div class="card__body">
-                <h3 class="card__title">
-                  <a href="#">Tidings - News your own way</a>
-                </h3>
-                <p class="card__meta">Mobile · UX/UI · 2024</p>
-                <p class="card__desc">
-                  Create your own news consumption schedules in any format.
-                  Focus: deliverability, flows, and retention loops.
-                </p>
-                <ul class="tags">
-                  <li>Flows</li>
-                  <li>Retention</li>
-                  <li>Accessibility</li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- PROJECT CARD 3 -->
-            <article class="card reveal-up">
-              <a
-                class="card__cover"
-                href="#"
-                aria-label="Open case study: Clipboard Manager"
-              >
-                <img
-                  src="assets/Desktop.png"
-                  alt="Clipboard manager minimal UI"
-                  loading="lazy"
-                />
-              </a>
-              <div class="card__body">
-                <h3 class="card__title">
-                  <a href="assets/Sharely.png">Clipboard Manager</a>
-                </h3>
-                <p class="card__meta">Chrome Extension · 2025</p>
-                <p class="card__desc">
-                  Templates, folders, and right‑click access. Built for speed
-                  under heavy agent load.
-                </p>
-                <ul class="tags">
-                  <li>Interaction</li>
-                  <li>Information Architecture</li>
-                  <li>DX</li>
-                </ul>
-              </div>
-            </article>
+            <!-- Projects will be loaded dynamically from projects-data.js -->
           </div>
         </div>
       </section>
@@ -988,107 +1180,14 @@
       <section id="photos" class="section section--alt">
         <div class="wrap">
           <div class="section__header">
-            <h2 class="eyebrow">More Designs</h2>
+            <h2 class="eyebrow">Design Experiments</h2>
             <p class="section__lead">
-              Handpicked frames. Click any image to open the lightbox.
+              Some visual explorations and side projects. These are the things I
+              work on when I want to try something new.
             </p>
           </div>
           <div class="gallery">
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/burkxceed.png"
-              aria-label="Open design 1"
-            >
-              <img
-                src="assets/burkxceed.png"
-                alt="Design showcase 1"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/phonescreenshot.png"
-              aria-label="Open design 2"
-            >
-              <img
-                src="assets/phonescreenshot.png"
-                alt="Mobile app design"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/tidings-slide.jpg"
-              aria-label="Open design 3"
-            >
-              <img
-                src="assets/tidings-slide.jpg"
-                alt="Presentation slide design"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/brael-erbjudande.png"
-              aria-label="Open design 4"
-            >
-              <img
-                src="assets/brael-erbjudande.png"
-                alt="Brael offer design"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/Juan.png"
-              aria-label="Open design 5"
-            >
-              <img
-                src="assets/Juan.png"
-                alt="User interface design"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/chrome-clipboard.png"
-              aria-label="Open design 6"
-            >
-              <img
-                src="assets/chrome-clipboard.png"
-                alt="Chrome extension design"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/brygg-hemsida.png"
-              aria-label="Open design 7"
-            >
-              <img
-                src="assets/brygg-hemsida.png"
-                alt="Website design"
-                loading="lazy"
-              />
-            </button>
-
-            <button
-              class="tile reveal-fade"
-              data-lightbox="assets/portolio-design.png"
-              aria-label="Open design 8"
-            >
-              <img
-                src="assets/portolio-design.png"
-                alt="Portfolio design concept"
-                loading="lazy"
-              />
-            </button>
+            <!-- Design tiles will be loaded dynamically from projects-data.js -->
           </div>
         </div>
       </section>
@@ -1097,84 +1196,62 @@
       <section id="about" class="section">
         <div class="wrap">
           <div class="about">
-            <div class="about__copy reveal-up">
-              <h2 class="eyebrow">About</h2>
-              <p>
-                Product designer with 6+ years in UX/UI. I build clean systems
-                and ship fast. Comfortable from research to motion.
-              </p>
-              <p>
-                Tools: Figma, React/React Native, Chrome Extensions, PostHog.
-                Accessibility: WCAG AA.
-              </p>
-              <a class="btn btn--ghost" href="assets/tomas-roos-cv.pdf">
-                Download CV
-              </a>
+            <!-- Left profile card -->
+            <div class="panel about__left reveal-fade">
+              <div class="about__profile">
+                <div class="about__avatar">
+                  <img
+                    src="assets/other/picture-of-me.JPG"
+                    alt="Portrait of Tomas Roos"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="about__identity">
+                  <h3>Tomas Roos</h3>
+                  <div class="muted">tomas.roosguerra@gmail.com</div>
+                </div>
+              </div>
             </div>
-            <div class="about__image reveal-fade">
-              <img
-                src="assets/picture-of-me.JPG"
-                alt="Portrait of Tomas Roos"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="section">
-        <div class="wrap">
-          <div class="contact reveal-up">
-            <h2 class="eyebrow">Contact</h2>
-            <p class="section__lead">
-              Tell me about your project. I usually reply within a day.
-            </p>
-            <form
-              class="contact__form"
-              name="contact"
-              method="post"
-              data-netlify="true"
-            >
-              <div class="field">
-                <label for="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  required
-                />
+            <!-- Right column: bio and meta -->
+            <div class="about__right">
+              <div class="panel about__bio reveal-up">
+                <div class="about__badge">Open to work</div>
+                <h3 class="about__heading">About Me</h3>
+                <p>
+                  Visual/product designer focused on calm, usable interfaces. I
+                  like systems that get out of the way and let people do their
+                  thing. Based in Stockholm, working with product teams remotely
+                  and on-site.
+                </p>
+                <p>
+                  When I'm not designing, I’m probably on a long walk, reading
+                  about cities, or tuning my coffee ritual.
+                </p>
               </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                />
+
+              <div class="panel about__meta reveal-up">
+                <h4 style="margin: 0 0 8px 0">Latest Roles</h4>
+                <div class="role-list">
+                  <div class="role">
+                    <div class="title">Product Designer</div>
+                    <div class="org">Independent · 2023-Present</div>
+                  </div>
+                  <div class="role">
+                    <div class="title">UI Designer</div>
+                    <div class="org">Various startups</div>
+                  </div>
+                </div>
+
+                <h4 style="margin: 16px 0 8px 0">Main Apps</h4>
+                <div class="app-list">
+                  <span class="app-chip">Figma</span>
+                  <span class="app-chip">Sketch</span>
+                  <span class="app-chip">Photoshop</span>
+                  <span class="app-chip">Framer</span>
+                </div>
               </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                ></textarea>
-              </div>
-              <button class="btn btn--primary" type="submit">
-                Send Message
-              </button>
-            </form>
-            <p class="contact__note">
-              Prefer email?
-              <a href="mailto:tomas.roosguerra@gmail.com">
-                tomas.roosguerra@gmail.com
-              </a>
-            </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1195,9 +1272,266 @@
       <img class="lightbox__img" src="" alt="Expanded image" />
     </dialog>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+      // Your Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyBilQwP9N6kCw1IsxnDDkvkEj7HUsLTtAE",
+        authDomain: "portfolio-7ba48.firebaseapp.com",
+        projectId: "portfolio-7ba48",
+        storageBucket: "portfolio-7ba48.firebasestorage.app",
+        messagingSenderId: "1022085096489",
+        appId: "1:1022085096489:web:9182270ab64bd18aba2838",
+        measurementId: "G-ELZZ0CREEN",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Load projects from Firebase
+      async function loadProjectsFromFirebase() {
+        try {
+          const projectsSnapshot = await getDocs(collection(db, "projects"));
+          const projects = [];
+          projectsSnapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.published) {
+              projects.push({
+                id: doc.id,
+                ...data,
+              });
+            }
+          });
+
+          // Sort by createdAt (newest first)
+          projects.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+
+          // Update the global projectsData
+          window.projectsData = {
+            projects: projects,
+            designs: projects.filter(
+              (p) =>
+                p.category === "design" ||
+                p.category === "ui-ux" ||
+                p.category === "branding"
+            ),
+          };
+
+          // Load the content
+          loadProjects();
+          loadDesigns();
+        } catch (error) {
+          console.error("Error loading projects from Firebase:", error);
+          // Fallback to static data
+          loadProjectsFromStatic();
+        }
+      }
+
+      // Fallback to static data
+      function loadProjectsFromStatic() {
+        // Load static data as fallback
+        const script = document.createElement("script");
+        script.src = "js/projects-data.js";
+        script.onload = () => {
+          loadProjects();
+          loadDesigns();
+        };
+        document.head.appendChild(script);
+      }
+
+      // Initialize when DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        loadProjectsFromFirebase();
+      });
+    </script>
+
     <script>
       // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Smart grid system - prevents half-full rows
+      function adjustGridColumns() {
+        const projectsGrid = document.querySelector(".projects");
+        const galleryGrid = document.querySelector(".gallery");
+
+        function calculateOptimalColumns(
+          items,
+          container,
+          minWidth,
+          maxColumns = 4
+        ) {
+          const containerWidth = container.offsetWidth;
+          const availableWidth =
+            containerWidth -
+            (parseInt(getComputedStyle(container).gap) || 0) * (maxColumns - 1);
+          const maxPossibleColumns = Math.floor(availableWidth / minWidth);
+          const actualColumns = Math.min(maxPossibleColumns, maxColumns);
+
+          console.log(`Grid calculation:`, {
+            itemsCount: items.length,
+            containerWidth,
+            minWidth,
+            maxColumns,
+            maxPossibleColumns,
+            actualColumns,
+          });
+
+          // Special handling for even numbers of items
+          if (items.length >= 2 && items.length <= 4) {
+            // For 2-4 items, prefer 2 columns if it fits
+            if (actualColumns >= 2) {
+              console.log(`Using 2 columns for ${items.length} items`);
+              return 2;
+            }
+          }
+
+          if (items.length >= 6 && items.length <= 8) {
+            // For 6-8 items, prefer 3 columns if it fits
+            if (actualColumns >= 3) {
+              console.log(`Using 3 columns for ${items.length} items`);
+              return 3;
+            }
+          }
+
+          // Find the best column count that minimizes empty slots in the last row
+          let bestColumns = actualColumns;
+          let minEmptySlots = Infinity;
+
+          for (let cols = 1; cols <= actualColumns; cols++) {
+            const itemsPerRow = cols;
+            const fullRows = Math.floor(items.length / itemsPerRow);
+            const itemsInLastRow = items.length % itemsPerRow;
+            const emptySlots =
+              itemsInLastRow === 0 ? 0 : itemsPerRow - itemsInLastRow;
+
+            if (emptySlots < minEmptySlots) {
+              minEmptySlots = emptySlots;
+              bestColumns = cols;
+            }
+          }
+
+          return bestColumns;
+        }
+
+        if (projectsGrid) {
+          const projectItems = projectsGrid.querySelectorAll(".card");
+          console.log(`Found ${projectItems.length} project items`);
+          if (projectItems.length > 0) {
+            // Responsive minWidth based on screen size
+            const screenWidth = window.innerWidth;
+            const minWidth =
+              screenWidth < 768 ? 280 : screenWidth < 1024 ? 320 : 350;
+            const maxColumns =
+              screenWidth < 768 ? 2 : screenWidth < 1024 ? 3 : 4;
+
+            const optimalColumns = calculateOptimalColumns(
+              projectItems,
+              projectsGrid,
+              minWidth,
+              maxColumns
+            );
+            projectsGrid.style.gridTemplateColumns = `repeat(${optimalColumns}, 1fr)`;
+            console.log(`Projects grid: ${optimalColumns} columns`);
+          }
+        }
+
+        if (galleryGrid) {
+          const galleryItems = galleryGrid.querySelectorAll(".tile");
+          console.log(`Found ${galleryItems.length} gallery items`);
+          if (galleryItems.length > 0) {
+            // Responsive minWidth based on screen size
+            const screenWidth = window.innerWidth;
+            const minWidth =
+              screenWidth < 768 ? 200 : screenWidth < 1024 ? 240 : 280;
+            const maxColumns =
+              screenWidth < 768 ? 2 : screenWidth < 1024 ? 3 : 4;
+
+            const optimalColumns = calculateOptimalColumns(
+              galleryItems,
+              galleryGrid,
+              minWidth,
+              maxColumns
+            );
+            galleryGrid.style.gridTemplateColumns = `repeat(${optimalColumns}, 1fr)`;
+            console.log(`Gallery grid: ${optimalColumns} columns`);
+          }
+        }
+      }
+
+      // Dynamic content loading
+      function loadProjects() {
+        const projectsContainer = document.querySelector(".projects");
+        if (!projectsContainer || !window.projectsData) return;
+
+        projectsContainer.innerHTML = "";
+
+        window.projectsData.projects.forEach((project, index) => {
+          if (!project.published) return;
+
+          const projectCard = document.createElement("article");
+          projectCard.className = "card reveal-up";
+          projectCard.style.animationDelay = `${index * 0.1}s`;
+
+          projectCard.innerHTML = `
+            <div class="card__cover">
+              <img src="${project.imageUrl}" alt="${
+            project.title
+          }" loading="lazy" width="1600" height="1000" />
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">
+                <a href="${project.caseStudyUrl || "#"}">${project.title}</a>
+              </h3>
+              <p class="card__desc">${project.description}</p>
+              <div class="tags">
+                ${project.tags.map((tag) => `<li>${tag}</li>`).join("")}
+              </div>
+              <div class="meta" style="display:flex;gap:12px;color:var(--muted);font-size:12px;margin-top:8px;">
+                <span>Impact: ${project.impact || "+18% activation"}</span>
+                <span>Role: ${project.role || "Product Design"}</span>
+              </div>
+            </div>
+          `;
+
+          projectsContainer.appendChild(projectCard);
+        });
+
+        // Grid is now handled by pure CSS - no JavaScript needed!
+      }
+
+      function loadDesigns() {
+        const galleryContainer = document.querySelector(".gallery");
+        if (!galleryContainer || !window.projectsData) return;
+
+        galleryContainer.innerHTML = "";
+
+        window.projectsData.designs.forEach((design, index) => {
+          const designTile = document.createElement("button");
+          designTile.className = "tile reveal-fade";
+          designTile.style.animationDelay = `${index * 0.1}s`;
+          designTile.setAttribute("data-lightbox", design.imageUrl);
+          designTile.setAttribute("aria-label", `View ${design.title}`);
+
+          designTile.innerHTML = `
+            <img src="${design.imageUrl}" alt="${design.title}" loading="lazy" />
+          `;
+
+          galleryContainer.appendChild(designTile);
+        });
+
+        // Grid is now handled by pure CSS - no JavaScript needed!
+      }
+
+      // Content loading is now handled by Firebase module
 
       // Mobile menu toggle
       const navToggle = document.querySelector(".nav__toggle");
@@ -1333,10 +1667,10 @@
 
       // Preload critical images for better performance
       const criticalImages = [
-        "assets/port-folio.png",
-        "assets/brael.png",
-        "assets/tidings.png",
-        "assets/Desktop.png",
+        "assets/other/port-folio.png",
+        "assets/brael/brael.png",
+        "assets/tidings/tidings.png",
+        "assets/other/Desktop.png",
       ];
 
       criticalImages.forEach((src) => {
