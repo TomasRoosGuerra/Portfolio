@@ -1111,11 +1111,6 @@
             <li><a href="#photos">Designs</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li>
-              <a href="admin.html" style="opacity: 0.6; font-size: 0.9em"
-                >Admin</a
-              >
-            </li>
           </ul>
         </nav>
       </div>
@@ -1272,85 +1267,13 @@
       <img class="lightbox__img" src="" alt="Expanded image" />
     </dialog>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-      import {
-        getFirestore,
-        collection,
-        getDocs,
-      } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-
-      // Your Firebase config
-      const firebaseConfig = {
-        apiKey: "AIzaSyBilQwP9N6kCw1IsxnDDkvkEj7HUsLTtAE",
-        authDomain: "portfolio-7ba48.firebaseapp.com",
-        projectId: "portfolio-7ba48",
-        storageBucket: "portfolio-7ba48.firebasestorage.app",
-        messagingSenderId: "1022085096489",
-        appId: "1:1022085096489:web:9182270ab64bd18aba2838",
-        measurementId: "G-ELZZ0CREEN",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-
-      // Load projects from Firebase
-      async function loadProjectsFromFirebase() {
-        try {
-          const projectsSnapshot = await getDocs(collection(db, "projects"));
-          const projects = [];
-          projectsSnapshot.forEach((doc) => {
-            const data = doc.data();
-            if (data.published) {
-              projects.push({
-                id: doc.id,
-                ...data,
-              });
-            }
-          });
-
-          // Sort by createdAt (newest first)
-          projects.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-          );
-
-          // Update the global projectsData
-          window.projectsData = {
-            projects: projects,
-            designs: projects.filter(
-              (p) =>
-                p.category === "design" ||
-                p.category === "ui-ux" ||
-                p.category === "branding"
-            ),
-          };
-
-          // Load the content
-          loadProjects();
-          loadDesigns();
-        } catch (error) {
-          console.error("Error loading projects from Firebase:", error);
-          // Fallback to static data
-          loadProjectsFromStatic();
-        }
-      }
-
-      // Fallback to static data
-      function loadProjectsFromStatic() {
-        // Load static data as fallback
-        const script = document.createElement("script");
-        script.src = "js/projects-data.js";
-        script.onload = () => {
-          loadProjects();
-          loadDesigns();
-        };
-        document.head.appendChild(script);
-      }
-
+    <!-- Load projects from static data -->
+    <script src="js/projects-data.js"></script>
+    <script>
       // Initialize when DOM is ready
       document.addEventListener("DOMContentLoaded", () => {
-        loadProjectsFromFirebase();
+        loadProjects();
+        loadDesigns();
       });
     </script>
 
@@ -1531,7 +1454,6 @@
         // Grid is now handled by pure CSS - no JavaScript needed!
       }
 
-      // Content loading is now handled by Firebase module
 
       // Mobile menu toggle
       const navToggle = document.querySelector(".nav__toggle");
