@@ -3,74 +3,46 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Tidings: News Consumption App UX Case Study | Tomas Roos Portfolio
-    </title>
-    <meta
-      name="description"
-      content="A comprehensive UX case study of Tidings, a React Native news consumption app designed for clarity and user control."
-    />
-    <meta
-      name="keywords"
-      content="Tidings, news app, React Native, UX design, mobile app design, product design, Tomas Roos"
-    />
+    <title>Tidings — Tomas Roos</title>
+    <meta name="description" content="A React Native news consumption app designed for clarity and user control." />
     <meta name="author" content="Tomas Roos" />
-
     <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Tidings: News Consumption App UX Case Study"
-    />
-    <meta
-      property="og:description"
-      content="A React Native news app designed for clarity and user control."
-    />
+    <meta property="og:title" content="Tidings — Tomas Roos" />
+    <meta property="og:description" content="A React Native news app designed for clarity and user control." />
     <meta property="og:image" content="assets/tidings/tidings.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Tidings: News Consumption App UX Case Study"
-    />
-    <meta
-      name="twitter:description"
-      content="A React Native news app designed for clarity and user control."
-    />
-    <meta name="twitter:image" content="assets/tidings/tidings.png" />
-
+    <link rel="icon" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/case-study.css" />
   </head>
   <body>
+    <div class="page-loader" aria-hidden="true">
+      <img src="assets/tomas-roos-logo.svg" alt="" style="height:32px;opacity:0.4" />
+    </div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="index.html"><img src="assets/tomas-roos-logo.svg" alt="Tomas Roos" class="brand-logo" /></a>
         <nav class="nav">
-          <ul class="nav__list">
-            <li><a href="index.html#work">Back to Work</a></li>
-          </ul>
+          <a class="cs-back" href="index.html#work">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Work
+          </a>
         </nav>
       </div>
     </header>
 
     <main class="wrap">
-      <section class="cs-hero">
+      <section class="cs-hero reveal-up">
         <h1 class="cs-title">Tidings</h1>
-        <p class="cs-subtitle">
-          A news consumption app that puts users in control. Built with React
-          Native for clarity and personalization, without algorithmic
-          manipulation.
-        </p>
+        <p class="cs-subtitle">A news consumption app that puts users in control. Built with React Native for clarity and personalization, without algorithmic manipulation.</p>
         <div class="cs-meta">
           <span><strong>Role:</strong> Product Designer</span>
           <span><strong>Year:</strong> 2024</span>
-          <span><strong>Platform:</strong> iOS & Android</span>
+          <span><strong>Platform:</strong> iOS &amp; Android</span>
           <span><strong>Impact:</strong> +32% engagement</span>
         </div>
         <div class="cs-cover">
@@ -78,150 +50,97 @@
         </div>
       </section>
 
-      <section class="section">
-        <h2 class="eyebrow">Overview</h2>
-        <p class="section__lead">
-          Existing news apps prioritized engagement over clarity. Users were
-          overwhelmed by endless feeds and algorithmic manipulation. Tidings
-          gives users control over what they read and how they read it.
-        </p>
+      <section class="cs-section reveal-up">
+        <h2 class="cs-section__title">Overview</h2>
+        <p class="cs-section__lead">Existing news apps prioritized engagement over clarity. Users were overwhelmed by endless feeds and algorithmic manipulation. Tidings gives users control over what they read and how they read it.</p>
         <div class="cs-grid">
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Problem</h3>
-            <p>
-              Users struggled with information overload, unclear sources, and
-              lack of control. Many felt manipulated by algorithms pushing
-              sensational content.
-            </p>
+            <p>Users struggled with information overload, unclear sources, and lack of control. Many felt manipulated by algorithms pushing sensational content.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Solution</h3>
-            <p>
-              A minimal interface where users choose their sources and customize
-              their feed. No algorithms, just news the way you want it.
-            </p>
+            <p>A minimal interface where users choose their sources and customize their feed. No algorithms, just news the way you want it.</p>
           </div>
         </div>
       </section>
 
-      <section class="section section--alt">
-        <h2 class="eyebrow">User Experience</h2>
-        <div class="timeline-item">
-          <h3>Onboarding & Source Selection</h3>
-          <p>
-            Simple flow helps users select preferred news sources from curated
-            categories. Users can add or remove sources anytime.
-          </p>
+      <section class="cs-section cs-section--alt reveal-up">
+        <h2 class="cs-section__title">User Experience</h2>
+        <div class="cs-timeline">
+          <div class="cs-timeline__item">
+            <h3>Onboarding &amp; Source Selection</h3>
+            <p>Simple flow helps users select preferred news sources from curated categories. Users can add or remove sources anytime.</p>
+          </div>
+          <div class="cs-timeline__item">
+            <h3>Feed Customization</h3>
+            <p>Fully customizable feed with priority organization, custom categories, and reading preferences. Clear visual hierarchy shows what matters to the user.</p>
+          </div>
+          <div class="cs-timeline__item">
+            <h3>Reading Experience</h3>
+            <p>Clean, distraction-free reader mode with adjustable text size and dark mode. Each article clearly displays source, date, and reading time.</p>
+          </div>
+          <div class="cs-timeline__item">
+            <h3>Discovery</h3>
+            <p>Discovery section suggests articles based on user-selected interests (not behavior tracking). Users explore without feeling manipulated.</p>
+          </div>
         </div>
-        <div class="timeline-item">
-          <h3>Feed Customization</h3>
-          <p>
-            Fully customizable feed with priority organization, custom
-            categories, and reading preferences. Clear visual hierarchy shows
-            what matters to the user.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <h3>Reading Experience</h3>
-          <p>
-            Clean, distraction-free reader mode with adjustable text size and
-            dark mode. Each article clearly displays source, date, and reading
-            time.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <h3>Discovery</h3>
-          <p>
-            Discovery section suggests articles based on user-selected interests
-            (not behavior tracking). Users explore without feeling manipulated.
-          </p>
-        </div>
-        <div class="cs-mockup" style="max-width: 400px; margin: 2rem auto">
-          <img
-            src="assets/tidings/tidings-phone.png"
-            alt="Tidings mobile interface"
-            style="width: 100%; height: auto; display: block"
-          />
+        <div class="cs-mockup">
+          <img src="assets/tidings/tidings-phone.png" alt="Tidings mobile interface" />
         </div>
       </section>
 
-      <section class="section">
-        <h2 class="eyebrow">Key Features</h2>
+      <section class="cs-section reveal-up">
+        <h2 class="cs-section__title">Key Features</h2>
         <div class="cs-grid">
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Source Transparency</h3>
-            <p>
-              Every article prominently displays source, publication date, and
-              author. Transparency builds trust.
-            </p>
+            <p>Every article prominently displays source, publication date, and author. Transparency builds trust.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Customizable Feed</h3>
-            <p>
-              Full control over feed organization. Prioritize sources, create
-              categories, filter content. No hidden algorithms.
-            </p>
+            <p>Full control over feed organization. Prioritize sources, create categories, filter content. No hidden algorithms.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Reading Modes</h3>
-            <p>
-              Multiple modes (list, card, article view) let users choose how
-              they consume news. Reader mode strips distractions.
-            </p>
+            <p>Multiple modes (list, card, article view) let users choose how they consume news. Reader mode strips distractions.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Offline Support</h3>
-            <p>
-              Save articles for offline reading. Perfect for commutes or areas
-              with poor connectivity.
-            </p>
+            <p>Save articles for offline reading. Perfect for commutes or areas with poor connectivity.</p>
           </div>
         </div>
       </section>
 
-      <section class="section section--alt">
-        <h2 class="eyebrow">Outcomes</h2>
-        <div class="outcome-box">
+      <section class="cs-section cs-section--alt reveal-up">
+        <h2 class="cs-section__title">Outcomes</h2>
+        <div class="cs-outcomes">
           <h3>Results</h3>
-          <p>
-            Significant improvements in engagement and satisfaction. The focus
-            on clarity and control resonated with users frustrated by existing
-            news apps.
-          </p>
-          <div class="outcome-stats">
-            <div class="stat">
-              <div class="stat-value">+32%</div>
-              <div class="stat-label">Engagement</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">4.7/5</div>
-              <div class="stat-label">App Store</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">85%</div>
-              <div class="stat-label">Daily Active</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">-40%</div>
-              <div class="stat-label">Time to Find</div>
-            </div>
+          <p>Significant improvements in engagement and satisfaction. The focus on clarity and control resonated with users frustrated by existing news apps.</p>
+          <div class="cs-stats">
+            <div class="cs-stat"><div class="cs-stat__value">+32%</div><div class="cs-stat__label">Engagement</div></div>
+            <div class="cs-stat"><div class="cs-stat__value">4.7/5</div><div class="cs-stat__label">App Store</div></div>
+            <div class="cs-stat"><div class="cs-stat__value">85%</div><div class="cs-stat__label">Daily Active</div></div>
+            <div class="cs-stat"><div class="cs-stat__value">-40%</div><div class="cs-stat__label">Time to Find</div></div>
           </div>
         </div>
       </section>
     </main>
 
+    <div class="wrap">
+      <div class="cs-footer-cta reveal-up">
+        <p>Like what you see?</p>
+        <h2>Let's work together.</h2>
+        <a class="btn btn--primary" href="index.html#work">View More Work</a>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="wrap">
-        <p>
-          © <span id="year"></span> Tomas Roos ·
-          <a href="index.html#work">View More Work</a> ·
-          <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a>
-        </p>
+        <p>© <span id="year"></span> Tomas Roos · <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a></p>
       </div>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="js/case-study.js"></script>
   </body>
 </html>

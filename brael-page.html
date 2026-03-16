@@ -3,62 +3,42 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brael: E-commerce Platform Redesign | Tomas Roos Portfolio</title>
-    <meta
-      name="description"
-      content="E-commerce platform redesign focusing on conversion optimization and user experience improvements."
-    />
-    <meta
-      name="keywords"
-      content="Brael, e-commerce, UX design, conversion optimization, web design, product design, Tomas Roos"
-    />
+    <title>Brael — Tomas Roos</title>
+    <meta name="description" content="E-commerce platform redesign focusing on conversion optimization and user experience improvements." />
     <meta name="author" content="Tomas Roos" />
-
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Brael: E-commerce Platform Redesign" />
-    <meta
-      property="og:description"
-      content="E-commerce platform redesign focusing on conversion optimization."
-    />
+    <meta property="og:title" content="Brael — Tomas Roos" />
+    <meta property="og:description" content="E-commerce platform redesign focusing on conversion optimization and user experience improvements." />
     <meta property="og:image" content="assets/brael/brael.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Brael: E-commerce Platform Redesign" />
-    <meta
-      name="twitter:description"
-      content="E-commerce platform redesign focusing on conversion optimization."
-    />
-    <meta name="twitter:image" content="assets/brael/brael.png" />
-
+    <link rel="icon" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/case-study.css" />
   </head>
   <body>
+    <div class="page-loader" aria-hidden="true">
+      <img src="assets/tomas-roos-logo.svg" alt="" style="height:32px;opacity:0.4" />
+    </div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="index.html"><img src="assets/tomas-roos-logo.svg" alt="Tomas Roos" class="brand-logo" /></a>
         <nav class="nav">
-          <ul class="nav__list">
-            <li><a href="index.html#work">Back to Work</a></li>
-          </ul>
+          <a class="cs-back" href="index.html#work">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Work
+          </a>
         </nav>
       </div>
     </header>
 
     <main class="wrap">
-      <section class="cs-hero">
+      <section class="cs-hero reveal-up">
         <h1 class="cs-title">Brael</h1>
-        <p class="cs-subtitle">
-          E-commerce platform redesign focusing on conversion optimization and
-          streamlined checkout flows. Reduced friction and increased sales while
-          maintaining brand identity.
-        </p>
+        <p class="cs-subtitle">E-commerce platform redesign focusing on conversion optimization and streamlined checkout flows. Reduced friction and increased sales while maintaining brand identity.</p>
         <div class="cs-meta">
           <span><strong>Role:</strong> UX/UI Designer</span>
           <span><strong>Year:</strong> 2024</span>
@@ -70,151 +50,97 @@
         </div>
       </section>
 
-      <section class="section">
-        <h2 class="eyebrow">Overview</h2>
-        <p class="section__lead">
-          The platform struggled with low conversion rates and 68% cart
-          abandonment. Users found checkout confusing and product discovery
-          difficult. This redesign simplified the journey from discovery to
-          purchase.
-        </p>
+      <section class="cs-section reveal-up">
+        <h2 class="cs-section__title">Overview</h2>
+        <p class="cs-section__lead">The platform struggled with low conversion rates and 68% cart abandonment. Users found checkout confusing and product discovery difficult. This redesign simplified the journey from discovery to purchase.</p>
         <div class="cs-grid">
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Challenge</h3>
-            <p>
-              High cart abandonment, complex navigation, unclear product
-              information, and poor mobile experience.
-            </p>
+            <p>High cart abandonment, complex navigation, unclear product information, and poor mobile experience.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Solution</h3>
-            <p>
-              Complete redesign focusing on clarity, trust, and ease of use.
-              Simplified navigation, improved product pages, and streamlined
-              checkout.
-            </p>
+            <p>Complete redesign focusing on clarity, trust, and ease of use. Simplified navigation, improved product pages, and streamlined checkout.</p>
           </div>
         </div>
       </section>
 
-      <section class="section section--alt">
-        <h2 class="eyebrow">User Experience</h2>
-        <div class="timeline-item">
-          <h3>Homepage & First Impression</h3>
-          <p>
-            Redesigned to communicate value immediately. Clear hero section,
-            social proof, and easy navigation. Added trust signals prominently.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <h3>Product Discovery</h3>
-          <p>
-            Improved category navigation with clear hierarchy. Enhanced search
-            with filters and sorting. Added "Recently Viewed" and
-            recommendations.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <h3>Product Pages</h3>
-          <p>
-            High-quality images, clear pricing, detailed descriptions, and
-            reviews. Size guides and shipping info directly on page. Prominent
-            "Add to Cart" button.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <h3>Checkout</h3>
-          <p>
-            Streamlined from 5 steps to 1 page with progress indicator. Guest
-            checkout, saved payment methods, and clear shipping calculator.
-            Reduced abandonment by 35%.
-          </p>
+      <section class="cs-section cs-section--alt reveal-up">
+        <h2 class="cs-section__title">User Experience</h2>
+        <div class="cs-timeline">
+          <div class="cs-timeline__item">
+            <h3>Homepage &amp; First Impression</h3>
+            <p>Redesigned to communicate value immediately. Clear hero section, social proof, and easy navigation. Added trust signals prominently.</p>
+          </div>
+          <div class="cs-timeline__item">
+            <h3>Product Discovery</h3>
+            <p>Improved category navigation with clear hierarchy. Enhanced search with filters and sorting. Added Recently Viewed and recommendations.</p>
+          </div>
+          <div class="cs-timeline__item">
+            <h3>Product Pages</h3>
+            <p>High-quality images, clear pricing, detailed descriptions, and reviews. Size guides and shipping info directly on page. Prominent Add to Cart button.</p>
+          </div>
+          <div class="cs-timeline__item">
+            <h3>Checkout</h3>
+            <p>Streamlined from 5 steps to 1 page with progress indicator. Guest checkout, saved payment methods, and clear shipping calculator. Reduced abandonment by 35%.</p>
+          </div>
         </div>
         <div class="cs-mockup">
-          <img
-            src="assets/brael/brael-erbjudande.png"
-            alt="Brael special offer page"
-          />
+          <img src="assets/brael/brael-erbjudande.png" alt="Brael special offer page" />
         </div>
       </section>
 
-      <section class="section">
-        <h2 class="eyebrow">Key Features</h2>
+      <section class="cs-section reveal-up">
+        <h2 class="cs-section__title">Key Features</h2>
         <div class="cs-grid">
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Streamlined Checkout</h3>
-            <p>
-              Single-page checkout with progress indicator. Guest checkout and
-              saved payment methods. Clear shipping cost calculator.
-            </p>
+            <p>Single-page checkout with progress indicator. Guest checkout and saved payment methods. Clear shipping cost calculator.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Enhanced Product Pages</h3>
-            <p>
-              High-quality images with zoom, size guides, customer reviews, and
-              trust badges. "Buy Now" option for quick purchases.
-            </p>
+            <p>High-quality images with zoom, size guides, customer reviews, and trust badges. Buy Now option for quick purchases.</p>
           </div>
-          <div class="workflow-step">
+          <div class="cs-card">
             <h3>Mobile-First Design</h3>
-            <p>
-              Touch-friendly buttons, simplified navigation, and optimized
-              checkout. Mobile conversion increased by 42%.
-            </p>
+            <p>Touch-friendly buttons, simplified navigation, and optimized checkout. Mobile conversion increased by 42%.</p>
           </div>
-          <div class="workflow-step">
-            <h3>Trust & Security</h3>
-            <p>
-              Security badges, customer reviews, and clear return policy
-              information throughout the journey.
-            </p>
+          <div class="cs-card">
+            <h3>Trust &amp; Security</h3>
+            <p>Security badges, customer reviews, and clear return policy information throughout the journey.</p>
           </div>
         </div>
       </section>
 
-      <section class="section section--alt">
-        <h2 class="eyebrow">Outcomes</h2>
-        <div class="outcome-box">
+      <section class="cs-section cs-section--alt reveal-up">
+        <h2 class="cs-section__title">Outcomes</h2>
+        <div class="cs-outcomes">
           <h3>Results</h3>
-          <p>
-            Significant improvements across all key metrics. Conversion rates
-            increased, cart abandonment decreased, and user satisfaction
-            improved.
-          </p>
-          <div class="outcome-stats">
-            <div class="stat">
-              <div class="stat-value">+24%</div>
-              <div class="stat-label">Conversion</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">-35%</div>
-              <div class="stat-label">Cart Abandonment</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">+42%</div>
-              <div class="stat-label">Mobile Conversion</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">-28%</div>
-              <div class="stat-label">Checkout Time</div>
-            </div>
+          <p>Significant improvements across all key metrics. Conversion rates increased, cart abandonment decreased, and user satisfaction improved.</p>
+          <div class="cs-stats">
+            <div class="cs-stat"><div class="cs-stat__value">+24%</div><div class="cs-stat__label">Conversion</div></div>
+            <div class="cs-stat"><div class="cs-stat__value">-35%</div><div class="cs-stat__label">Cart Abandonment</div></div>
+            <div class="cs-stat"><div class="cs-stat__value">+42%</div><div class="cs-stat__label">Mobile Conversion</div></div>
+            <div class="cs-stat"><div class="cs-stat__value">-28%</div><div class="cs-stat__label">Checkout Time</div></div>
           </div>
         </div>
       </section>
     </main>
 
+    <div class="wrap">
+      <div class="cs-footer-cta reveal-up">
+        <p>Like what you see?</p>
+        <h2>Let's work together.</h2>
+        <a class="btn btn--primary" href="index.html#work">View More Work</a>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="wrap">
-        <p>
-          © <span id="year"></span> Tomas Roos ·
-          <a href="index.html#work">View More Work</a> ·
-          <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a>
-        </p>
+        <p>© <span id="year"></span> Tomas Roos · <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a></p>
       </div>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="js/case-study.js"></script>
   </body>
 </html>
