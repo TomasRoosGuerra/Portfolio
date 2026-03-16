@@ -73,7 +73,6 @@
   background: var(--bg-alt);
   padding: 1.5rem;
   border-radius: 0.75rem;
-  border: 1px solid var(--line);
 }
 
 .workflow-step h3 {
@@ -91,10 +90,9 @@
 .outcome-box {
   background: linear-gradient(
     135deg,
-    rgba(158, 143, 122, 0.08),
-    rgba(158, 143, 122, 0.03)
+    rgba(0, 0, 0, 0.04),
+    rgba(0, 0, 0, 0.02)
   );
-  border: 1px solid var(--line);
   border-radius: 1rem;
   padding: 2rem;
   margin: 2rem 0;

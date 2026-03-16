@@ -94,6 +94,7 @@ const projectsData = {
       description: "Brand identity and visual system for a tech startup",
       imageUrl: "assets/burkxceed/burkxceed.png",
       category: "branding",
+      tags: ["Branding", "Identity", "Visual System"],
     },
     {
       id: "brygg-hemsida",
@@ -101,6 +102,7 @@ const projectsData = {
       description: "Website design for a local coffee roastery",
       imageUrl: "assets/brygg/brygg-hemsida.png",
       category: "web-design",
+      tags: ["Web Design", "Coffee", "UI/UX"],
     },
     {
       id: "chrome-clipboard",
@@ -108,6 +110,7 @@ const projectsData = {
       description: "Interface design for a productivity Chrome extension",
       imageUrl: "assets/chrome-clipboard/chrome-clipboard.png",
       category: "ui-ux",
+      tags: ["Chrome Extension", "Productivity", "UI/UX"],
     },
     {
       id: "tidings-slide",
@@ -115,6 +118,7 @@ const projectsData = {
       description: "Presentation slides for the Tidings app launch",
       imageUrl: "assets/tidings/tidings-slide.jpg",
       category: "presentation",
+      tags: ["Presentation", "Slides", "Visual Design"],
     },
     {
       id: "tidings-phone",
@@ -122,6 +126,7 @@ const projectsData = {
       description: "Mobile interface mockups for the Tidings app",
       imageUrl: "assets/tidings/tidings-phone.png",
       category: "mobile-app",
+      tags: ["Mobile", "Mockups", "UI/UX"],
     },
     {
       id: "portolio-design",
@@ -129,6 +134,7 @@ const projectsData = {
       description: "Early design explorations for this portfolio",
       imageUrl: "assets/other/portolio-design.png",
       category: "web-design",
+      tags: ["Web Design", "Exploration", "Portfolio"],
     },
   ],
 };
