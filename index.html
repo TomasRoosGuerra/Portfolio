@@ -521,7 +521,15 @@
       }
       @media (max-width: 768px) {
         .cursor-dot { display: none !important; }
-        .hero { min-height: 92svh; }
+        .hero { padding: 72px var(--gutter) 20px; }
+        .hero-inner { flex-direction: column; gap: 6px; align-items: flex-start; }
+        .hero__title { font-size: 1.1rem; }
+        .hero__subtitle {
+          text-align: left;
+          font-size: 11px;
+          align-self: flex-start;
+          max-width: none;
+        }
         .work__grid { grid-template-columns: 1fr; gap: 28px; }
         .about-bar { flex-wrap: wrap; gap: 10px; }
         .cta-section { padding: 80px 0; }
@@ -570,7 +578,7 @@
             <p class="hero__eyebrow">Tomas Roos · Stockholm</p>
             <h1 class="hero__title">Visual &amp; Product Designer</h1>
           </div>
-          <p class="hero__subtitle">Crafting interfaces that<br>startups count on — open to remote.</p>
+          <p class="hero__subtitle">Detail-obsessed and empathy-driven.<br>Rigorous and, when it matters, a little bit playful.</p>
         </div>
       </section>
 
