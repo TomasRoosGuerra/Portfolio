@@ -101,20 +101,26 @@
       .nav__link:hover { color: var(--text); }
 
       /* ════════════════════════════════════════
-         3 · HERO — Full viewport (Unit Bias)
+         3 · INTRO HEADER — compact, content-first
          ════════════════════════════════════════ */
       .hero {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 var(--gutter);
+        padding: 80px var(--gutter) 36px;
         position: relative;
       }
       .hero-inner {
         max-width: var(--container);
         margin: 0 auto;
         width: 100%;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .hero__left {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
       .hero__eyebrow {
         font-size: 11px;
@@ -122,44 +128,23 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 16px;
-        opacity: 0; animation: fadeUp 0.8s 0.1s both var(--ease);
+        opacity: 0; animation: fadeUp 0.6s 0.05s both var(--ease);
       }
       .hero__title {
-        font-size: clamp(2rem, 4.5vw, 3.5rem);
+        font-size: clamp(1.25rem, 2.2vw, 1.75rem);
         font-weight: 300;
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-        max-width: 700px;
-        opacity: 0; animation: fadeUp 0.9s 0.2s both var(--ease);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        opacity: 0; animation: fadeUp 0.6s 0.12s both var(--ease);
       }
       .hero__subtitle {
-        font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+        font-size: 12px;
         color: var(--muted);
-        margin-top: 20px;
-        max-width: 400px;
-        line-height: 1.6;
-        opacity: 0; animation: fadeUp 0.9s 0.35s both var(--ease);
-      }
-
-      /* Scroll indicator — single animated chevron */
-      .hero__scroll {
-        position: absolute;
-        bottom: 32px;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        animation: fadeUp 0.8s 0.7s both var(--ease), bounce 2.4s 1.5s ease-in-out infinite;
-      }
-      .hero__scroll svg {
-        width: 24px;
-        height: 24px;
-        stroke: var(--muted);
-        stroke-width: 1.5;
-      }
-      @keyframes bounce {
-        0%, 100% { transform: translateX(-50%) translateY(0); }
-        50%      { transform: translateX(-50%) translateY(10px); }
+        line-height: 1.5;
+        max-width: 300px;
+        opacity: 0; animation: fadeUp 0.6s 0.2s both var(--ease);
+        text-align: right;
+        align-self: center;
       }
 
       /* ════════════════════════════════════════
@@ -168,13 +153,13 @@
       .about-bar {
         max-width: var(--container);
         margin: 0 auto;
-        padding: 20px var(--gutter) 20px;
+        padding: 14px var(--gutter);
         display: flex;
         align-items: center;
         gap: 12px;
         border-bottom: 1px solid rgba(0,0,0,0.07);
         opacity: 0;
-        animation: fadeUp 0.8s 0.5s both var(--ease);
+        animation: fadeUp 0.6s 0.25s both var(--ease);
       }
       .about-bar__avatar {
         width: 32px; height: 32px;
@@ -211,12 +196,12 @@
       .work {
         max-width: var(--container);
         margin: 0 auto;
-        padding: 48px var(--gutter) 80px;
+        padding: 32px var(--gutter) 80px;
       }
       .work__grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: clamp(28px, 4vw, 56px);
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(16px, 2vw, 28px);
       }
 
       /* ─── Project Card ─── */
@@ -276,15 +261,15 @@
         padding: 10px 20px;
       }
 
-      .card__info { padding-top: 14px; display: flex; flex-direction: column; gap: 4px; }
-      .card__meta-row { display: flex; align-items: center; gap: 10px; }
+      .card__info { padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+      .card__meta-row { display: flex; align-items: center; gap: 8px; }
       .card__category {
-        font-size: 10px; font-weight: 600;
+        font-size: 9px; font-weight: 600;
         letter-spacing: 0.1em; text-transform: uppercase;
         color: var(--muted);
       }
-      .card__title { font-size: 17px; font-weight: 500; line-height: 1.25; }
-      .card__role { font-size: 13px; color: var(--muted); }
+      .card__title { font-size: 14px; font-weight: 500; line-height: 1.25; }
+      .card__role { font-size: 12px; color: var(--muted); }
 
       /* ════════════════════════════════════════
          6 · EXTRA WORK — infinite marquee
@@ -348,6 +333,47 @@
       @media (prefers-reduced-motion: reduce) {
         .extra-work__strip { animation: none; }
         .card__img { animation: none; }
+        /* (slime removed) */
+      }
+
+      /* ════════════════════════════════════════
+         CARD SPOTLIGHT — radial light follows cursor
+         ════════════════════════════════════════ */
+      .card__img::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--mx, 50%) var(--my, 50%),
+          rgba(191,255,0,0.13) 0%,
+          transparent 58%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .card:hover .card__img::after { opacity: 1; }
+
+      /* ════════════════════════════════════════
+         MAGNETIC — smooth spring-back on leave
+         ════════════════════════════════════════ */
+      .cta-section__btn,
+      .fab {
+        will-change: transform;
+      }
+
+      /* ════════════════════════════════════════
+         WORD REVEAL — staggered title entrance
+         ════════════════════════════════════════ */
+      .hero__title .word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(14px);
+        animation: wordIn 0.55s var(--ease) both;
+      }
+      @keyframes wordIn {
+        to { opacity: 1; transform: translateY(0); }
       }
 
       /* ════════════════════════════════════════
@@ -490,10 +516,13 @@
       /* ════════════════════════════════════════
          13 · RESPONSIVE
          ════════════════════════════════════════ */
+      @media (max-width: 1024px) {
+        .work__grid { grid-template-columns: repeat(2, 1fr); }
+      }
       @media (max-width: 768px) {
         .cursor-dot { display: none !important; }
         .hero { min-height: 92svh; }
-        .work__grid { grid-template-columns: 1fr; gap: 40px; }
+        .work__grid { grid-template-columns: 1fr; gap: 28px; }
         .about-bar { flex-wrap: wrap; gap: 10px; }
         .cta-section { padding: 80px 0; }
         .fab { bottom: 20px; right: 20px; width: 50px; height: 50px; }
@@ -534,18 +563,15 @@
     </header>
 
     <main id="content">
-      <!-- ─── Hero: full viewport, single focus ─── -->
+      <!-- ─── Intro header: compact, content-first ─── -->
       <section id="top" class="hero">
         <div class="hero-inner">
-          <p class="hero__eyebrow">Tomas Roos · Stockholm</p>
-          <h1 class="hero__title">Visual &amp; Product Designer</h1>
-          <p class="hero__subtitle">Crafting interfaces that startups count on — open to remote.</p>
+          <div class="hero__left">
+            <p class="hero__eyebrow">Tomas Roos · Stockholm</p>
+            <h1 class="hero__title">Visual &amp; Product Designer</h1>
+          </div>
+          <p class="hero__subtitle">Crafting interfaces that<br>startups count on — open to remote.</p>
         </div>
-        <a href="#work" class="hero__scroll" aria-label="Scroll to work">
-          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </a>
       </section>
 
       <!-- ─── About strip: compact, no external links ─── -->
@@ -749,6 +775,7 @@
           }
 
           initObservers();
+          initCardSpotlight(); // run after cards are in DOM
         }
 
         if (document.readyState === "loading") {
@@ -785,9 +812,68 @@
         });
         document.addEventListener("mousedown", () => document.body.classList.remove("keyboard-nav"));
 
+        /* ── Word-split hero title reveal ── */
+        (function splitWords() {
+          const titleEl = document.querySelector(".hero__title");
+          if (!titleEl) return;
+          // Split on spaces, preserve the & entity
+          const text = titleEl.textContent.trim();
+          titleEl.innerHTML = text
+            .split(" ")
+            .map((w, i) =>
+              `<span class="word" style="animation-delay:${(0.35 + i * 0.13).toFixed(2)}s">${w}</span>`
+            )
+            .join(" ");
+        })();
+
+        /* ── Card spotlight — radial light follows cursor ── */
+        function initCardSpotlight() {
+          $$(".card").forEach(card => {
+            const imgWrap = card.querySelector(".card__img");
+            if (!imgWrap) return;
+            card.addEventListener("mousemove", e => {
+              const rect = imgWrap.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
+              const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+              imgWrap.style.setProperty("--mx", x + "%");
+              imgWrap.style.setProperty("--my", y + "%");
+            });
+          });
+        }
+
+        /* ── Magnetic buttons ── */
+        function initMagnetic() {
+          if (!window.matchMedia("(pointer:fine)").matches) return;
+          const magnets = $$(".cta-section__btn, .fab");
+          magnets.forEach(el => {
+            el.addEventListener("mouseenter", () => {
+              el.style.transition = "transform 0.08s linear";
+            });
+            el.addEventListener("mousemove", e => {
+              const rect = el.getBoundingClientRect();
+              const cx = rect.left + rect.width  / 2;
+              const cy = rect.top  + rect.height / 2;
+              const dx = (e.clientX - cx) * 0.32;
+              const dy = (e.clientY - cy) * 0.32;
+              el.style.transform = `translate(${dx}px, ${dy}px) scale(1.04)`;
+            });
+            el.addEventListener("mouseleave", () => {
+              el.style.transition = "transform 0.55s cubic-bezier(0.23,1,0.32,1), background 0.2s";
+              el.style.transform = "";
+              setTimeout(() => { el.style.transition = ""; }, 560);
+            });
+          });
+        }
+
+        // Card spotlight initialised after cards are built (see loadProjects)
+        initMagnetic();
+
         const a11y = document.createElement("style");
         a11y.textContent = `.keyboard-nav *:focus { outline: 2px solid var(--text) !important; outline-offset: 2px !important; }`;
         document.head.appendChild(a11y);
+
+        // (slime animation removed — replaced by word-reveal and ambient gradient above)
+
       })();
     </script>
   </body>
