@@ -477,15 +477,15 @@
       }
 
       /* ════════════════════════════════════════
-         11 · PAGE LOADER
+         11 · PAGE LOADER — geometric line reveal
          ════════════════════════════════════════ */
       .page-loader {
         position: fixed; inset: 0; z-index: 10000;
-        background: var(--bg);
-        display: flex; align-items: center; justify-content: center;
-        transition: opacity 0.5s ease, visibility 0.5s;
+        background: #121212;
       }
-      .page-loader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
+      .page-loader canvas {
+        display: block; width: 100%; height: 100%;
+      }
 
       /* ════════════════════════════════════════
          12 · ANIMATIONS
@@ -552,9 +552,9 @@
     <!-- Scroll progress bar -->
     <div class="scroll-progress" aria-hidden="true"></div>
 
-    <!-- Page loader -->
+    <!-- Page loader — geometric line reveal -->
     <div class="page-loader" aria-hidden="true">
-      <img src="assets/tomas-roos-logo.svg" alt="" style="height:24px;opacity:0.3" />
+      <canvas id="loaderCanvas"></canvas>
     </div>
 
     <!-- Custom cursor -->
@@ -646,14 +646,200 @@
         const yearEl = $("#year");
         if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-        /* ── Page Loader ── */
-        window.addEventListener("load", () => {
-          const loader = $(".page-loader");
-          if (loader) {
-            setTimeout(() => loader.classList.add("loaded"), 150);
-            setTimeout(() => loader.remove(), 750);
+        /* ── Page Loader — geometric line reveal ── */
+        {
+          const loaderEl = $(".page-loader");
+          const loaderCanvas = document.getElementById("loaderCanvas");
+          if (loaderEl && loaderCanvas) {
+            document.body.style.overflow = "hidden";
+
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              window.addEventListener("load", () => {
+                document.body.style.overflow = "";
+                loaderEl.style.transition = "opacity 0.4s";
+                loaderEl.style.opacity = "0";
+                setTimeout(() => loaderEl.remove(), 450);
+              });
+            } else {
+              const lctx = loaderCanvas.getContext("2d");
+              const dpr = window.devicePixelRatio || 1;
+
+              function loaderResize() {
+                loaderCanvas.width = window.innerWidth * dpr;
+                loaderCanvas.height = window.innerHeight * dpr;
+                lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+              }
+              loaderResize();
+              window.addEventListener("resize", loaderResize);
+
+              const logoImg = new Image();
+              logoImg.src = "assets/tomas-roos-logo.svg";
+              let logoReady = false;
+              logoImg.onload = () => { logoReady = true; };
+
+              const maxR = Math.min(80, window.innerWidth * 0.12);
+              let N = 1, loaderProgress = 0, loaderPhase = "grow";
+              let loaderLast = performance.now();
+
+              const easeIO  = t => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+              const easeIOC = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+              const spring  = t => {
+                const w = 4.2 * Math.PI;
+                const d = 0.72;
+                return 1 - Math.exp(-6 * t) * Math.cos(w * t * d);
+              };
+
+              function drawDiam(cx, cy, angle, r) {
+                lctx.beginPath();
+                const dx = Math.cos(angle) * r;
+                const dy = Math.sin(angle) * r;
+                lctx.moveTo(cx - dx, cy - dy);
+                lctx.lineTo(cx + dx, cy + dy);
+                lctx.stroke();
+              }
+              function drawCircleFill(cx, cy, r) {
+                lctx.beginPath();
+                lctx.arc(cx, cy, r, 0, Math.PI * 2);
+                lctx.fill();
+              }
+
+              function loaderFrame(now) {
+                const dt = Math.min(now - loaderLast, 50);
+                loaderLast = now;
+                const W = window.innerWidth;
+                const H = window.innerHeight;
+                const cx = W / 2;
+                const cy = H / 2;
+
+                lctx.clearRect(0, 0, W, H);
+
+                if (loaderPhase !== "curtain") {
+                  lctx.fillStyle = "#121212";
+                  lctx.fillRect(0, 0, W, H);
+                }
+
+                lctx.strokeStyle = "#FFF";
+                lctx.fillStyle = "#FFF";
+                lctx.lineCap = "round";
+
+                if (loaderPhase === "grow") {
+                  loaderProgress += dt / 350;
+                  const e = easeIO(Math.min(loaderProgress, 1));
+                  lctx.lineWidth = 2;
+                  lctx.shadowBlur = 12;
+                  lctx.shadowColor = "rgba(255,255,255,0.35)";
+                  drawDiam(cx, cy, 0, maxR * e);
+                  lctx.shadowBlur = 0;
+                  if (loaderProgress >= 1) { loaderProgress = 0; loaderPhase = "split"; }
+
+                } else if (loaderPhase === "split") {
+                  loaderProgress += dt / 380;
+                  if (loaderProgress >= 1) {
+                    loaderProgress = 0;
+                    N *= 2;
+                    if (N >= 128) { loaderPhase = "pause"; loaderProgress = 0; }
+                  }
+                  const e = easeIO(Math.min(loaderProgress, 1));
+                  const off = e * Math.PI / (2 * N);
+                  lctx.lineWidth = 2;
+                  lctx.shadowBlur = 10;
+                  lctx.shadowColor = "rgba(255,255,255,0.2)";
+                  for (let i = 0; i < N; i++) {
+                    const a = i * Math.PI / N;
+                    drawDiam(cx, cy, a, maxR);
+                    drawDiam(cx, cy, a + off, maxR);
+                  }
+                  lctx.shadowBlur = 0;
+
+                } else if (loaderPhase === "pause") {
+                  loaderProgress += dt / 700;
+                  lctx.shadowBlur = 12;
+                  lctx.shadowColor = "rgba(255,255,255,0.3)";
+                  drawCircleFill(cx, cy, maxR);
+                  lctx.shadowBlur = 0;
+
+                  if (logoReady) {
+                    const aspect = logoImg.naturalWidth / logoImg.naturalHeight;
+                    const baseW = Math.min(maxR * 1.2, maxR * 1.6 * (aspect > 1 ? 1 : aspect));
+                    const baseH = baseW / aspect;
+                    const t = Math.min(loaderProgress * 2.8, 1);
+                    const s = spring(t);
+                    const alpha = Math.min(t * 2.5, 1);
+                    const w = baseW * s;
+                    const h = baseH * s;
+                    lctx.globalAlpha = alpha;
+                    lctx.drawImage(logoImg, cx - w / 2, cy - h / 2, w, h);
+                    lctx.globalAlpha = 1;
+                  }
+
+                  if (loaderProgress >= 1) { loaderProgress = 0; loaderPhase = "flatten"; }
+
+                } else if (loaderPhase === "flatten") {
+                  loaderProgress += dt / 400;
+                  const e = easeIOC(Math.min(loaderProgress, 1));
+                  const rx = maxR + e * maxR * 0.6;
+                  const ry = Math.max(maxR * (1 - e * 0.98), 1.5);
+                  lctx.beginPath();
+                  lctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+                  lctx.fill();
+
+                  if (logoReady && e < 0.4) {
+                    const aspect = logoImg.naturalWidth / logoImg.naturalHeight;
+                    const baseW = Math.min(maxR * 1.2, maxR * 1.6 * (aspect > 1 ? 1 : aspect));
+                    const baseH = baseW / aspect;
+                    const shrink = 1 - easeIOC(e * 2.5);
+                    const w = baseW * shrink;
+                    const h = baseH * shrink;
+                    lctx.globalAlpha = shrink;
+                    if (w > 0.5 && h > 0.5)
+                      lctx.drawImage(logoImg, cx - w / 2, cy - h / 2, w, h);
+                    lctx.globalAlpha = 1;
+                  }
+
+                  if (loaderProgress >= 1) { loaderProgress = 0; loaderPhase = "extend"; }
+
+                } else if (loaderPhase === "extend") {
+                  loaderProgress += dt / 300;
+                  const e = easeIOC(Math.min(loaderProgress, 1));
+                  const startHW = maxR * 1.6;
+                  const hw = startHW + e * (W / 2 - startHW + 20);
+                  lctx.fillRect(cx - hw, cy - 1.5, hw * 2, 3);
+                  if (loaderProgress >= 1) {
+                    loaderProgress = 0;
+                    loaderPhase = "curtain";
+                    loaderEl.style.background = "transparent";
+                  }
+
+                } else if (loaderPhase === "curtain") {
+                  loaderProgress += dt / 650;
+                  const e = easeIOC(Math.min(loaderProgress, 1));
+                  const topY = cy * (1 - e);
+                  const botY = cy + (H - cy) * e;
+                  const lh = 3 * (1 - e * 0.6);
+
+                  lctx.fillStyle = "#121212";
+                  if (topY > 0) lctx.fillRect(0, 0, W, topY);
+                  if (botY < H) lctx.fillRect(0, botY, W, H - botY);
+
+                  lctx.fillStyle = "#FFF";
+                  lctx.fillRect(0, topY - lh / 2, W, lh);
+                  lctx.fillRect(0, botY - lh / 2, W, lh);
+
+                  if (loaderProgress >= 1) {
+                    loaderEl.remove();
+                    window.removeEventListener("resize", loaderResize);
+                    document.body.style.overflow = "";
+                    return;
+                  }
+                }
+
+                requestAnimationFrame(loaderFrame);
+              }
+
+              requestAnimationFrame(loaderFrame);
+            }
           }
-        });
+        }
 
         /* ── Scroll progress bar (Completion psychology) ── */
         const progressBar = $(".scroll-progress");
