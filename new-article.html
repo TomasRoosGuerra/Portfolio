@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>New article — local tool</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      :root {
+        --bg: #eeede9;
+        --text: #2c2a2d;
+        --muted: #8a8889;
+        --border: rgba(44, 42, 45, 0.14);
+        --accent: #2c2a2d;
+        --font: system-ui, -apple-system, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--text);
+        background: var(--bg);
+        padding: clamp(20px, 4vw, 40px);
+        max-width: 920px;
+        margin-inline: auto;
+      }
+      h1 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 8px;
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 0 0 28px;
+        max-width: 62ch;
+      }
+      label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      input[type="text"],
+      input[type="date"],
+      textarea {
+        width: 100%;
+        font: inherit;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.55);
+        color: var(--text);
+      }
+      textarea {
+        min-height: 84px;
+        resize: vertical;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      #bodyHtml {
+        min-height: 220px;
+      }
+      .row {
+        margin-bottom: 18px;
+      }
+      .row--split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 640px) {
+        .row--split {
+          grid-template-columns: 1fr;
+        }
+      }
+      .slug-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      .slug-row input {
+        flex: 1;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .btn-secondary {
+        background: rgba(44, 42, 45, 0.08);
+        color: var(--text);
+      }
+      .btn-secondary:hover {
+        background: rgba(44, 42, 45, 0.12);
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .btn-primary:hover {
+        opacity: 0.88;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      .hint {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      .checklist {
+        background: rgba(255, 255, 255, 0.45);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+        margin-bottom: 28px;
+        font-size: 13px;
+      }
+      .checklist h2 {
+        font-size: 12px;
+        margin: 0 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .checklist ol {
+        margin: 0;
+        padding-left: 1.2em;
+      }
+      .checklist li {
+        margin-bottom: 6px;
+      }
+      code {
+        font-size: 12px;
+        background: rgba(0, 0, 0, 0.06);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .toast {
+        font-size: 13px;
+        color: var(--muted);
+        margin-left: auto;
+        align-self: center;
+      }
+      .preview-wrap {
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      .preview-wrap h2 {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      #manifestOut {
+        min-height: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>New blog article</h1>
+    <p class="sub">
+      Fill in the fields, then download the HTML file and copy the manifest snippet into
+      <code>js/articles-data.js</code>. Put your hero image at
+      <code>assets/Articles/&lt;slug&gt;/hero.png</code>. Open this file locally in your browser (double-click or via a static server).
+    </p>
+
+    <div class="checklist">
+      <h2>After you generate</h2>
+      <ol>
+        <li>Save cover image as <code>assets/Articles/your-slug/hero.png</code></li>
+        <li>Download article → save as <code>articles/your-slug.html</code></li>
+        <li>Paste the manifest object into <code>window.ARTICLES</code> (new posts usually first in the list)</li>
+      </ol>
+    </div>
+
+    <form id="form" onsubmit="return false;">
+      <div class="row">
+        <label for="articleTitle">Title</label>
+        <input type="text" id="articleTitle" placeholder="Case study: onboarding flow" autocomplete="off" />
+      </div>
+
+      <div class="row">
+        <label for="slug">URL slug (filename)</label>
+        <div class="slug-row">
+          <input type="text" id="slug" placeholder="onboarding-flow" autocomplete="off" spellcheck="false" />
+          <button type="button" class="btn-secondary" id="slugFromTitle">From title</button>
+        </div>
+        <p class="hint">Lowercase, hyphens only. Becomes <code>articles/&lt;slug&gt;.html</code>.</p>
+      </div>
+
+      <div class="row row--split">
+        <div>
+          <label for="dateISO">Date (ISO)</label>
+          <input type="date" id="dateISO" />
+        </div>
+        <div>
+          <label for="dateDisplay">Date (shown on page)</label>
+          <input type="text" id="dateDisplay" placeholder="May 12, 2026" />
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="metaDescription">Meta description (SEO + OG)</label>
+        <textarea id="metaDescription" rows="2" placeholder="One or two sentences."></textarea>
+      </div>
+
+      <div class="row row--split">
+        <div>
+          <label for="kicker">Kicker / category</label>
+          <input type="text" id="kicker" value="Design" />
+        </div>
+        <div>
+          <label for="readingTime">Reading time label</label>
+          <input type="text" id="readingTime" value="8 min read" />
+        </div>
+      </div>
+
+      <div class="row row--split">
+        <div>
+          <label for="heroAlt">Hero image alt text</label>
+          <input type="text" id="heroAlt" placeholder="Describe the hero image" />
+        </div>
+        <div>
+          <label for="heroCaption">Hero caption</label>
+          <input type="text" id="heroCaption" placeholder="Optional caption under the image" />
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="bodyHtml">Article body (HTML)</label>
+        <textarea
+          id="bodyHtml"
+          placeholder="<p>Opening paragraph.</p>&#10;&#10;<h2>Section</h2>&#10;<p>More text…</p>"
+        ></textarea>
+        <p class="hint">Use normal HTML: <code>&lt;p&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;figure&gt;</code>, etc.</p>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn-primary" id="btnDownload">Download article HTML</button>
+        <button type="button" class="btn-secondary" id="btnCopyManifest">Copy manifest entry</button>
+        <span class="toast" id="toast" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <div class="preview-wrap">
+      <h2>Manifest entry (edit array order as you like)</h2>
+      <textarea id="manifestOut" readonly rows="8"></textarea>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        function $(id) {
+          return document.getElementById(id);
+        }
+
+        function escapeHtml(s) {
+          return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function slugify(text) {
+          return String(text)
+            .trim()
+            .toLowerCase()
+            .replace(/['']/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+        }
+
+        function todayISO() {
+          const d = new Date();
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, "0");
+          const day = String(d.getDate()).padStart(2, "0");
+          return y + "-" + m + "-" + day;
+        }
+
+        const titleEl = $("articleTitle");
+        const slugEl = $("slug");
+        const dateISOEl = $("dateISO");
+        const dateDisplayEl = $("dateDisplay");
+        const metaDescEl = $("metaDescription");
+        const kickerEl = $("kicker");
+        const readingTimeEl = $("readingTime");
+        const heroAltEl = $("heroAlt");
+        const heroCaptionEl = $("heroCaption");
+        const bodyHtmlEl = $("bodyHtml");
+        const manifestOutEl = $("manifestOut");
+        const toastEl = $("toast");
+
+        dateISOEl.value = todayISO();
+
+        function syncDateDisplayFromISO() {
+          const iso = dateISOEl.value;
+          if (!iso) return;
+          try {
+            const d = new Date(iso + "T12:00:00");
+            dateDisplayEl.placeholder = d.toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+            if (!dateDisplayEl.value.trim()) {
+              dateDisplayEl.value = dateDisplayEl.placeholder;
+            }
+          } catch (_) {}
+        }
+
+        dateISOEl.addEventListener("change", syncDateDisplayFromISO);
+        syncDateDisplayFromISO();
+
+        $("slugFromTitle").addEventListener("click", function () {
+          slugEl.value = slugify(titleEl.value);
+        });
+
+        function getValues() {
+          const slug = slugify(slugEl.value || slugify(titleEl.value));
+          const title = titleEl.value.trim() || "Untitled";
+          const dateISO = dateISOEl.value || todayISO();
+          const dateDisplay = (dateDisplayEl.value.trim() || dateDisplayEl.placeholder || dateISO).trim();
+          const metaDescription = metaDescEl.value.trim() || title;
+          const kicker = kickerEl.value.trim() || "Design";
+          const readingTime = readingTimeEl.value.trim() || "8 min read";
+          const heroAlt = heroAltEl.value.trim() || title;
+          const heroCaption = heroCaptionEl.value.trim();
+          const bodyHtml = bodyHtmlEl.value.trim();
+          return {
+            slug,
+            title,
+            dateISO,
+            dateDisplay,
+            metaDescription,
+            kicker,
+            readingTime,
+            heroAlt,
+            heroCaption,
+            bodyHtml,
+          };
+        }
+
+        function buildArticleHtml(v) {
+          const t = escapeHtml(v.title);
+          const md = escapeHtml(v.metaDescription);
+          const k = escapeHtml(v.kicker);
+          const dd = escapeHtml(v.dateDisplay);
+          const rt = escapeHtml(v.readingTime);
+          const ha = escapeHtml(v.heroAlt);
+          const hc = v.heroCaption ? escapeHtml(v.heroCaption) : "";
+          const iso = escapeHtml(v.dateISO);
+
+          const figCap = hc
+            ? "          <figcaption>" + hc + "</figcaption>\n"
+            : "";
+
+          return (
+            '<!DOCTYPE html>\n' +
+            '<html lang="en">\n' +
+            "  <head>\n" +
+            '    <meta charset="utf-8" />\n' +
+            '    <meta name="viewport" content="width=device-width, initial-scale=1" />\n' +
+            "    <title>" +
+            t +
+            " — Tomas Roos</title>\n" +
+            '    <meta name="description" content="' +
+            md +
+            '" />\n' +
+            '    <meta name="author" content="Tomas Roos" />\n' +
+            '    <meta property="og:type" content="article" />\n' +
+            '    <meta property="og:title" content="' +
+            t +
+            ' — Tomas Roos" />\n' +
+            "    <meta\n" +
+            '      property="og:description"\n' +
+            '      content="' +
+            md +
+            '"\n' +
+            "    />\n" +
+            '    <meta property="og:image" content="../assets/Articles/' +
+            v.slug +
+            '/hero.png" />\n' +
+            '    <meta property="article:published_time" content="' +
+            iso +
+            '" />\n' +
+            '    <link rel="icon" href="../assets/favicon.png" />\n' +
+            '    <link rel="preconnect" href="https://fonts.googleapis.com" />\n' +
+            '    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n' +
+            '    <link\n' +
+            '      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"\n' +
+            '      rel="stylesheet"\n' +
+            "    />\n" +
+            '    <link rel="stylesheet" href="../css/styles.css" />\n' +
+            '    <link rel="stylesheet" href="../css/case-study.css" />\n' +
+            '    <link rel="stylesheet" href="../css/article.css" />\n' +
+            "  </head>\n" +
+            "  <body>\n" +
+            '    <div class="page-loader" aria-hidden="true">\n' +
+            '      <img src="../assets/tomas-roos-logo.svg" alt="" style="height: 32px; opacity: 0.4" />\n' +
+            "    </div>\n" +
+            '    <div class="cursor-dot" aria-hidden="true"></div>\n' +
+            "\n" +
+            '    <header class="site-header">\n' +
+            '      <div class="wrap">\n' +
+            '        <a class="brand" href="../index.html"\n' +
+            '          ><img src="../assets/tomas-roos-logo.svg" alt="Tomas Roos" class="brand-logo"\n' +
+            "        /></a>\n" +
+            '        <nav class="nav">\n' +
+            '          <a class="cs-back" href="../index.html#blog">\n' +
+            '            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>\n' +
+            "            Back to blog\n" +
+            "          </a>\n" +
+            "        </nav>\n" +
+            "      </div>\n" +
+            "    </header>\n" +
+            "\n" +
+            '    <main class="wrap article-page">\n' +
+            '      <article class="article-doc" itemscope itemtype="https://schema.org/BlogPosting">\n' +
+            '        <meta itemprop="author" content="Tomas Roos" />\n' +
+            '        <meta itemprop="datePublished" content="' +
+            iso +
+            '" />\n' +
+            '        <header class="article-hero reveal-up">\n' +
+            '          <p class="article-kicker">' +
+            k +
+            "</p>\n" +
+            '          <h1 class="article-title" itemprop="headline">' +
+            t +
+            "</h1>\n" +
+            '          <p class="article-meta">\n' +
+            '            <time itemprop="datePublished" datetime="' +
+            iso +
+            '">' +
+            dd +
+            "</time>\n" +
+            '            <span class="article-meta__sep" aria-hidden="true">·</span>\n' +
+            "            <span>" +
+            rt +
+            "</span>\n" +
+            "          </p>\n" +
+            "        </header>\n" +
+            "\n" +
+            '        <figure class="article-figure article-figure--hero reveal-up">\n' +
+            '          <img src="../assets/Articles/' +
+            v.slug +
+            '/hero.png" alt="' +
+            ha +
+            '" itemprop="image" />\n' +
+            figCap +
+            "        </figure>\n" +
+            "\n" +
+            '        <div class="article-prose reveal-up" itemprop="articleBody">\n' +
+            (v.bodyHtml
+              ? v.bodyHtml
+                  .split("\n")
+                  .map(function (line) {
+                    return "          " + line;
+                  })
+                  .join("\n") + "\n"
+              : "          <p></p>\n") +
+            "        </div>\n" +
+            "      </article>\n" +
+            "    </main>\n" +
+            "\n" +
+            '    <div class="wrap">\n' +
+            '      <div class="cs-footer-cta reveal-up">\n' +
+            "        <p>More to read?</p>\n" +
+            "        <h2>Back to the portfolio.</h2>\n" +
+            '        <a class="btn btn--primary" href="../index.html#blog">Open the blog</a>\n' +
+            "      </div>\n" +
+            "    </div>\n" +
+            "\n" +
+            '    <footer class="site-footer">\n' +
+            '      <div class="wrap">\n' +
+            '        <p>© <span id="year"></span> Tomas Roos · <a href="https://www.linkedin.com/in/tomas-roos/">LinkedIn</a></p>\n' +
+            "      </div>\n" +
+            "    </footer>\n" +
+            "\n" +
+            '    <script src="../js/case-study.js"><\/script>\n' +
+            "  </body>\n" +
+            "</html>\n"
+          );
+        }
+
+        function buildManifestSnippet(v) {
+          const excerptOneLine = v.metaDescription.replace(/\s+/g, " ").trim();
+          const excerpt = excerptOneLine.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+          const titleEsc = v.title.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+          const lines = [
+            "  {",
+            '    slug: "' + v.slug + '",',
+            '    title: "' + titleEsc + '",',
+            '    dateISO: "' + v.dateISO + '",',
+            "    excerpt:",
+            '      "' + excerpt + '",',
+            '    cover: "assets/Articles/' + v.slug + '/hero.png",',
+            '    href: "articles/' + v.slug + '.html",',
+            "  },",
+          ];
+          return lines.join("\n");
+        }
+
+        function refreshManifestPreview() {
+          const v = getValues();
+          manifestOutEl.value = buildManifestSnippet(v);
+        }
+
+        [
+          titleEl,
+          slugEl,
+          dateISOEl,
+          dateDisplayEl,
+          metaDescEl,
+          kickerEl,
+          readingTimeEl,
+          heroAltEl,
+          heroCaptionEl,
+          bodyHtmlEl,
+        ].forEach(function (el) {
+          el.addEventListener("input", refreshManifestPreview);
+          el.addEventListener("change", refreshManifestPreview);
+        });
+
+        refreshManifestPreview();
+
+        function toast(msg) {
+          toastEl.textContent = msg || "";
+          if (msg) {
+            setTimeout(function () {
+              toastEl.textContent = "";
+            }, 3200);
+          }
+        }
+
+        $("btnDownload").addEventListener("click", function () {
+          const v = getValues();
+          if (!v.slug) {
+            toast("Add a title or slug first.");
+            return;
+          }
+          const html = buildArticleHtml(v);
+          const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = v.slug + ".html";
+          a.click();
+          URL.revokeObjectURL(a.href);
+          toast("Saved as " + v.slug + ".html → move to articles/");
+        });
+
+        $("btnCopyManifest").addEventListener("click", async function () {
+          const text = manifestOutEl.value;
+          try {
+            await navigator.clipboard.writeText(text);
+            toast("Copied manifest entry");
+          } catch (_) {
+            manifestOutEl.select();
+            toast("Copy blocked — selection highlighted");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

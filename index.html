@@ -454,6 +454,66 @@
       .extra-gallery__caption h3 { font-size: var(--text-sm); font-weight: 700; }
       .extra-gallery__caption p { font-size: var(--text-xs); opacity: 0.7; }
 
+      /* ═══ Blog grid ═══ */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: var(--sp-2);
+        margin-top: var(--sp-3);
+        text-align: left;
+      }
+      .blog-card {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+      }
+      .blog-card:hover {
+        border-color: var(--border-strong);
+        transform: translateY(-2px);
+      }
+      .blog-card:focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 3px;
+      }
+      .blog-card__media {
+        aspect-ratio: 16 / 10;
+        background: var(--rose);
+        overflow: hidden;
+      }
+      .blog-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .blog-card__body {
+        padding: var(--sp-2);
+      }
+      .blog-card__date {
+        font-size: var(--text-xs);
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+      .blog-card__title {
+        font-size: var(--text-sm);
+        font-weight: 700;
+        margin-bottom: 8px;
+        line-height: 1.35;
+      }
+      .blog-card__excerpt {
+        font-size: var(--text-xs);
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
       /* ═══ CTA Section ═══ */
       .cta-section {
         text-align: center;
@@ -562,7 +622,7 @@
         </h1>
 
         <div class="picker-nav">
-          <nav class="picker" id="picker" aria-label="Choose a project">
+          <nav class="picker" id="picker" aria-label="Choose a section">
             <div class="picker-track" id="picker-track">
               <button class="picker-item active" data-idx="0" type="button">Tidings</button>
               <button class="picker-item near" data-idx="1" type="button">Brael</button>
@@ -571,14 +631,15 @@
               <button class="picker-item" data-idx="4" type="button">Chrome Notes</button>
               <button class="picker-item" data-idx="5" type="button">Venga</button>
               <button class="picker-item" data-idx="6" type="button">Visual work</button>
+              <button class="picker-item" data-idx="7" type="button">Blog</button>
             </div>
           </nav>
         </div>
         <div class="desc-area" id="desc-area">
           <div class="desc-area__label-row">
             <p class="desc-micro-label" id="project-desc-label">About this project</p>
-            <p id="picker-progress" class="picker-progress" aria-live="polite" aria-label="Project 1 of 7">
-              <span class="picker-progress__current">1</span><span class="picker-progress__sep" aria-hidden="true">/</span><span class="picker-progress__total">7</span>
+            <p id="picker-progress" class="picker-progress" aria-live="polite" aria-label="Slide 1 of 8">
+              <span class="picker-progress__current">1</span><span class="picker-progress__sep" aria-hidden="true">/</span><span class="picker-progress__total">8</span>
             </p>
           </div>
           <p class="project-desc" id="project-desc"></p>
@@ -1001,6 +1062,18 @@
         </section>
       </article>
 
+      <!-- ── Slide 7: Blog ── -->
+      <article class="slide" id="slide-7">
+        <section class="cs-section">
+          <div class="cs-inner">
+            <p class="slide-eyebrow">Blog</p>
+            <h2 class="cs-section__title">Writing</h2>
+            <p class="cs-section__lead">Notes on design, product work, and visual explorations.</p>
+            <div class="blog-grid" id="blog-grid"></div>
+          </div>
+        </section>
+      </article>
+
     </main>
 
     <!-- ═══ CTA ═══ -->
@@ -1020,6 +1093,7 @@
       </div>
     </footer>
 
+    <script src="js/articles-data.js"></script>
     <script>
       (() => {
         "use strict";
@@ -1029,9 +1103,9 @@
         let currentIndex = 0;
         let currentDom = 0;
         let snapTimer = null;
-        const N = 7;
-        const names = ["Tidings", "Brael", "Sharely", "Check Sync", "Chrome Notes", "Venga", "Visual work"];
-        const slugs = ["tidings", "brael", "sharely", "check-sync", "chrome-notes", "venga", "visual-work"];
+        const N = 8;
+        const names = ["Tidings", "Brael", "Sharely", "Check Sync", "Chrome Notes", "Venga", "Visual work", "Blog"];
+        const slugs = ["tidings", "brael", "sharely", "check-sync", "chrome-notes", "venga", "visual-work", "blog"];
 
         const descriptions = [
           "In this project you'll find a news consumption app built for clarity\nI designed every UI element and led the full product design",
@@ -1040,8 +1114,15 @@
           "A task synchronization tool that unifies team workflows\nI designed the unified dashboard and real-time sync experience",
           "A minimalist Chrome extension for capturing thoughts instantly\nI designed every interaction to take under 2 seconds",
           "An event discovery platform bringing all events into one place\nI designed the personalized feed and social planning features",
-          "A collection of branding, visual design, and UI explorations\nAdditional work across personal and client projects"
+          "A collection of branding, visual design, and UI explorations\nAdditional work across personal and client projects",
+          "Long-form writing on design and visual work\nArticles with full pages live under Writing—start here and open a piece"
         ];
+
+        function descLabelForSlug(slug) {
+          if (slug === "visual-work") return "About this gallery";
+          if (slug === "blog") return "About the blog";
+          return "About this project";
+        }
 
         const stickyTop = $("#sticky-top");
         const descEl    = $("#project-desc");
@@ -1067,7 +1148,7 @@
           const tot = el.querySelector(".picker-progress__total");
           if (cur) cur.textContent = String(currentIndex + 1);
           if (tot) tot.textContent = String(N);
-          el.setAttribute("aria-label", `Project ${currentIndex + 1} of ${N}`);
+          el.setAttribute("aria-label", `Slide ${currentIndex + 1} of ${N}`);
         }
 
         function setHashForIndex(i) {
@@ -1089,7 +1170,7 @@
           const lines = descriptions[idx].split("\n");
           descEl.innerHTML = lines[0] + " " + lines[1];
           descEl.style.opacity = "1";
-          if (descLabel) descLabel.textContent = idx === N - 1 ? "About this gallery" : "About this project";
+          if (descLabel) descLabel.textContent = descLabelForSlug(slugs[idx]);
 
           currentIndex = idx;
           currentDom = N + idx;
@@ -1099,6 +1180,47 @@
 
           if (doHash) setHashForIndex(idx);
           if (scrollPage) window.scrollTo({ top: 0, behavior: instant ? "auto" : "smooth" });
+        }
+
+        function renderBlogGrid() {
+          const grid = $("#blog-grid");
+          const posts = window.ARTICLES;
+          if (!grid || !Array.isArray(posts)) return;
+          grid.innerHTML = "";
+          posts.forEach(post => {
+            const a = document.createElement("a");
+            a.className = "blog-card";
+            a.href = post.href;
+            const imgWrap = document.createElement("div");
+            imgWrap.className = "blog-card__media";
+            const img = document.createElement("img");
+            img.src = post.cover;
+            img.alt = post.title;
+            img.loading = "lazy";
+            imgWrap.appendChild(img);
+            const body = document.createElement("div");
+            body.className = "blog-card__body";
+            const dateEl = document.createElement("p");
+            dateEl.className = "blog-card__date";
+            try {
+              dateEl.textContent = new Date(post.dateISO + "T12:00:00").toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              });
+            } catch {
+              dateEl.textContent = post.dateISO;
+            }
+            const titleEl = document.createElement("h3");
+            titleEl.className = "blog-card__title";
+            titleEl.textContent = post.title;
+            const ex = document.createElement("p");
+            ex.className = "blog-card__excerpt";
+            ex.textContent = post.excerpt;
+            body.append(dateEl, titleEl, ex);
+            a.append(imgWrap, body);
+            grid.appendChild(a);
+          });
         }
 
         /* ── Build circular picker: [clone] [real] [clone] ── */
@@ -1235,7 +1357,7 @@
             const lines = descriptions[newIdx].split("\n");
             descEl.innerHTML = lines[0] + " " + lines[1];
             descEl.style.opacity = "1";
-            if (descLabel) descLabel.textContent = newIdx === N - 1 ? "About this gallery" : "About this project";
+            if (descLabel) descLabel.textContent = descLabelForSlug(slugs[newIdx]);
           }, 220);
 
           slides[currentIndex].classList.remove("active");
@@ -1326,6 +1448,7 @@
 
         /* ── Init & deep links ── */
         buildCircularTrack();
+        renderBlogGrid();
         headerShrunk = scrollTopStable() >= SHRINK_DOWN;
         stickyTop.classList.toggle("shrunk", headerShrunk);
         syncHeaderScrollPad();
