@@ -3,1473 +3,223 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tomas Roos — Designer</title>
-    <meta name="description" content="Tomas Roos is a product and visual designer based in Stockholm." />
-    <meta name="theme-color" content="#EEEDE9" />
-    <meta property="og:title" content="Tomas Roos — Designer" />
-    <meta property="og:description" content="Selected works in product design, UI/UX, and visual identity." />
+    <title>Tomas Roos — Product &amp; Visual Designer</title>
+    <meta name="description" content="Tomas Roos is a Stockholm-based product and visual designer focused on clarity — turning complex problems into calm, usable products." />
+    <meta name="theme-color" content="#0B0B0C" />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:title" content="Tomas Roos — Product &amp; Visual Designer" />
+    <meta property="og:description" content="Selected work in product design, UX/UI, and visual identity." />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="assets/favicon.png" />
+    <meta property="og:image" content="assets/tidings/tidings.png" />
+    <link rel="icon" href="assets/tomas-roos-logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet" />
-
-    <style>
-      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-      :root {
-        --bg: #EEEDE9;
-        --text: #2C2A2D;
-        --muted: #8A8889;
-        --rose: #D1D1D1;
-        --pill: #D1D4D7;
-        --alt-bg: #E5E4E0;
-        --card-bg: rgba(255,255,255,0.4);
-        --border: rgba(44,42,45,0.1);
-        --border-strong: rgba(44,42,45,0.18);
-        --font: 'Monda', sans-serif;
-        --container: 960px;
-        --gutter: clamp(20px, 4vw, 48px);
-        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-        --text-xs: 11px;
-        --text-sm: 14px;
-        --text-base: 16px;
-        --text-md: 24px;
-        --text-lg: 36px;
-        --text-xl: 54px;
-        --sp-1: 12px;
-        --sp-2: 24px;
-        --sp-3: 36px;
-        --sp-4: 48px;
-        --sp-5: 60px;
-        --sp-6: 72px;
-        --sp-8: 96px;
-        --header-pad: 0px;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        .slide.active { animation: none; }
-      }
-
-      body {
-        font-family: var(--font);
-        font-size: var(--text-base);
-        line-height: 1.5;
-        color: var(--text);
-        background: var(--bg);
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
-      }
-
-      /* ═══ Sticky header area ═══ */
-      .sticky-top {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: var(--bg);
-      }
-
-      /* ═══ Header ═══ */
-      .site-header {
-        position: relative;
-        text-align: center;
-        padding: var(--sp-5) var(--gutter) var(--sp-1);
-        transition: padding 0.5s var(--ease);
-      }
-      .sticky-top.shrunk .site-header {
-        padding: var(--sp-1) var(--gutter) 0;
-      }
-
-      /* ═══ Roses ═══ */
-      .roses {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 920px;
-        pointer-events: none;
-        transition: opacity 0.5s var(--ease);
-        opacity: 0.88;
-      }
-      .roses img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-      .sticky-top.shrunk .roses { opacity: 0; }
-
-      /* ═══ Logo ═══ */
-      .logo {
-        font-size: var(--text-xl);
-        letter-spacing: 0.18em;
-        line-height: 1;
-        margin-bottom: var(--sp-2);
-        transition: font-size 0.5s var(--ease), margin 0.5s var(--ease), letter-spacing 0.5s var(--ease);
-        position: relative;
-        z-index: 1;
-      }
-      .logo-bold { font-weight: 700; }
-      .logo-light { font-weight: 400; color: var(--muted); }
-      .sticky-top.shrunk .logo {
-        font-size: 20px;
-        letter-spacing: 0.12em;
-        margin-bottom: 0;
-      }
-
-      /* ═══ Picker / Carousel ═══ */
-      .picker {
-        position: relative;
-        z-index: 1;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        max-width: 560px;
-        margin: 0 auto;
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-      }
-      .picker::-webkit-scrollbar { display: none; }
-
-      .picker-track {
-        display: flex;
-        align-items: center;
-        gap: var(--sp-2);
-        padding: var(--sp-1) 220px;
-        white-space: nowrap;
-      }
-
-      .picker-item {
-        border: none;
-        background: none;
-        font-family: var(--font);
-        font-size: var(--text-base);
-        font-weight: 400;
-        color: var(--text);
-        cursor: pointer;
-        padding: 8px 20px;
-        white-space: nowrap;
-        opacity: 0.2;
-        transition: opacity 0.35s var(--ease), background 0.35s var(--ease), font-weight 0.2s;
-        border-radius: 24px;
-      }
-      .picker-item:hover { opacity: 0.5; }
-      .picker-item.active {
-        opacity: 1;
-        background: var(--pill);
-        font-weight: 700;
-      }
-      .picker-item.near { opacity: 0.5; }
-      .picker-item.far { opacity: 0.3; }
-
-      .picker-nav {
-        max-width: 560px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-      }
-
-      /* ═══ Description area (inside header) ═══ */
-      .desc-area {
-        text-align: center;
-        padding: var(--sp-1) var(--gutter) 0;
-        max-width: var(--container);
-        margin: 0 auto;
-        transition: max-height 0.5s var(--ease), opacity 0.4s var(--ease), padding 0.5s var(--ease);
-        max-height: 168px;
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
-      }
-      .sticky-top.shrunk .desc-area {
-        max-height: 0;
-        opacity: 0;
-        padding: 0;
-      }
-      .desc-area__label-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        justify-content: center;
-        gap: var(--sp-1);
-        max-width: 420px;
-        margin: 0 auto var(--sp-1);
-      }
-      .desc-micro-label {
-        font-size: var(--text-xs);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        margin: 0;
-        line-height: 1.35;
-      }
-      .picker-progress {
-        margin: 0;
-        font-variant-numeric: tabular-nums;
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0;
-        line-height: 1.35;
-        padding: 0;
-        border: none;
-        background: none;
-      }
-      .picker-progress__current {
-        font-size: var(--text-xs);
-        font-weight: 400;
-        color: var(--muted);
-        letter-spacing: 0;
-        min-width: 0.5em;
-        text-align: center;
-      }
-      .picker-progress__sep {
-        font-size: var(--text-xs);
-        font-weight: 400;
-        color: var(--muted);
-        padding: 0 1px;
-        opacity: 0.35;
-      }
-      .picker-progress__total {
-        font-size: var(--text-xs);
-        font-weight: 400;
-        color: var(--muted);
-        letter-spacing: 0;
-        min-width: 0.5em;
-        opacity: 0.65;
-      }
-      .project-desc {
-        font-size: var(--text-sm);
-        color: var(--muted);
-        line-height: 1.7;
-        max-width: 420px;
-        margin: 0 auto;
-        transition: opacity 0.25s var(--ease);
-      }
-
-      /* ═══ Separator ═══ */
-      .separator {
-        width: 60%;
-        max-width: 600px;
-        margin: var(--sp-2) auto var(--sp-1);
-        border: none;
-        border-top: 1px dashed var(--rose);
-      }
-
-      /* ═══ Content / Slides ═══ */
-      .content {
-        min-height: 50vh;
-        scroll-margin-top: var(--header-pad, 0px);
-      }
-      .slide { display: none; }
-      .slide.active {
-        display: block;
-        animation: slideIn 0.45s var(--ease) both;
-      }
-      @keyframes slideIn {
-        from { opacity: 0; transform: translateY(var(--sp-1)); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-
-      /* ═══ Case study sections ═══ */
-      .cs-section { padding: var(--sp-5) 0; }
-      .cs-inner {
-        max-width: var(--container);
-        margin: 0 auto;
-        padding: 0 var(--gutter);
-      }
-      .cs-section--alt { background: var(--alt-bg); }
-
-      .cs-cover {
-        max-width: var(--container);
-        margin: 0 auto var(--sp-1);
-        padding: 0 var(--gutter);
-      }
-      .cs-cover img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      .cs-meta {
-        display: flex;
-        gap: var(--sp-3);
-        flex-wrap: wrap;
-        padding: var(--sp-2) 0;
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        margin-bottom: var(--sp-4);
-      }
-      .cs-meta__label {
-        display: block;
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        margin-bottom: 4px;
-      }
-      .cs-meta__value {
-        font-size: var(--text-sm);
-        font-weight: 700;
-      }
-
-      .slide-eyebrow {
-        font-size: var(--text-md);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin-bottom: var(--sp-2);
-        text-align: center;
-      }
-
-      .cs-section__title {
-        font-size: var(--text-md);
-        font-weight: 700;
-        margin-bottom: var(--sp-2);
-        letter-spacing: -0.01em;
-      }
-      .cs-section__lead {
-        font-size: var(--text-base);
-        line-height: 1.7;
-        color: var(--muted);
-        max-width: 52ch;
-        margin-bottom: var(--sp-3);
-      }
-
-      .cs-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--sp-2);
-      }
-      .cs-card {
-        padding: var(--sp-2);
-        border: 1px solid var(--border);
-        background: var(--card-bg);
-      }
-      .cs-card h3 {
-        font-size: var(--text-sm);
-        font-weight: 700;
-        margin-bottom: var(--sp-1);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      .cs-card p {
-        font-size: var(--text-sm);
-        color: var(--muted);
-        line-height: 1.65;
-        max-width: 52ch;
-      }
-
-      .cs-timeline { margin-bottom: var(--sp-3); }
-      .cs-timeline__item {
-        position: relative;
-        padding-left: var(--sp-3);
-        padding-bottom: var(--sp-3);
-        border-left: 1px solid var(--border-strong);
-      }
-      .cs-timeline__item:last-child { padding-bottom: 0; }
-      .cs-timeline__item::before {
-        content: '';
-        position: absolute;
-        left: -4px;
-        top: 7px;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--text);
-      }
-      .cs-timeline__item h3 {
-        font-size: var(--text-sm);
-        font-weight: 700;
-        margin-bottom: 4px;
-      }
-      .cs-timeline__item p {
-        font-size: var(--text-sm);
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .cs-mockup { margin-top: var(--sp-3); }
-      .cs-mockup img { width: 100%; height: auto; display: block; }
-
-      .cs-outcomes p {
-        font-size: var(--text-base);
-        color: var(--muted);
-        line-height: 1.7;
-        max-width: 52ch;
-        margin-bottom: var(--sp-3);
-      }
-      .cs-stats {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--sp-2);
-        text-align: center;
-      }
-      .cs-stat__value {
-        font-size: var(--text-lg);
-        font-weight: 700;
-        line-height: 1;
-        margin-bottom: 6px;
-      }
-      .cs-stat__label {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--muted);
-      }
-
-      /* ═══ Extra Work Gallery ═══ */
-      .extra-gallery {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--sp-2);
-      }
-      .extra-gallery__item {
-        position: relative;
-        aspect-ratio: 16/10;
-        overflow: hidden;
-        background: var(--rose);
-      }
-      .extra-gallery__item img {
-        width: 100%; height: 100%;
-        object-fit: cover; display: block;
-        transition: transform 0.6s var(--ease);
-      }
-      .extra-gallery__item:hover img { transform: scale(1.04); }
-      .extra-gallery__caption {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        padding: var(--sp-1) var(--sp-2);
-        background: linear-gradient(to top, rgba(44,42,45,0.65), transparent);
-        color: #fff;
-        opacity: 0;
-        transition: opacity 0.3s var(--ease);
-      }
-      .extra-gallery__item:hover .extra-gallery__caption { opacity: 1; }
-      .extra-gallery__caption h3 { font-size: var(--text-sm); font-weight: 700; }
-      .extra-gallery__caption p { font-size: var(--text-xs); opacity: 0.7; }
-
-      /* ═══ Blog grid ═══ */
-      .blog-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: var(--sp-2);
-        margin-top: var(--sp-3);
-        text-align: left;
-      }
-      .blog-card {
-        display: flex;
-        flex-direction: column;
-        text-decoration: none;
-        color: inherit;
-        background: var(--card-bg);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
-      }
-      .blog-card:hover {
-        border-color: var(--border-strong);
-        transform: translateY(-2px);
-      }
-      .blog-card:focus-visible {
-        outline: 2px solid var(--text);
-        outline-offset: 3px;
-      }
-      .blog-card__media {
-        aspect-ratio: 16 / 10;
-        background: var(--rose);
-        overflow: hidden;
-      }
-      .blog-card__media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-      .blog-card__body {
-        padding: var(--sp-2);
-      }
-      .blog-card__date {
-        font-size: var(--text-xs);
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 6px;
-      }
-      .blog-card__title {
-        font-size: var(--text-sm);
-        font-weight: 700;
-        margin-bottom: 8px;
-        line-height: 1.35;
-      }
-      .blog-card__excerpt {
-        font-size: var(--text-xs);
-        color: var(--muted);
-        line-height: 1.55;
-      }
-
-      /* ═══ CTA Section ═══ */
-      .cta-section {
-        text-align: center;
-        padding: var(--sp-8) 0;
-        border-top: 1px solid var(--border);
-      }
-      .cta-section h2 {
-        font-size: var(--text-lg);
-        font-weight: 400;
-        line-height: 1.25;
-        letter-spacing: -0.02em;
-        margin-bottom: var(--sp-3);
-        max-width: var(--container);
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 var(--gutter);
-      }
-      .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: var(--sp-1) var(--sp-3);
-        background: var(--text);
-        color: var(--bg);
-        text-decoration: none;
-        font-family: var(--font);
-        font-size: var(--text-xs);
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        transition: opacity 0.2s;
-      }
-      .cta-btn:hover { opacity: 0.8; }
-      .cta-btn:active { transform: scale(0.97); }
-
-      /* ═══ Footer ═══ */
-      .site-footer {
-        padding: var(--sp-2) 0;
-        border-top: 1px solid var(--border);
-      }
-      .footer-wrap {
-        max-width: var(--container);
-        margin: 0 auto;
-        padding: 0 var(--gutter);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .site-footer span,
-      .site-footer a {
-        font-size: var(--text-xs);
-        color: var(--muted);
-      }
-      .site-footer a {
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .site-footer a:hover { color: var(--text); }
-
-      /* ═══ Responsive ═══ */
-      @media (max-width: 768px) {
-        .logo { font-size: var(--text-lg); }
-        .sticky-top.shrunk .logo { font-size: 18px; }
-        .picker-track { gap: 16px; padding: var(--sp-1) 180px; }
-        .picker { max-width: 440px; }
-        .picker-nav { max-width: 440px; }
-        .picker-item { font-size: var(--text-sm); padding: 6px 14px; }
-        .cs-grid { grid-template-columns: 1fr; }
-        .cs-stats { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2) var(--sp-1); }
-        .extra-gallery { grid-template-columns: repeat(2, 1fr); }
-        .cs-meta { gap: var(--sp-2); }
-        .site-header { padding: var(--sp-4) var(--gutter) var(--sp-1); }
-        .project-desc { font-size: var(--text-xs); }
-      }
-
-      @media (max-width: 480px) {
-        .picker-track { gap: var(--sp-1); padding: var(--sp-1) 150px; }
-        .picker { max-width: 360px; }
-        .picker-nav { max-width: 360px; }
-        .picker-item { font-size: 13px; padding: 5px 12px; }
-        .cs-stats { grid-template-columns: repeat(2, 1fr); }
-        .extra-gallery { grid-template-columns: 1fr; }
-        .cta-section { padding: var(--sp-5) 0; }
-        .cta-section h2 { font-size: var(--text-md); }
-        .footer-wrap { flex-direction: column; gap: var(--sp-1); text-align: center; }
-        .roses { opacity: 0.5; }
-      }
-
-      /* ═══ A11y ═══ */
-      .keyboard-nav *:focus {
-        outline: 2px solid var(--text) !important;
-        outline-offset: 2px !important;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ═══ Sticky header: logo + picker ═══ -->
-    <div class="sticky-top" id="sticky-top">
-      <header class="site-header">
-        <div class="roses" aria-hidden="true">
-          <img src="roses.svg" alt="" />
-    </div>
-        <h1 class="logo">
-          <span class="logo-bold">TOMAS</span><span class="logo-light">ROOS</span>
-        </h1>
+    <!-- ═══ Header ═══ -->
+    <header class="site-header" id="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="/" aria-label="Tomas Roos — home">
+          <b>TOMAS</b><span>ROOS</span>
+        </a>
 
-        <div class="picker-nav">
-          <nav class="picker" id="picker" aria-label="Choose a section">
-            <div class="picker-track" id="picker-track">
-              <button class="picker-item active" data-idx="0" type="button">Tidings</button>
-              <button class="picker-item near" data-idx="1" type="button">Brael</button>
-              <button class="picker-item far" data-idx="2" type="button">Sharely</button>
-              <button class="picker-item" data-idx="3" type="button">Check Sync</button>
-              <button class="picker-item" data-idx="4" type="button">Chrome Notes</button>
-              <button class="picker-item" data-idx="5" type="button">Venga</button>
-              <button class="picker-item" data-idx="6" type="button">Visual work</button>
-              <button class="picker-item" data-idx="7" type="button">Blog</button>
-            </div>
-          </nav>
-        </div>
-        <div class="desc-area" id="desc-area">
-          <div class="desc-area__label-row">
-            <p class="desc-micro-label" id="project-desc-label">About this project</p>
-            <p id="picker-progress" class="picker-progress" aria-live="polite" aria-label="Slide 1 of 8">
-              <span class="picker-progress__current">1</span><span class="picker-progress__sep" aria-hidden="true">/</span><span class="picker-progress__total">8</span>
-            </p>
+        <nav aria-label="Primary">
+          <button
+            class="nav__toggle"
+            id="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-links"
+            aria-label="Open menu"
+          >
+            <span class="nav__toggle-bars" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
+          <div class="nav__links" id="nav-links">
+            <a class="nav__link" href="#work">Work</a>
+            <a class="nav__link" href="#visual">Visual</a>
+            <a class="nav__link" href="#writing">Writing</a>
+            <a class="nav__link" href="#about">About</a>
+            <a class="btn btn--primary nav__cta" href="#contact">Get in touch</a>
           </div>
-          <p class="project-desc" id="project-desc"></p>
-          <hr class="separator" />
+        </nav>
       </div>
     </header>
-    </div>
 
-    <!-- ═══ Project content slides ═══ -->
-    <main class="content" id="content">
-
-      <!-- ── Slide 0: Tidings ── -->
-      <article class="slide active" id="slide-0">
-        <div class="cs-cover">
-          <img src="assets/tidings/tidings.png" alt="Tidings app interface" loading="lazy" />
+    <main id="main">
+      <!-- ═══ Hero ═══ -->
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <p class="hero__status">
+          <span class="hero__dot" aria-hidden="true"></span>
+          Available for select work
+        </p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="line"><span>Tomas Roos</span></span>
+          <span class="line"><span class="dim">product &amp; visual designer</span></span>
+        </h1>
+        <div class="hero__intro">
+          <p class="hero__bio">
+            I'm a Stockholm-based designer focused on <strong>clarity</strong> — turning
+            complex problems into calm, usable products across mobile, web, and
+            browser tools.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--ghost" href="#work">
+              View work
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            </a>
+            <a class="btn btn--primary" href="#contact">
+              Get in touch
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </a>
           </div>
-        <div class="cs-inner">
-          <p class="slide-eyebrow">Tidings</p>
-          <div class="cs-meta">
-            <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Year</span><span class="cs-meta__value">2024</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Platform</span><span class="cs-meta__value">iOS &amp; Android</span></div>
-          </div>
-        </div>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Overview</h2>
-            <p class="cs-section__lead">Existing news apps prioritized engagement over clarity. Users were overwhelmed by endless feeds and algorithmic manipulation. Tidings gives users control over what they read and how they read it.</p>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Problem</h3><p>Users struggled with information overload, unclear sources, and lack of control. Many felt manipulated by algorithms pushing sensational content.</p></div>
-              <div class="cs-card"><h3>Solution</h3><p>A minimal interface where users choose their sources and customize their feed. No algorithms, just news the way you want it.</p></div>
-            </div>
         </div>
       </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">User Experience</h2>
-            <div class="cs-timeline">
-              <div class="cs-timeline__item"><h3>Onboarding &amp; Source Selection</h3><p>Simple flow helps users select preferred news sources from curated categories. Users can add or remove sources anytime.</p></div>
-              <div class="cs-timeline__item"><h3>Feed Customization</h3><p>Fully customizable feed with priority organization, custom categories, and reading preferences. Clear visual hierarchy shows what matters to the user.</p></div>
-              <div class="cs-timeline__item"><h3>Reading Experience</h3><p>Clean, distraction-free reader mode with adjustable text size and dark mode. Each article clearly displays source, date, and reading time.</p></div>
-              <div class="cs-timeline__item"><h3>Discovery</h3><p>Discovery section suggests articles based on user-selected interests (not behavior tracking). Users explore without feeling manipulated.</p></div>
-            </div>
-            <div class="cs-mockup"><img src="assets/tidings/tidings-phone.png" alt="Tidings mobile interface" loading="lazy" /></div>
-          </div>
-        </section>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Key Features</h2>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Source Transparency</h3><p>Every article prominently displays source, publication date, and author. Transparency builds trust.</p></div>
-              <div class="cs-card"><h3>Customizable Feed</h3><p>Full control over feed organization. Prioritize sources, create categories, filter content. No hidden algorithms.</p></div>
-              <div class="cs-card"><h3>Reading Modes</h3><p>Multiple modes (list, card, article view) let users choose how they consume news. Reader mode strips distractions.</p></div>
-              <div class="cs-card"><h3>Offline Support</h3><p>Save articles for offline reading. Perfect for commutes or areas with poor connectivity.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Outcomes</h2>
-            <div class="cs-outcomes">
-              <p>Significant improvements in engagement and satisfaction. The focus on clarity and control resonated with users frustrated by existing news apps.</p>
-              <div class="cs-stats">
-                <div class="cs-stat"><div class="cs-stat__value">+32%</div><div class="cs-stat__label">Engagement</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">4.7/5</div><div class="cs-stat__label">App Store</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">85%</div><div class="cs-stat__label">Daily Active</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">-40%</div><div class="cs-stat__label">Time to Find</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
 
-      <!-- ── Slide 1: Brael ── -->
-      <article class="slide" id="slide-1">
-        <div class="cs-cover">
-          <img src="assets/brael/brael.png" alt="Brael e-commerce platform" loading="lazy" />
+      <!-- ═══ Marquee ═══ -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Product design<span></span>UX &amp; UI<span></span>Visual identity<span></span>Prototyping<span></span>Design systems<span></span>Interaction<span></span>Branding<span></span>Web</span>
+          <span>Product design<span></span>UX &amp; UI<span></span>Visual identity<span></span>Prototyping<span></span>Design systems<span></span>Interaction<span></span>Branding<span></span>Web</span>
         </div>
-        <div class="cs-inner">
-          <p class="slide-eyebrow">Brael</p>
-          <div class="cs-meta">
-            <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Year</span><span class="cs-meta__value">2024</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Platform</span><span class="cs-meta__value">Web</span></div>
       </div>
-        </div>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Overview</h2>
-            <p class="cs-section__lead">The platform struggled with low conversion rates and 68% cart abandonment. Users found checkout confusing and product discovery difficult. This redesign simplified the journey from discovery to purchase.</p>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Challenge</h3><p>High cart abandonment, complex navigation, unclear product information, and poor mobile experience.</p></div>
-              <div class="cs-card"><h3>Solution</h3><p>Complete redesign focusing on clarity, trust, and ease of use. Simplified navigation, improved product pages, and streamlined checkout.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">User Experience</h2>
-            <div class="cs-timeline">
-              <div class="cs-timeline__item"><h3>Homepage &amp; First Impression</h3><p>Redesigned to communicate value immediately. Clear hero section, social proof, and easy navigation. Added trust signals prominently.</p></div>
-              <div class="cs-timeline__item"><h3>Product Discovery</h3><p>Improved category navigation with clear hierarchy. Enhanced search with filters and sorting. Added Recently Viewed and recommendations.</p></div>
-              <div class="cs-timeline__item"><h3>Product Pages</h3><p>High-quality images, clear pricing, detailed descriptions, and reviews. Size guides and shipping info directly on page.</p></div>
-              <div class="cs-timeline__item"><h3>Checkout</h3><p>Streamlined from 5 steps to 1 page with progress indicator. Guest checkout, saved payment methods, and clear shipping calculator. Reduced abandonment by 35%.</p></div>
-            </div>
-            <div class="cs-mockup"><img src="assets/brael/brael-erbjudande.png" alt="Brael special offer page" loading="lazy" /></div>
-          </div>
-        </section>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Key Features</h2>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Streamlined Checkout</h3><p>Single-page checkout with progress indicator. Guest checkout and saved payment methods. Clear shipping cost calculator.</p></div>
-              <div class="cs-card"><h3>Enhanced Product Pages</h3><p>High-quality images with zoom, size guides, customer reviews, and trust badges. Buy Now option for quick purchases.</p></div>
-              <div class="cs-card"><h3>Mobile-First Design</h3><p>Touch-friendly buttons, simplified navigation, and optimized checkout. Mobile conversion increased by 42%.</p></div>
-              <div class="cs-card"><h3>Trust &amp; Security</h3><p>Security badges, customer reviews, and clear return policy information throughout the journey.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Outcomes</h2>
-            <div class="cs-outcomes">
-              <p>Significant improvements across all key metrics. Conversion rates increased, cart abandonment decreased, and user satisfaction improved.</p>
-              <div class="cs-stats">
-                <div class="cs-stat"><div class="cs-stat__value">+24%</div><div class="cs-stat__label">Conversion</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">-35%</div><div class="cs-stat__label">Cart Abandonment</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">+42%</div><div class="cs-stat__label">Mobile Conversion</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">-28%</div><div class="cs-stat__label">Checkout Time</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
 
-      <!-- ── Slide 2: Sharely ── -->
-      <article class="slide" id="slide-2">
-        <div class="cs-cover">
-          <img src="assets/sharely/Sharely.png" alt="Sharely social platform" loading="lazy" />
+      <!-- ═══ Work ═══ -->
+      <section class="section wrap" id="work" aria-labelledby="work-title">
+        <div class="section-head">
+          <div class="section-head__text">
+            <p class="eyebrow reveal">Selected work</p>
+            <h2 class="h-section reveal" id="work-title" style="--i:1">
+              Case studies in product design.
+            </h2>
+          </div>
+          <p class="muted reveal" style="--i:2; font-size:var(--t-sm)">
+            Six projects, one focus — make it clear.
+          </p>
         </div>
-        <div class="cs-inner">
-          <p class="slide-eyebrow">Sharely</p>
-          <div class="cs-meta">
-            <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Year</span><span class="cs-meta__value">2024</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Platform</span><span class="cs-meta__value">Web</span></div>
-          </div>
-        </div>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Overview</h2>
-            <p class="cs-section__lead">Existing social platforms prioritized engagement over privacy and control. Users were frustrated with data collection and algorithmic manipulation. Sharely puts users in control of their sharing experience.</p>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Problem</h3><p>Users wanted to share but were concerned about privacy, data collection, and algorithmic manipulation. Existing platforms made it difficult to control visibility.</p></div>
-              <div class="cs-card"><h3>Solution</h3><p>Privacy-first platform with granular controls, no algorithmic manipulation, and transparent data practices. Users control audience, visibility, and data sharing.</p></div>
-            </div>
-          </div>
-      </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">User Experience</h2>
-            <div class="cs-timeline">
-              <div class="cs-timeline__item"><h3>Privacy Configuration</h3><p>Onboarding focuses on privacy settings from the start. Users configure default privacy levels and choose what data to share.</p></div>
-              <div class="cs-timeline__item"><h3>Content Creation</h3><p>Simple, intuitive content creation. For each post, users choose audience and can set expiration dates. Privacy controls always visible.</p></div>
-              <div class="cs-timeline__item"><h3>Chronological Feed</h3><p>Feed shows content from followed users in order. No algorithmic manipulation. Users control what they see through following, muting, and filtering.</p></div>
-              <div class="cs-timeline__item"><h3>Data Transparency</h3><p>Users see exactly what data is collected and how it's used. Data export feature lets users download their data anytime.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Key Features</h2>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Granular Privacy Controls</h3><p>Per-post privacy settings let users control exactly who sees each piece of content. Custom audience lists and expiration dates.</p></div>
-              <div class="cs-card"><h3>Chronological Feed</h3><p>No algorithmic manipulation. Feed shows content in chronological order. Users control what they see.</p></div>
-              <div class="cs-card"><h3>Data Transparency</h3><p>Privacy dashboard shows exactly what data is collected. Data export feature builds trust through transparency.</p></div>
-              <div class="cs-card"><h3>No Tracking</h3><p>No third-party tracking, no behavioral advertising, no data selling. Privacy-first approach throughout.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Outcomes</h2>
-            <div class="cs-outcomes">
-              <p>Successfully attracted privacy-conscious users who appreciated the control and transparency. User activation and retention improved significantly.</p>
-              <div class="cs-stats">
-                <div class="cs-stat"><div class="cs-stat__value">+18%</div><div class="cs-stat__label">Activation</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">+32%</div><div class="cs-stat__label">Retention</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">92%</div><div class="cs-stat__label">Privacy Satisfaction</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">4.7/5</div><div class="cs-stat__label">Rating</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-
-      <!-- ── Slide 3: Check Sync ── -->
-      <article class="slide" id="slide-3">
-        <div class="cs-cover">
-          <img src="assets/check-sync/check-sync-cover.png" alt="Check Sync dashboard" loading="lazy" />
-        </div>
-        <div class="cs-inner">
-          <p class="slide-eyebrow">Check Sync</p>
-          <div class="cs-meta">
-            <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Year</span><span class="cs-meta__value">2024</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Platform</span><span class="cs-meta__value">Web &amp; Desktop</span></div>
-          </div>
-        </div>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Overview</h2>
-            <p class="cs-section__lead">Teams used multiple task management tools, leading to information silos and constant context switching. Check Sync synchronizes tasks across platforms while providing a unified view.</p>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Problem</h3><p>Information silos, missed updates, and constant context switching. High support tickets due to confusion about task status across platforms.</p></div>
-              <div class="cs-card"><h3>Solution</h3><p>Unified dashboard that synchronizes tasks in real-time. Clear visual indicators show status, ownership, and updates. Intelligent filtering helps teams focus.</p></div>
-            </div>
+        <div class="work-grid" id="work-grid">
+          <noscript>
+            <p class="muted">Enable JavaScript to browse case studies, or email
+              <a href="mailto:tomas.roosguerra@gmail.com" style="text-decoration:underline">tomas.roosguerra@gmail.com</a>.
+            </p>
+          </noscript>
         </div>
       </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">User Experience</h2>
-            <div class="cs-timeline">
-              <div class="cs-timeline__item"><h3>Platform Integration</h3><p>Simple onboarding guides users through connecting task management platforms. Customize sync settings for each platform.</p></div>
-              <div class="cs-timeline__item"><h3>Unified Dashboard</h3><p>Central dashboard shows all tasks from connected platforms. Color-coded platform indicators, status badges, and clear hierarchy.</p></div>
-              <div class="cs-timeline__item"><h3>Real-Time Sync</h3><p>Tasks sync automatically. Changes appear instantly with visual indicators showing sync status. Conflict resolution UI helps resolve issues quickly.</p></div>
-              <div class="cs-timeline__item"><h3>Filtering &amp; Search</h3><p>Powerful filtering by platform, status, assignee, project, or tags. Saved filter views for common queries. Global search across all platforms.</p></div>
-            </div>
-            <div class="cs-mockup"><img src="assets/check-sync/check-sync-mockup.png" alt="Check Sync interface" loading="lazy" /></div>
-          </div>
-        </section>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Key Features</h2>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Real-Time Synchronization</h3><p>Automatic sync with clear visual indicators. Conflict resolution UI reduces support tickets by 22%.</p></div>
-              <div class="cs-card"><h3>Unified Dashboard</h3><p>Single view of all tasks across platforms. Reduces context switching and improves team visibility.</p></div>
-              <div class="cs-card"><h3>Intelligent Filtering</h3><p>Powerful filtering system with saved views. Helps teams focus on what matters most.</p></div>
-              <div class="cs-card"><h3>Activity Feed</h3><p>Centralized feed shows all updates across platforms. Keeps teams informed without switching contexts.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Outcomes</h2>
-            <div class="cs-outcomes">
-              <p>Significantly improved team productivity and reduced support burden. Teams reported better alignment and fewer missed updates.</p>
-              <div class="cs-stats">
-                <div class="cs-stat"><div class="cs-stat__value">-22%</div><div class="cs-stat__label">Support Tickets</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">-35%</div><div class="cs-stat__label">Context Switching</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">+28%</div><div class="cs-stat__label">Task Visibility</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">92%</div><div class="cs-stat__label">Satisfaction</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
 
-      <!-- ── Slide 4: Chrome Notes ── -->
-      <article class="slide" id="slide-4">
-        <div class="cs-cover">
-          <img src="assets/chrome-notes/chrome-notes-cover.png" alt="Chrome Notes extension" loading="lazy" />
+      <!-- ═══ Visual work ═══ -->
+      <section class="section section--alt" id="visual" aria-labelledby="visual-title">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="section-head__text">
+              <p class="eyebrow reveal">Visual work</p>
+              <h2 class="h-section reveal" id="visual-title" style="--i:1">
+                Branding, UI &amp; explorations.
+              </h2>
+            </div>
+          </div>
+          <div class="gallery" id="gallery"></div>
         </div>
-        <div class="cs-inner">
-          <p class="slide-eyebrow">Chrome Notes</p>
-          <div class="cs-meta">
-            <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Year</span><span class="cs-meta__value">2024</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Platform</span><span class="cs-meta__value">Chrome Extension</span></div>
+      </section>
+
+      <!-- ═══ Writing ═══ -->
+      <section class="section wrap" id="writing" aria-labelledby="writing-title">
+        <div class="section-head">
+          <div class="section-head__text">
+            <p class="eyebrow reveal">Writing</p>
+            <h2 class="h-section reveal" id="writing-title" style="--i:1">
+              Notes on design &amp; craft.
+            </h2>
           </div>
         </div>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Overview</h2>
-            <p class="cs-section__lead">Existing note-taking extensions were cluttered, slow, or required too many clicks. Chrome Notes was designed to be the fastest way to capture thoughts without leaving your current context.</p>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Problem</h3><p>Users needed quick note capture while browsing, but existing solutions were too complex, slow, or disrupted workflow.</p></div>
-              <div class="cs-card"><h3>Solution</h3><p>Minimalist extension that opens instantly with keyboard shortcut. Clean interface focused on writing, with simple organization through tags and folders.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">User Experience</h2>
-            <div class="cs-timeline">
-              <div class="cs-timeline__item"><h3>Quick Capture</h3><p>Keyboard shortcut opens editor instantly. No loading, no animations, just a clean text area. Floating panel doesn't disrupt browsing.</p></div>
-              <div class="cs-timeline__item"><h3>Writing Experience</h3><p>Distraction-free interface with minimal UI. Focus mode hides all controls except text area. Markdown support. Auto-save ensures nothing is lost.</p></div>
-              <div class="cs-timeline__item"><h3>Organization</h3><p>Simple organization through tags and folders. Add tags with # or organize with drag-and-drop. Powerful search finds notes instantly.</p></div>
-              <div class="cs-timeline__item"><h3>Context Integration</h3><p>One-click capture of current URL, page title, or selected text. Notes link back to source pages for context.</p></div>
-            </div>
-            <div class="cs-mockup"><img src="assets/chrome-notes/chrome-notes-mockup.png" alt="Chrome Notes interface" loading="lazy" /></div>
-          </div>
-        </section>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Key Features</h2>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Instant Access</h3><p>Opens in under 100ms. No loading, no delays. Floating panel design doesn't disrupt browsing context.</p></div>
-              <div class="cs-card"><h3>Minimalist Interface</h3><p>Clean, distraction-free writing. Focus mode hides all UI except text area. Typography optimized for readability.</p></div>
-              <div class="cs-card"><h3>Simple Organization</h3><p>Tags and folders without complexity. Drag-and-drop for quick organization. Powerful search finds notes instantly.</p></div>
-              <div class="cs-card"><h3>Context Capture</h3><p>One-click capture of URL, page title, or selected text. Notes link back to source pages for context.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Outcomes</h2>
-            <div class="cs-outcomes">
-              <p>Quickly gained traction due to speed and simplicity. Users appreciated the minimalist approach and instant access.</p>
-              <div class="cs-stats">
-                <div class="cs-stat"><div class="cs-stat__value">50K+</div><div class="cs-stat__label">Users</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">4.8/5</div><div class="cs-stat__label">Rating</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">&lt;100ms</div><div class="cs-stat__label">Open Time</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">94%</div><div class="cs-stat__label">Daily Active</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
+        <div class="writing-list" id="writing-list"></div>
+      </section>
 
-      <!-- ── Slide 5: Venga ── -->
-      <article class="slide" id="slide-5">
-        <div class="cs-cover">
-          <img src="assets/venga/venga-cover.png" alt="Venga event discovery platform" loading="lazy" />
-        </div>
-        <div class="cs-inner">
-          <p class="slide-eyebrow">Venga</p>
-          <div class="cs-meta">
-            <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Year</span><span class="cs-meta__value">2024</span></div>
-            <div class="cs-meta__item"><span class="cs-meta__label">Platform</span><span class="cs-meta__value">Web &amp; Mobile</span></div>
+      <!-- ═══ About ═══ -->
+      <section class="section section--alt" id="about" aria-labelledby="about-title">
+        <div class="wrap about">
+          <figure class="about__portrait reveal">
+            <img
+              src="assets/other/tomas-portrait.jpg"
+              alt="Portrait of Tomas Roos"
+              loading="lazy"
+            />
+          </figure>
+          <div class="about__text">
+            <p class="eyebrow reveal">About</p>
+            <h2 class="about__title reveal" id="about-title" style="--i:1">
+              Design is the part you don't notice.
+            </h2>
+            <div class="reveal" style="--i:2">
+              <p>
+                I design digital products with an eye for <strong>restraint</strong>.
+                The best interfaces get out of the way — they let people do what
+                they came to do, then disappear.
+              </p>
+              <p>
+                My work spans mobile apps, web platforms, and browser tools. Across
+                all of it, the method is the same: understand the problem, strip it
+                back, and shape something that feels obvious in hindsight.
+              </p>
+            </div>
+            <dl class="about__meta reveal" style="--i:3">
+              <div>
+                <dt>Based in</dt>
+                <dd>Stockholm, Sweden</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Product, UX &amp; visual design</dd>
+              </div>
+              <div>
+                <dt>Working with</dt>
+                <dd>Figma, prototyping, code</dd>
+              </div>
+              <div>
+                <dt>Currently</dt>
+                <dd>Open to select projects</dd>
+              </div>
+            </dl>
           </div>
         </div>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Overview</h2>
-            <p class="cs-section__lead">Event discovery was fragmented across Facebook, Eventbrite, Instagram, and local websites. Venga aggregates events from multiple sources, provides recommendations, and includes planning tools.</p>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Problem</h3><p>Event discovery scattered across multiple platforms. Users struggled to find events matching their interests and coordinate with friends.</p></div>
-              <div class="cs-card"><h3>Solution</h3><p>Unified platform that aggregates events, provides personalized recommendations, and includes planning tools. All in one place.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">User Experience</h2>
-            <div class="cs-timeline">
-              <div class="cs-timeline__item"><h3>Personalized Discovery</h3><p>Onboarding collects interests, location, and preferences. Home feed shows personalized recommendations. Browse by category, date, or location.</p></div>
-              <div class="cs-timeline__item"><h3>Event Details</h3><p>Comprehensive event pages with date, time, location, description, organizer, and ticket info. High-quality images, maps, and reviews.</p></div>
-              <div class="cs-timeline__item"><h3>Planning &amp; Organization</h3><p>Save events to calendars, create custom lists, and set reminders. Calendar integration syncs with Google, Apple, and Outlook.</p></div>
-              <div class="cs-timeline__item"><h3>Social Features</h3><p>See which friends are attending, invite friends, and coordinate attendance. Group planning features help friends plan together.</p></div>
-            </div>
-            <div class="cs-mockup"><img src="assets/venga/venga-mockup.png" alt="Venga interface" loading="lazy" /></div>
-          </div>
-        </section>
-        <section class="cs-section">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Key Features</h2>
-            <div class="cs-grid">
-              <div class="cs-card"><h3>Intelligent Recommendations</h3><p>Personalized event recommendations based on interests, past attendance, and location. Machine learning improves suggestions over time.</p></div>
-              <div class="cs-card"><h3>Unified Aggregation</h3><p>Events from multiple sources aggregated in one place. Consistent presentation format makes it easy to compare and choose.</p></div>
-              <div class="cs-card"><h3>Planning Tools</h3><p>Save events, create custom lists, set reminders, and sync with personal calendars. Planning view shows all saved events.</p></div>
-              <div class="cs-card"><h3>Social Coordination</h3><p>See which friends are attending, invite friends, and coordinate group attendance. Social features increase engagement.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs-section cs-section--alt">
-          <div class="cs-inner">
-            <h2 class="cs-section__title">Outcomes</h2>
-            <div class="cs-outcomes">
-              <p>Successfully improved event discovery and planning. Users found it easier to discover relevant events and plan their attendance.</p>
-              <div class="cs-stats">
-                <div class="cs-stat"><div class="cs-stat__value">+28%</div><div class="cs-stat__label">Retention</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">+35%</div><div class="cs-stat__label">Attendance</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">-42%</div><div class="cs-stat__label">Time to Find</div></div>
-                <div class="cs-stat"><div class="cs-stat__value">4.6/5</div><div class="cs-stat__label">Rating</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
+      </section>
 
-      <!-- ── Slide 6: Visual work ── -->
-      <article class="slide" id="slide-6">
-        <section class="cs-section">
-          <div class="cs-inner">
-            <div class="cs-meta">
-              <div class="cs-meta__item"><span class="cs-meta__label">Focus</span><span class="cs-meta__value">Branding &amp; UI</span></div>
-              <div class="cs-meta__item"><span class="cs-meta__label">Format</span><span class="cs-meta__value">Various</span></div>
-            </div>
-            <h2 class="cs-section__title">Visual work</h2>
-            <p class="cs-section__lead">A collection of branding, visual design, and UI explorations across various personal and client projects.</p>
-            <div class="extra-gallery">
-              <div class="extra-gallery__item">
-                <img src="assets/burkxceed/burkxceed.png" alt="BurkXceed Branding" loading="lazy" />
-                <div class="extra-gallery__caption"><h3>BurkXceed Branding</h3><p>Brand identity &amp; visual system</p></div>
-              </div>
-              <div class="extra-gallery__item">
-                <img src="assets/brygg/brygg-hemsida.png" alt="Brygg Website" loading="lazy" />
-                <div class="extra-gallery__caption"><h3>Brygg Website</h3><p>Web design for a coffee roastery</p></div>
-              </div>
-              <div class="extra-gallery__item">
-                <img src="assets/chrome-clipboard/chrome-clipboard.png" alt="Chrome Extension UI" loading="lazy" />
-                <div class="extra-gallery__caption"><h3>Chrome Extension UI</h3><p>Productivity extension interface</p></div>
-              </div>
-              <div class="extra-gallery__item">
-                <img src="assets/tidings/tidings-slide.jpg" alt="Tidings Presentation" loading="lazy" />
-                <div class="extra-gallery__caption"><h3>Tidings Presentation</h3><p>App launch presentation slides</p></div>
-              </div>
-              <div class="extra-gallery__item">
-                <img src="assets/tidings/tidings-phone.png" alt="Tidings Mobile" loading="lazy" />
-                <div class="extra-gallery__caption"><h3>Tidings Mobile</h3><p>Mobile interface mockups</p></div>
-              </div>
-              <div class="extra-gallery__item">
-                <img src="assets/other/portolio-design.png" alt="Portfolio Concepts" loading="lazy" />
-                <div class="extra-gallery__caption"><h3>Portfolio Concepts</h3><p>Early design explorations</p></div>
-              </div>
-            </div>
+      <!-- ═══ Contact ═══ -->
+      <section class="section cta" id="contact" aria-labelledby="contact-title">
+        <div class="wrap">
+          <p class="eyebrow eyebrow--plain cta__eyebrow reveal">Get in touch</p>
+          <h2 class="cta__title reveal" id="contact-title" style="--i:1">
+            Let's build something<br />people love to use.
+          </h2>
+          <a class="cta__mail reveal" style="--i:2" href="mailto:tomas.roosguerra@gmail.com">
+            tomas.roosguerra@gmail.com
+          </a>
+          <div class="cta__links reveal" style="--i:3">
+            <a href="https://www.linkedin.com/in/tomas-roos/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="mailto:tomas.roosguerra@gmail.com">Email</a>
           </div>
-        </section>
-      </article>
-
-      <!-- ── Slide 7: Blog ── -->
-      <article class="slide" id="slide-7">
-        <section class="cs-section">
-          <div class="cs-inner">
-            <p class="slide-eyebrow">Blog</p>
-            <h2 class="cs-section__title">Writing</h2>
-            <p class="cs-section__lead">Notes on design, product work, and visual explorations.</p>
-            <div class="blog-grid" id="blog-grid"></div>
-          </div>
-        </section>
-      </article>
-
+        </div>
+      </section>
     </main>
-
-    <!-- ═══ CTA ═══ -->
-    <section class="cta-section">
-      <h2>Let's create something<br/>people love to use.</h2>
-      <a class="cta-btn" href="mailto:tomas.roosguerra@gmail.com">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Get in touch
-        </a>
-    </section>
 
     <!-- ═══ Footer ═══ -->
     <footer class="site-footer">
-      <div class="footer-wrap">
-        <span>&copy; <span id="year"></span> Tomas Roos</span>
-        <a href="https://www.linkedin.com/in/tomas-roos/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="wrap site-footer__row">
+        <small>© <span id="year"></span> Tomas Roos — Stockholm</small>
+        <a class="site-footer__top" href="#main">
+          Back to top
+          <svg class="arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+        </a>
       </div>
     </footer>
 
-    <script src="js/articles-data.js"></script>
-    <script>
-      (() => {
-        "use strict";
-        const $ = s => document.querySelector(s);
-        const $$ = s => [...document.querySelectorAll(s)];
-
-        let currentIndex = 0;
-        let currentDom = 0;
-        let snapTimer = null;
-        const N = 8;
-        const names = ["Tidings", "Brael", "Sharely", "Check Sync", "Chrome Notes", "Venga", "Visual work", "Blog"];
-        const slugs = ["tidings", "brael", "sharely", "check-sync", "chrome-notes", "venga", "visual-work", "blog"];
-
-        const descriptions = [
-          "In this project you'll find a news consumption app built for clarity\nI designed every UI element and led the full product design",
-          "An e-commerce platform redesign focused on conversion\nI redesigned the entire checkout flow and product experience",
-          "A privacy-first social sharing platform for the modern web\nI designed granular privacy controls and data transparency",
-          "A task synchronization tool that unifies team workflows\nI designed the unified dashboard and real-time sync experience",
-          "A minimalist Chrome extension for capturing thoughts instantly\nI designed every interaction to take under 2 seconds",
-          "An event discovery platform bringing all events into one place\nI designed the personalized feed and social planning features",
-          "A collection of branding, visual design, and UI explorations\nAdditional work across personal and client projects",
-          "Long-form writing on design and visual work\nArticles with full pages live under Writing—start here and open a piece"
-        ];
-
-        function descLabelForSlug(slug) {
-          if (slug === "visual-work") return "About this gallery";
-          if (slug === "blog") return "About the blog";
-          return "About this project";
-        }
-
-        const stickyTop = $("#sticky-top");
-        const descEl    = $("#project-desc");
-        const descLabel = $("#project-desc-label");
-        const pickerEl  = $("#picker");
-        const track     = $("#picker-track");
-        const slides    = $$(".slide");
-        let allBtns     = [];
-
-        const yearEl = $("#year");
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-        function indexFromSlug(s) {
-          if (!s) return 0;
-          const i = slugs.indexOf(s.toLowerCase());
-          return i >= 0 ? i : 0;
-        }
-
-        function updateProgress() {
-          const el = $("#picker-progress");
-          if (!el) return;
-          const cur = el.querySelector(".picker-progress__current");
-          const tot = el.querySelector(".picker-progress__total");
-          if (cur) cur.textContent = String(currentIndex + 1);
-          if (tot) tot.textContent = String(N);
-          el.setAttribute("aria-label", `Slide ${currentIndex + 1} of ${N}`);
-        }
-
-        function setHashForIndex(i) {
-          const h = "#" + slugs[i];
-          if (location.hash !== h) history.replaceState(null, "", h);
-        }
-
-        function goToIndex(idx, opts = {}) {
-          const instant = !!opts.instant;
-          const scrollPage = opts.scrollPage !== false;
-          const doHash = opts.updateHash !== false;
-
-          idx = ((idx % N) + N) % N;
-          if (snapTimer) { clearTimeout(snapTimer); snapTimer = null; }
-
-          slides[currentIndex].classList.remove("active");
-          slides[idx].classList.add("active");
-
-          const lines = descriptions[idx].split("\n");
-          descEl.innerHTML = lines[0] + " " + lines[1];
-          descEl.style.opacity = "1";
-          if (descLabel) descLabel.textContent = descLabelForSlug(slugs[idx]);
-
-          currentIndex = idx;
-          currentDom = N + idx;
-          applyClasses(currentDom);
-          centerPickerItem(currentDom, !instant);
-          updateProgress();
-
-          if (doHash) setHashForIndex(idx);
-          if (scrollPage) window.scrollTo({ top: 0, behavior: instant ? "auto" : "smooth" });
-        }
-
-        function renderBlogGrid() {
-          const grid = $("#blog-grid");
-          const posts = window.ARTICLES;
-          if (!grid || !Array.isArray(posts)) return;
-          grid.innerHTML = "";
-          posts.forEach(post => {
-            const a = document.createElement("a");
-            a.className = "blog-card";
-            a.href = post.href;
-            const imgWrap = document.createElement("div");
-            imgWrap.className = "blog-card__media";
-            const img = document.createElement("img");
-            img.src = post.cover;
-            img.alt = post.title;
-            img.loading = "lazy";
-            imgWrap.appendChild(img);
-            const body = document.createElement("div");
-            body.className = "blog-card__body";
-            const dateEl = document.createElement("p");
-            dateEl.className = "blog-card__date";
-            try {
-              dateEl.textContent = new Date(post.dateISO + "T12:00:00").toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              });
-            } catch {
-              dateEl.textContent = post.dateISO;
-            }
-            const titleEl = document.createElement("h3");
-            titleEl.className = "blog-card__title";
-            titleEl.textContent = post.title;
-            const ex = document.createElement("p");
-            ex.className = "blog-card__excerpt";
-            ex.textContent = post.excerpt;
-            body.append(dateEl, titleEl, ex);
-            a.append(imgWrap, body);
-            grid.appendChild(a);
-          });
-        }
-
-        /* ── Build circular picker: [clone] [real] [clone] ── */
-        function buildCircularTrack() {
-          track.innerHTML = "";
-          for (let copy = 0; copy < 3; copy++) {
-            names.forEach((name, i) => {
-              const btn = document.createElement("button");
-              btn.type = "button";
-              btn.className = "picker-item";
-              btn.textContent = name;
-              btn.dataset.realIdx = i;
-              const domIdx = copy * N + i;
-              btn.addEventListener("click", () => handleClick(i, domIdx));
-              track.appendChild(btn);
-            });
-          }
-          allBtns = $$(".picker-item");
-          currentDom = N + currentIndex;
-        }
-
-        /* Match scroll-padding / scroll-margin to header height (not during every layout tick) */
-        function syncHeaderScrollPad() {
-          const h = stickyTop.offsetHeight;
-          document.documentElement.style.setProperty("--header-pad", `${h}px`);
-          document.documentElement.style.scrollPaddingTop = `${h}px`;
-        }
-
-        let padSyncTimer = null;
-        function scheduleHeaderPadSync() {
-          if (padSyncTimer) clearTimeout(padSyncTimer);
-          padSyncTimer = setTimeout(() => {
-            padSyncTimer = null;
-            syncHeaderScrollPad();
-          }, 100);
-        }
-
-        const LAYOUT_TRANSITION_PROPS = new Set([
-          "padding", "padding-top", "padding-bottom",
-          "max-height", "margin", "margin-top", "margin-bottom",
-          "font-size", "letter-spacing",
-        ]);
-        stickyTop.addEventListener("transitionend", e => {
-          if (!stickyTop.contains(e.target)) return;
-          if (!LAYOUT_TRANSITION_PROPS.has(e.propertyName)) return;
-          scheduleHeaderPadSync();
-        });
-
-        /* Header shrink: wide hysteresis + stable scroll sample + post-toggle lock (stops layout/scroll feedback loops) */
-        let headerShrunk = false;
-        const SHRINK_DOWN = 132;
-        const EXPAND_UP = 2;
-        const HEADER_TOGGLE_COOLDOWN_MS = 340;
-        const HEADER_TOGGLE_COOLDOWN_SCROLL_SLOP = 56;
-        let lastHeaderToggleAt = 0;
-        let lastHeaderToggleScroll = -1;
-        let scrollRaf = false;
-
-        function scrollTopStable() {
-          const el = document.scrollingElement || document.documentElement;
-          return Math.max(0, Math.round(el.scrollTop));
-        }
-
-        function applyHeaderShrunk(next) {
-          if (next === headerShrunk) return;
-          headerShrunk = next;
-          lastHeaderToggleAt = performance.now();
-          lastHeaderToggleScroll = scrollTopStable();
-          stickyTop.classList.toggle("shrunk", headerShrunk);
-        }
-
-        window.addEventListener("scroll", () => {
-          if (scrollRaf) return;
-          scrollRaf = true;
-          requestAnimationFrame(() => {
-            scrollRaf = false;
-            const y = scrollTopStable();
-            let next = headerShrunk;
-            if (!headerShrunk && y >= SHRINK_DOWN) next = true;
-            else if (headerShrunk && y <= EXPAND_UP) next = false;
-            if (next === headerShrunk) return;
-
-            const now = performance.now();
-            if (
-              lastHeaderToggleAt > 0 &&
-              now - lastHeaderToggleAt < HEADER_TOGGLE_COOLDOWN_MS &&
-              lastHeaderToggleScroll >= 0 &&
-              Math.abs(y - lastHeaderToggleScroll) < HEADER_TOGGLE_COOLDOWN_SCROLL_SLOP
-            ) {
-              return;
-            }
-            applyHeaderShrunk(next);
-          });
-        }, { passive: true });
-
-        /* ── Apply opacity classes centered on a DOM index ── */
-        function applyClasses(centerIdx) {
-          allBtns.forEach((btn, i) => {
-            const d = Math.abs(i - centerIdx);
-            btn.classList.remove("active", "near", "far");
-            if (d === 0) btn.classList.add("active");
-            else if (d === 1) btn.classList.add("near");
-            else if (d === 2) btn.classList.add("far");
-          });
-        }
-
-        function centerPickerItem(domIdx, smooth) {
-          const item = allBtns[domIdx];
-          if (!item) return;
-          const left = item.offsetLeft - pickerEl.offsetWidth / 2 + item.offsetWidth / 2;
-          pickerEl.scrollTo({ left, behavior: smooth ? "smooth" : "instant" });
-        }
-
-        /* Silently reposition to the middle set (visually identical) */
-        function snapToMiddle() {
-          if (snapTimer) { clearTimeout(snapTimer); snapTimer = null; }
-          const mid = N + currentIndex;
-          if (currentDom !== mid) {
-            currentDom = mid;
-            applyClasses(mid);
-            centerPickerItem(mid, false);
-          }
-        }
-
-        /* ── Core: animate to a target DOM position and update content ── */
-        function animateTo(newIdx, targetDom) {
-          if (snapTimer) { clearTimeout(snapTimer); snapTimer = null; }
-
-          applyClasses(targetDom);
-          centerPickerItem(targetDom, true);
-
-          descEl.style.opacity = "0";
-          setTimeout(() => {
-            const lines = descriptions[newIdx].split("\n");
-            descEl.innerHTML = lines[0] + " " + lines[1];
-            descEl.style.opacity = "1";
-            if (descLabel) descLabel.textContent = descLabelForSlug(slugs[newIdx]);
-          }, 220);
-
-          slides[currentIndex].classList.remove("active");
-          slides[newIdx].classList.add("active");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-
-          currentIndex = newIdx;
-          currentDom = targetDom;
-          updateProgress();
-          setHashForIndex(newIdx);
-
-          const mid = N + newIdx;
-          if (targetDom !== mid) {
-            snapTimer = setTimeout(() => {
-              currentDom = mid;
-              applyClasses(mid);
-              centerPickerItem(mid, false);
-              snapTimer = null;
-            }, 500);
-          }
-        }
-
-        /* ── Directional navigation: move ±1 step in DOM, then snap back ── */
-        function navigateDir(dir) {
-          snapToMiddle();
-          const newIdx = ((currentIndex + dir) % N + N) % N;
-          if (newIdx === currentIndex) return;
-          animateTo(newIdx, currentDom + dir);
-        }
-
-        /* ── Click on any picker item (original or clone) ── */
-        function handleClick(projectIdx, domIdx) {
-          if (projectIdx === currentIndex) return;
-          snapToMiddle();
-          animateTo(projectIdx, N + projectIdx);
-        }
-
-        /* ── Keyboard arrows ── */
-        document.addEventListener("keydown", e => {
-          if (e.key === "ArrowRight") { e.preventDefault(); navigateDir(1); }
-          if (e.key === "ArrowLeft")  { e.preventDefault(); navigateDir(-1); }
-        });
-
-        /* ── Horizontal trackpad scroll on page ── */
-        let lastPageWheel = 0;
-        document.addEventListener("wheel", e => {
-          if (e.target.closest("#picker")) return;
-          if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 35) {
-            const now = Date.now();
-            if (now - lastPageWheel < 600) return;
-            lastPageWheel = now;
-            navigateDir(e.deltaX > 0 ? 1 : -1);
-          }
-        }, { passive: true });
-
-        /* ── Direct scroll on picker → navigate (prevent native scroll) ── */
-        let lastPickerWheel = 0;
-        pickerEl.addEventListener("wheel", e => {
-          e.preventDefault();
-          const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-          if (Math.abs(delta) > 10) {
-            const now = Date.now();
-            if (now - lastPickerWheel < 500) return;
-            lastPickerWheel = now;
-            navigateDir(delta > 0 ? 1 : -1);
-          }
-        }, { passive: false });
-
-        /* ── Touch swipe anywhere ── */
-        let tx0 = 0, ty0 = 0;
-        document.addEventListener("touchstart", e => {
-          tx0 = e.touches[0].clientX;
-          ty0 = e.touches[0].clientY;
-        }, { passive: true });
-        document.addEventListener("touchend", e => {
-          const dx = e.changedTouches[0].clientX - tx0;
-          const dy = e.changedTouches[0].clientY - ty0;
-          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-            navigateDir(dx < 0 ? 1 : -1);
-          }
-        }, { passive: true });
-
-        /* ── A11y ── */
-        document.addEventListener("keydown", e => {
-          if (e.key === "Tab") document.body.classList.add("keyboard-nav");
-        });
-        document.addEventListener("mousedown", () => document.body.classList.remove("keyboard-nav"));
-
-        /* ── Init & deep links ── */
-        buildCircularTrack();
-        renderBlogGrid();
-        headerShrunk = scrollTopStable() >= SHRINK_DOWN;
-        stickyTop.classList.toggle("shrunk", headerShrunk);
-        syncHeaderScrollPad();
-        const initialIdx = indexFromSlug(location.hash.slice(1));
-        goToIndex(initialIdx, { instant: true, scrollPage: false, updateHash: false });
-
-        window.addEventListener("hashchange", () => {
-          const idx = indexFromSlug(location.hash.slice(1));
-          goToIndex(idx, { instant: true, scrollPage: false, updateHash: false });
-        });
-
-        window.addEventListener("resize", () => {
-          syncHeaderScrollPad();
-          centerPickerItem(currentDom, false);
-        });
-
-        requestAnimationFrame(() => {
-          syncHeaderScrollPad();
-          centerPickerItem(currentDom, false);
-        });
-      })();
-    </script>
+    <script src="js/projects.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/site.js"></script>
   </body>
 </html>
