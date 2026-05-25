@@ -302,10 +302,10 @@
           '" aria-label="' +
           escAttr("Read: " + post.title) +
           '">' +
+          '<span class="writing-item__main">' +
           '<span class="writing-item__date">' +
           esc(formatDate(post.date)) +
           "</span>" +
-          '<span class="writing-item__main">' +
           '<span class="writing-item__title">' +
           esc(post.title) +
           "</span>" +
