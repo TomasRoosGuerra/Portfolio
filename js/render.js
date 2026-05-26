@@ -283,6 +283,110 @@
     }).join("");
   }
 
+  /* ============================================================
+     Lightbox — slideshow over the case study cover image
+     ============================================================ */
+  function buildLightbox() {
+    if (document.getElementById("lightbox")) return document.getElementById("lightbox");
+    var el = document.createElement("div");
+    el.id = "lightbox";
+    el.className = "lightbox";
+    el.setAttribute("aria-hidden", "true");
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-modal", "true");
+    el.setAttribute("aria-label", "Image viewer");
+    el.innerHTML =
+      '<button class="lightbox__close" type="button" aria-label="Close">&times;</button>' +
+      '<button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous image">&#8249;</button>' +
+      '<button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next image">&#8250;</button>' +
+      '<div class="lightbox__track" tabindex="-1"></div>' +
+      '<div class="lightbox__dots" aria-hidden="true"></div>';
+    document.body.appendChild(el);
+    return el;
+  }
+
+  function openLightbox(images, startIdx) {
+    var el = buildLightbox();
+    var track = el.querySelector(".lightbox__track");
+    var dots = el.querySelector(".lightbox__dots");
+    var idx = startIdx || 0;
+
+    track.innerHTML = images
+      .map(function (im) {
+        return (
+          '<figure class="lightbox__slide"><img src="' +
+          escAttr(im.src) +
+          '" alt="' +
+          escAttr(im.alt || "") +
+          '"></figure>'
+        );
+      })
+      .join("");
+    dots.innerHTML = images
+      .map(function (_, i) {
+        return '<span class="lightbox__dot' + (i === idx ? " is-active" : "") + '"></span>';
+      })
+      .join("");
+
+    function go(n) {
+      idx = (n + images.length) % images.length;
+      var slides = track.querySelectorAll(".lightbox__slide");
+      if (slides[idx]) slides[idx].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      dots.querySelectorAll(".lightbox__dot").forEach(function (d, i) {
+        d.classList.toggle("is-active", i === idx);
+      });
+    }
+
+    el.classList.add("is-open");
+    el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    // jump after layout
+    requestAnimationFrame(function () {
+      var slides = track.querySelectorAll(".lightbox__slide");
+      if (slides[idx]) slides[idx].scrollIntoView({ inline: "center", block: "nearest" });
+    });
+
+    function close() {
+      el.classList.remove("is-open");
+      el.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lightbox-open");
+      document.removeEventListener("keydown", onKey);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") go(idx + 1);
+      else if (e.key === "ArrowLeft") go(idx - 1);
+    }
+    document.addEventListener("keydown", onKey);
+
+    el.querySelector(".lightbox__close").onclick = close;
+    el.querySelector(".lightbox__nav--prev").onclick = function () { go(idx - 1); };
+    el.querySelector(".lightbox__nav--next").onclick = function () { go(idx + 1); };
+    el.onclick = function (e) { if (e.target === el) close(); };
+
+    // sync dots while user scrolls the track
+    var scrollTimer;
+    track.onscroll = function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        var slides = track.querySelectorAll(".lightbox__slide");
+        var center = track.scrollLeft + track.clientWidth / 2;
+        var nearest = 0;
+        var nearestDist = Infinity;
+        slides.forEach(function (s, i) {
+          var c = s.offsetLeft + s.offsetWidth / 2;
+          var d = Math.abs(c - center);
+          if (d < nearestDist) { nearestDist = d; nearest = i; }
+        });
+        idx = nearest;
+        dots.querySelectorAll(".lightbox__dot").forEach(function (d, i) {
+          d.classList.toggle("is-active", i === idx);
+        });
+      }, 60);
+    };
+  }
+  window.openLightbox = openLightbox;
+
   function renderHomeWriting() {
     var list = document.getElementById("writing-list");
     if (!list) return;
@@ -415,12 +519,17 @@
         '" loading="lazy"></figure>'
       : "";
 
+    var imageCount = (Array.isArray(p.images) && p.images.length) || 1;
+    var coverHint = imageCount > 1
+      ? '<span class="cs-cover__hint" aria-hidden="true">Click to view ' + imageCount + ' slides</span>'
+      : "";
+
     root.innerHTML =
       '<div class="wrap"><a class="back-link" href="index.html#work">' +
       ARROW_LEFT +
       " All work</a></div>" +
       '<header class="cs-header wrap">' +
-      '<p class="eyebrow reveal">Case study — ' +
+      '<p class="eyebrow reveal">Case study ' +
       pad2(idx + 1) +
       "</p>" +
       '<h1 class="cs-title reveal" style="--i:1">' +
@@ -436,11 +545,11 @@
       meta("Impact", p.impact) +
       "</dl>" +
       "</header>" +
-      '<div class="wrap"><figure class="cs-cover reveal"><img src="' +
+      '<div class="wrap"><figure class="cs-cover cs-cover--clickable reveal" data-cs-cover tabindex="0" role="button" aria-label="Open image viewer"><img src="' +
       escAttr(p.cover) +
       '" alt="' +
       escAttr(p.coverAlt || p.title) +
-      '"></figure></div>' +
+      '">' + coverHint + '</figure></div>' +
       // Overview
       '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Overview</p>' +
@@ -496,6 +605,19 @@
       "</span></a>" +
       "</nav>";
 
+    // Wire cover to lightbox
+    var cover = root.querySelector("[data-cs-cover]");
+    if (cover) {
+      var imgs = Array.isArray(p.images) && p.images.length
+        ? p.images
+        : [{ src: p.cover, alt: p.coverAlt || p.title }];
+      function openIt() { openLightbox(imgs, 0); }
+      cover.addEventListener("click", openIt);
+      cover.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openIt(); }
+      });
+    }
+
     rescan();
   }
 
@@ -526,13 +648,21 @@
     document.title = post.title + " — Tomas Roos";
     setMeta("description", post.excerpt);
 
-    var cover = post.cover
-      ? '<figure class="article__cover reveal" style="--i:2"><img src="' +
-        escAttr(post.cover) +
-        '" alt="' +
-        escAttr(post.coverAlt || post.title) +
-        '"></figure>'
-      : "";
+    var cover = "";
+    if (post.cover) {
+      var isPdf = /\.pdf($|\?)/i.test(post.cover);
+      cover = isPdf
+        ? '<figure class="article__cover article__cover--pdf reveal" style="--i:2">' +
+          '<object data="' + escAttr(post.cover) + '#view=FitH" type="application/pdf" aria-label="' + escAttr(post.coverAlt || post.title) + '">' +
+          '<a href="' + escAttr(post.cover) + '">Download PDF</a>' +
+          '</object>' +
+          '</figure>'
+        : '<figure class="article__cover reveal" style="--i:2"><img src="' +
+          escAttr(post.cover) +
+          '" alt="' +
+          escAttr(post.coverAlt || post.title) +
+          '"></figure>';
+    }
 
     root.innerHTML =
       '<div class="wrap"><a class="back-link" href="index.html#writing">' +

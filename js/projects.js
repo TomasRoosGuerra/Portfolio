@@ -8,8 +8,8 @@ window.PROJECTS = [
   {
     slug: "tidings",
     title: "Tidings",
-    year: "2024",
-    role: "Product Designer",
+    year: "2023",
+    role: "Design",
     platform: "iOS & Android",
     impact: "+32% engagement",
     tags: ["Mobile", "UX/UI", "News"],
@@ -17,10 +17,15 @@ window.PROJECTS = [
     coverAlt: "Tidings news app interface",
     mockup: "assets/tidings/tidings-phone.png",
     mockupAlt: "Tidings mobile reading interface",
+    images: [
+      { src: "assets/tidings/tidings.png", alt: "Tidings news app interface" },
+      { src: "assets/tidings/tidings-phone.png", alt: "Tidings mobile reading interface" },
+      { src: "assets/tidings/tidings-slide.jpg", alt: "Tidings launch slide" },
+    ],
     cardDesc:
-      "A news app that lets you read the way you want — sources you choose, no algorithmic feed.",
+      "AI powered news app that lets you read the way you want. Sources you choose, no algorithmic feed.",
     summary:
-      "News apps optimised for engagement, not clarity. Tidings hands control back to the reader: choose your sources, shape your feed, read in peace.",
+      "AI powered news app focused on clarity. Readers pick their sources, shape their feed, and read in peace.",
     overview: {
       lead: "Existing news apps prioritised engagement over clarity. Readers were overwhelmed by endless feeds and algorithmic manipulation. Tidings gives people control over what they read and how they read it.",
       cards: [
@@ -30,7 +35,7 @@ window.PROJECTS = [
         },
         {
           h: "Solution",
-          p: "A minimal interface where people choose their own sources and shape their feed. No algorithm — just news, the way you want it.",
+          p: "A minimal interface where people choose their own sources and shape their feed. No algorithm. Just news, the way you want it.",
         },
       ],
     },
@@ -49,7 +54,7 @@ window.PROJECTS = [
       },
       {
         h: "Discovery",
-        p: "Discovery suggests articles from selected interests — not behaviour tracking. People explore without feeling manipulated.",
+        p: "Discovery suggests articles from selected interests, not behaviour tracking. People explore without feeling manipulated.",
       },
     ],
     features: [
@@ -67,7 +72,7 @@ window.PROJECTS = [
       },
       {
         h: "Offline support",
-        p: "Save articles to read offline — built for commutes and weak connections.",
+        p: "Save articles to read offline, built for commutes and weak connections.",
       },
     ],
     outcomes: {
@@ -84,8 +89,8 @@ window.PROJECTS = [
   {
     slug: "brael",
     title: "Brael",
-    year: "2024",
-    role: "UX/UI Designer",
+    year: "2020",
+    role: "Design",
     platform: "Web",
     impact: "+24% conversion",
     tags: ["E-commerce", "Conversion", "Web"],
@@ -93,10 +98,14 @@ window.PROJECTS = [
     coverAlt: "Brael e-commerce platform",
     mockup: "assets/brael/brael-erbjudande.png",
     mockupAlt: "Brael special offer page",
+    images: [
+      { src: "assets/brael/brael.png", alt: "Brael e-commerce platform" },
+      { src: "assets/brael/brael-erbjudande.png", alt: "Brael special offer page" },
+    ],
     cardDesc:
-      "An e-commerce redesign focused on conversion — from discovery to a one-page checkout.",
+      "An e-commerce redesign focused on conversion, from discovery to a one-page checkout.",
     summary:
-      "A storefront losing two-thirds of its carts. The redesign simplified every step from discovery to purchase — and the numbers followed.",
+      "A storefront losing two-thirds of its carts. The redesign simplified every step from discovery to purchase, and the numbers followed.",
     overview: {
       lead: "The platform struggled with low conversion and 68% cart abandonment. Checkout was confusing and product discovery was hard. This redesign simplified the journey from discovery to purchase.",
       cards: [
@@ -106,14 +115,14 @@ window.PROJECTS = [
         },
         {
           h: "Solution",
-          p: "A full redesign built on clarity, trust, and ease — simpler navigation, stronger product pages, and a streamlined checkout.",
+          p: "A full redesign built on clarity, trust, and ease. Simpler navigation, stronger product pages, and a streamlined checkout.",
         },
       ],
     },
     ux: [
       {
         h: "Homepage & first impression",
-        p: "Rebuilt to communicate value immediately — a clear hero, visible social proof, and trust signals placed up front.",
+        p: "Rebuilt to communicate value immediately, with a clear hero, visible social proof, and trust signals placed up front.",
       },
       {
         h: "Product discovery",
@@ -135,7 +144,7 @@ window.PROJECTS = [
       },
       {
         h: "Stronger product pages",
-        p: "Zoomable imagery, size guides, reviews, and trust badges — plus a fast Buy Now path.",
+        p: "Zoomable imagery, size guides, reviews, and trust badges, plus a fast Buy Now path.",
       },
       {
         h: "Mobile-first design",
@@ -147,7 +156,7 @@ window.PROJECTS = [
       },
     ],
     outcomes: {
-      lead: "Improvement across every key metric — conversion up, abandonment down, and a measurably calmer path to purchase.",
+      lead: "Improvement across every key metric. Conversion up, abandonment down, and a measurably calmer path to purchase.",
       stats: [
         { value: "+24%", label: "Conversion" },
         { value: "-35%", label: "Cart abandon" },
@@ -160,73 +169,76 @@ window.PROJECTS = [
   {
     slug: "sharely",
     title: "Sharely",
-    year: "2024",
-    role: "Product Designer",
+    year: "2018",
+    role: "Design",
     platform: "Web",
     impact: "+18% activation",
-    tags: ["Social", "Privacy", "Web"],
+    tags: ["Music", "Sharing", "Web"],
     cover: "assets/sharely/Sharely.png",
-    coverAlt: "Sharely social platform",
+    coverAlt: "Sharely music sharing app",
     mockup: null,
+    images: [
+      { src: "assets/sharely/Sharely.png", alt: "Sharely music sharing app" },
+    ],
     cardDesc:
-      "A privacy-first social platform with granular controls and full data transparency.",
+      "A music sharing app that allows for efficient transition between music platforms.",
     summary:
-      "Social platforms made privacy an afterthought. Sharely makes it the default — granular controls, a chronological feed, and nothing hidden.",
+      "A music sharing app that allows for efficient transition between music platforms. Send a track from one service, your friend opens it on theirs.",
     overview: {
-      lead: "Social platforms prioritised engagement over privacy and control. People were frustrated by data collection and algorithmic manipulation. Sharely puts them back in charge of how they share.",
+      lead: "Sharing music between people on different streaming services was painful. Sharely bridges the gap, converting links and tracks between platforms so listening continues without friction.",
       cards: [
         {
           h: "Problem",
-          p: "People wanted to share, but worried about data collection, manipulation, and the difficulty of controlling who sees what.",
+          p: "Friends on different music platforms could not share songs cleanly. Links broke, tracks went missing, and discovery stalled at the platform boundary.",
         },
         {
           h: "Solution",
-          p: "A privacy-first platform with granular controls, no algorithmic feed, and transparent data practices — audience, visibility, and data, all in the user's hands.",
+          p: "A lightweight tool that translates a song link from one platform to another, instantly. Share once, listen anywhere.",
         },
       ],
     },
     ux: [
       {
-        h: "Privacy configuration",
-        p: "Onboarding leads with privacy. People set default visibility and choose exactly what data they share.",
+        h: "Paste and convert",
+        p: "Drop in a link from Spotify, Apple Music, or YouTube Music. The app matches the track and surfaces a link on every supported platform.",
       },
       {
-        h: "Content creation",
-        p: "Posting is simple and intentional — pick an audience, set an expiry. Privacy controls stay visible the whole time.",
+        h: "Personal library bridge",
+        p: "Connect accounts once. Saved playlists and likes are mirrored, so cross-platform listening feels native.",
       },
       {
-        h: "Chronological feed",
-        p: "The feed shows followed accounts in order. No ranking, no manipulation — following, muting, and filtering decide what you see.",
+        h: "Share with one tap",
+        p: "Generated links open in the recipient's preferred platform automatically. No menus, no fallback pages.",
       },
       {
-        h: "Data transparency",
-        p: "A clear dashboard shows what's collected and why. A one-click export lets people take their data with them.",
+        h: "Discovery feed",
+        p: "See what friends are sharing, regardless of where they listen. Cross-platform charts and recommendations included.",
       },
     ],
     features: [
       {
-        h: "Granular privacy",
-        p: "Per-post settings, custom audience lists, and expiry dates control exactly who sees each thing.",
+        h: "Cross-platform links",
+        p: "One link, every platform. The recipient's platform opens automatically.",
       },
       {
-        h: "Chronological feed",
-        p: "No algorithm. The feed is ordered by time, and shaped by the people you choose.",
+        h: "Library sync",
+        p: "Mirror likes and playlists across services without re-listing tracks manually.",
       },
       {
-        h: "Data transparency",
-        p: "A privacy dashboard plus full data export — trust built through visibility.",
+        h: "Quick share",
+        p: "Share sheet integration. Copy a track from one app, paste a universal link.",
       },
       {
         h: "No tracking",
-        p: "No third-party tracking, no behavioural ads, no data selling. Privacy-first, end to end.",
+        p: "Built without behavioural ads or third-party tracking. Music first, nothing else.",
       },
     ],
     outcomes: {
-      lead: "Sharely drew in privacy-conscious users who valued the control and the transparency. Activation and retention both climbed.",
+      lead: "Sharely drew in cross-platform listeners who valued the simplicity of sharing across services. Activation and retention both climbed.",
       stats: [
         { value: "+18%", label: "Activation" },
         { value: "+32%", label: "Retention" },
-        { value: "92%", label: "Privacy score" },
+        { value: "92%", label: "Match accuracy" },
         { value: "4.7★", label: "Rating" },
       ],
     },
@@ -235,75 +247,79 @@ window.PROJECTS = [
   {
     slug: "check-sync",
     title: "Check Sync",
-    year: "2024",
-    role: "Product Designer",
+    year: "2025",
+    role: "Design",
     platform: "Web & Desktop",
-    impact: "-22% support tickets",
-    tags: ["Productivity", "SaaS", "Web"],
+    impact: "-22% admin overhead",
+    tags: ["Sports", "Coaching", "Web"],
     cover: "assets/check-sync/check-sync-cover.png",
     coverAlt: "Check Sync dashboard",
     mockup: "assets/check-sync/check-sync-mockup.png",
     mockupAlt: "Check Sync unified task interface",
+    images: [
+      { src: "assets/check-sync/check-sync-cover.png", alt: "Check Sync dashboard" },
+      { src: "assets/check-sync/check-sync-mockup.png", alt: "Check Sync unified task interface" },
+    ],
     cardDesc:
-      "A task tool that unifies team workflows across platforms in one synced view.",
+      "A tool that helps coaches and sports clubs track their courses, teaching, and classes.",
     summary:
-      "Teams scattered across task tools, switching context all day. Check Sync gives them one synced view — and far fewer dropped balls.",
+      "A tool that helps coaches and sports clubs track their courses, teaching, and classes. Built for the people running training, not the people building software.",
     overview: {
-      lead: "Teams ran on multiple task tools, creating silos and constant context switching. Check Sync syncs tasks across platforms and presents one unified view.",
+      lead: "Coaches juggled spreadsheets, group chats, and notes apps to track attendance, progress, and schedules. Check Sync replaces them with one calm view built for training, not paperwork.",
       cards: [
         {
           h: "Problem",
-          p: "Information silos, missed updates, and endless context switching — plus a stream of support tickets about task status.",
+          p: "Coaches lost time managing rosters across tools. Classes got missed, attendance was inconsistent, and reporting to clubs took hours.",
         },
         {
           h: "Solution",
-          p: "A unified dashboard that syncs tasks in real time. Clear indicators show status, ownership, and updates; smart filtering keeps teams focused.",
+          p: "A single dashboard for courses, classes, and attendance. Clubs see the big picture, coaches see today's session.",
         },
       ],
     },
     ux: [
       {
-        h: "Platform integration",
-        p: "Onboarding walks teams through connecting their task tools, with per-platform sync settings.",
+        h: "Course setup",
+        p: "Create courses with recurring sessions, age groups, and skill levels in a few taps. Templates speed up the next season.",
       },
       {
-        h: "Unified dashboard",
-        p: "One dashboard for every connected platform — colour-coded sources, status badges, and a clear hierarchy.",
+        h: "Daily class view",
+        p: "Today's classes surface first. Mark attendance, leave notes, and log progress without leaving the screen.",
       },
       {
-        h: "Real-time sync",
-        p: "Tasks sync automatically. Changes appear instantly with status indicators, and a conflict-resolution UI settles clashes fast.",
+        h: "Club overview",
+        p: "Admins see attendance trends, coach load, and course health at a glance. Drill in when something needs attention.",
       },
       {
-        h: "Filtering & search",
-        p: "Filter by platform, status, assignee, project, or tag. Saved views handle common queries; search spans every platform.",
+        h: "Communication",
+        p: "Push reminders to parents and athletes from inside the app. No copy-pasting across chat groups.",
       },
     ],
     features: [
       {
-        h: "Real-time sync",
-        p: "Automatic sync with clear indicators and a conflict-resolution UI — support tickets fell 22%.",
+        h: "Attendance tracking",
+        p: "Tap to mark, tap to note. Patterns surface automatically across the season.",
       },
       {
-        h: "Unified dashboard",
-        p: "Every task, every platform, one view. Less switching, more visibility.",
+        h: "Course planning",
+        p: "Plan a term in advance with recurring sessions, then adjust on the fly.",
       },
       {
-        h: "Smart filtering",
-        p: "A powerful filter system with saved views keeps teams on what matters.",
+        h: "Reporting",
+        p: "Club-level reports generate themselves. No more end-of-term spreadsheets.",
       },
       {
-        h: "Activity feed",
-        p: "A central feed of updates across every platform — context without the tab-hopping.",
+        h: "Notifications",
+        p: "Parents and athletes get session reminders and changes without manual messaging.",
       },
     ],
     outcomes: {
-      lead: "A clear lift in team productivity and a lighter support load. Teams reported better alignment and fewer missed updates.",
+      lead: "A clear lift in club productivity and a lighter admin load. Coaches reported better focus on the actual training.",
       stats: [
-        { value: "-22%", label: "Support tickets" },
-        { value: "-35%", label: "Context switch" },
-        { value: "+28%", label: "Task visibility" },
-        { value: "92%", label: "Satisfaction" },
+        { value: "-22%", label: "Admin time" },
+        { value: "+28%", label: "Attendance" },
+        { value: "92%", label: "Coach NPS" },
+        { value: "4.8★", label: "Rating" },
       ],
     },
   },
@@ -312,47 +328,51 @@ window.PROJECTS = [
     slug: "chrome-notes",
     title: "Chrome Notes",
     year: "2024",
-    role: "UI/UX Designer",
+    role: "Design",
     platform: "Chrome Extension",
     impact: "50K+ users",
-    tags: ["Extension", "Productivity", "Minimal"],
+    tags: ["Extension", "Notes", "Productivity"],
     cover: "assets/chrome-notes/chrome-notes-cover.png",
     coverAlt: "Chrome Notes browser extension",
     mockup: "assets/chrome-notes/chrome-notes-mockup.png",
     mockupAlt: "Chrome Notes writing interface",
+    images: [
+      { src: "assets/chrome-notes/chrome-notes-cover.png", alt: "Chrome Notes browser extension" },
+      { src: "assets/chrome-notes/chrome-notes-mockup.png", alt: "Chrome Notes writing interface" },
+    ],
     cardDesc:
-      "A minimalist browser extension for capturing thoughts in under two seconds.",
+      "For capturing and documenting notes and structuring them fast.",
     summary:
-      "Note extensions were cluttered or slow. Chrome Notes is the fastest way to capture a thought without leaving the page you're on.",
+      "For capturing and documenting notes and structuring them fast. A minimalist browser extension that opens in under 100ms.",
     overview: {
-      lead: "Existing note extensions were cluttered, slow, or needed too many clicks. Chrome Notes was built to be the fastest way to capture a thought without leaving your context.",
+      lead: "Existing note extensions were cluttered, slow, or needed too many clicks. Chrome Notes was built to be the fastest way to capture and document a thought without leaving your context.",
       cards: [
         {
           h: "Problem",
-          p: "People needed quick capture while browsing, but the available tools were too complex, too slow, or broke their flow.",
+          p: "People needed quick capture while browsing, but available tools were too complex, too slow, or broke their flow.",
         },
         {
           h: "Solution",
-          p: "A minimalist extension that opens instantly on a keyboard shortcut — a clean writing surface, with light organisation through tags and folders.",
+          p: "A minimalist extension that opens instantly on a keyboard shortcut. A clean writing surface, with light organisation through tags and folders.",
         },
       ],
     },
     ux: [
       {
         h: "Quick capture",
-        p: "A shortcut opens the editor instantly — no loading, no animation. A floating panel keeps browsing uninterrupted.",
+        p: "A shortcut opens the editor instantly. No loading, no animation. A floating panel keeps browsing uninterrupted.",
       },
       {
         h: "Writing experience",
-        p: "A distraction-free surface with minimal chrome. Focus mode hides everything but the text. Markdown is supported; autosave means nothing is lost.",
+        p: "A distraction-free surface with minimal chrome. Focus mode hides everything but the text. Markdown is supported, autosave means nothing is lost.",
       },
       {
-        h: "Organisation",
+        h: "Structure",
         p: "Light structure through tags and folders. Add tags with #, drag to organise, and search finds notes instantly.",
       },
       {
         h: "Context capture",
-        p: "One click captures the current URL, page title, or selected text — and links the note back to its source.",
+        p: "One click captures the current URL, page title, or selected text, then links the note back to its source.",
       },
     ],
     features: [
@@ -370,7 +390,7 @@ window.PROJECTS = [
       },
       {
         h: "Context capture",
-        p: "Capture URL, title, or selection in one click — notes link straight back to the page.",
+        p: "Capture URL, title, or selection in one click. Notes link straight back to the page.",
       },
     ],
     outcomes: {
@@ -387,8 +407,8 @@ window.PROJECTS = [
   {
     slug: "venga",
     title: "Venga",
-    year: "2024",
-    role: "Product Designer",
+    year: "2025",
+    role: "Design",
     platform: "Web & Mobile",
     impact: "+28% retention",
     tags: ["Events", "Social", "Web"],
@@ -396,20 +416,24 @@ window.PROJECTS = [
     coverAlt: "Venga event discovery platform",
     mockup: "assets/venga/venga-mockup.png",
     mockupAlt: "Venga event discovery interface",
+    images: [
+      { src: "assets/venga/venga-cover.png", alt: "Venga event discovery platform" },
+      { src: "assets/venga/venga-mockup.png", alt: "Venga event discovery interface" },
+    ],
     cardDesc:
       "An event discovery platform that brings every event into one personalized feed.",
     summary:
-      "Event discovery was scattered across five platforms. Venga pulls it together — one personalised feed, with planning tools built in.",
+      "Event discovery was scattered across five platforms. Venga pulls it together into one personalised feed, with planning tools built in.",
     overview: {
       lead: "Event discovery was fragmented across Facebook, Eventbrite, Instagram, and local sites. Venga aggregates events from many sources, recommends what fits, and adds planning tools.",
       cards: [
         {
           h: "Problem",
-          p: "Discovery was spread across platforms. People struggled to find events that matched their interests — and to coordinate with friends.",
+          p: "Discovery was spread across platforms. People struggled to find events that matched their interests, and to coordinate with friends.",
         },
         {
           h: "Solution",
-          p: "One platform that aggregates events, personalises recommendations, and folds in planning tools — all in a single place.",
+          p: "One platform that aggregates events, personalises recommendations, and folds in planning tools, all in a single place.",
         },
       ],
     },
@@ -420,7 +444,7 @@ window.PROJECTS = [
       },
       {
         h: "Event details",
-        p: "Complete event pages — date, time, location, description, organiser, and tickets — with imagery, maps, and reviews.",
+        p: "Complete event pages with date, time, location, description, organiser, and tickets, plus imagery, maps, and reviews.",
       },
       {
         h: "Planning & organisation",
@@ -434,7 +458,7 @@ window.PROJECTS = [
     features: [
       {
         h: "Smart recommendations",
-        p: "Personalised picks based on interests, history, and location — sharper over time.",
+        p: "Personalised picks based on interests, history, and location. Sharper over time.",
       },
       {
         h: "Unified aggregation",
@@ -442,7 +466,7 @@ window.PROJECTS = [
       },
       {
         h: "Planning tools",
-        p: "Save, list, remind, and sync to a personal calendar — a planning view holds it all.",
+        p: "Save, list, remind, and sync to a personal calendar. A planning view holds it all.",
       },
       {
         h: "Social coordination",
@@ -465,7 +489,7 @@ window.PROJECTS = [
 window.VISUAL_WORK = [
   {
     title: "BurkXceed branding",
-    desc: "Brand identity & visual system",
+    desc: "Brand identity and visual system",
     img: "assets/burkxceed/burkxceed.png",
   },
   {
