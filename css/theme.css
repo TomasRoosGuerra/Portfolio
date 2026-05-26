@@ -1021,6 +1021,21 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================================
+   WebGL shader canvas background
+   canvas#shader-bg is position:fixed z-index:-1 (behind body).
+   body becomes transparent so the canvas shows through the hero
+   (which has no background), while every other section keeps
+   an explicit solid colour to mask the canvas underneath.
+   ============================================================ */
+html { background: var(--bg); }
+body { background: transparent; }
+
+/* Sections that should sit opaque above the canvas */
+.section:not(.section--alt),
+.cta,
+.site-footer { background: var(--bg); }
+
+/* ============================================================
    Reduced motion
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
