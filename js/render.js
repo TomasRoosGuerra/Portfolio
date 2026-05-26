@@ -211,6 +211,39 @@
           return '<li class="tag">' + esc(t) + "</li>";
         })
         .join("");
+
+      var mediaImages = (Array.isArray(p.images) && p.images.length
+        ? p.images
+        : [{ src: p.cover, alt: p.coverAlt || p.title }]
+      );
+      var mediaSlides = mediaImages
+        .map(function (im) {
+          return (
+            '<span class="work-card__slide">' +
+            '<img src="' +
+            escAttr(im.src) +
+            '" alt="' +
+            escAttr(im.alt || p.title) +
+            '" loading="lazy" draggable="false">' +
+            "</span>"
+          );
+        })
+        .join("");
+      var mediaDots =
+        mediaImages.length > 1
+          ? '<span class="work-card__dots" aria-hidden="true">' +
+            mediaImages
+              .map(function (_, i) {
+                return (
+                  '<span class="work-card__dot' +
+                  (i === 0 ? " is-active" : "") +
+                  '"></span>'
+                );
+              })
+              .join("") +
+            "</span>"
+          : "";
+
       return (
         '<a class="work-card reveal" style="--i:' +
         (idx % 2) +
@@ -219,15 +252,16 @@
         '" aria-label="' +
         escAttr("View the " + p.title + " case study") +
         '">' +
-        '<span class="work-card__media">' +
+        '<span class="work-card__media' +
+        (mediaImages.length > 1 ? " work-card__media--scroll" : "") +
+        '">' +
         '<span class="work-card__num" aria-hidden="true">' +
         pad2(idx + 1) +
         "</span>" +
-        '<img src="' +
-        escAttr(p.cover) +
-        '" alt="' +
-        escAttr(p.coverAlt || p.title) +
-        '" loading="lazy">' +
+        '<span class="work-card__track">' +
+        mediaSlides +
+        "</span>" +
+        mediaDots +
         "</span>" +
         '<span class="work-card__body">' +
         '<span class="work-card__top">' +
@@ -257,6 +291,44 @@
       );
     }).join("");
     grid.innerHTML = html;
+
+    // Wire dot sync + prevent navigation when user is actively scrolling media
+    grid.querySelectorAll(".work-card__media--scroll").forEach(function (m) {
+      var track = m.querySelector(".work-card__track");
+      var dots = m.querySelectorAll(".work-card__dot");
+      if (!track || !dots.length) return;
+
+      var scrollTimer;
+      var lastScrollAt = 0;
+      track.addEventListener("scroll", function () {
+        lastScrollAt = Date.now();
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          var slides = track.querySelectorAll(".work-card__slide");
+          var center = track.scrollLeft + track.clientWidth / 2;
+          var nearest = 0;
+          var nearestDist = Infinity;
+          slides.forEach(function (s, i) {
+            var c = s.offsetLeft + s.offsetWidth / 2;
+            var d = Math.abs(c - center);
+            if (d < nearestDist) { nearestDist = d; nearest = i; }
+          });
+          dots.forEach(function (d, i) {
+            d.classList.toggle("is-active", i === nearest);
+          });
+        }, 50);
+      }, { passive: true });
+
+      // Block link navigation if user just scrolled the media
+      var card = m.closest(".work-card");
+      if (card) {
+        card.addEventListener("click", function (e) {
+          if (Date.now() - lastScrollAt < 250) {
+            e.preventDefault();
+          }
+        });
+      }
+    });
   }
 
   function renderHomeGallery() {
