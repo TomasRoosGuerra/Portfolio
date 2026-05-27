@@ -61,12 +61,22 @@ window.PROJECTS = [
         ],
       },
       {
+        eyebrow: "Brand mark",
+        title: "Building the icon and wordmark",
+        image: "assets/tidings/tidings-icon-style.jpg",
+        imageAlt: "Tidings brand style guide showing the geometric news-fold icon construction, wordmark grid, and combined mark variants",
+        body: [
+          "With flows in place, attention turned to the brand. The icon was built from a single geometric news-fold, drawn on a strict grid with measured angles (50°, 45°, 30°) so the form stayed crisp at every size, from app icon to favicon.",
+          "The wordmark was set in a clean sans on its own X-height grid, then paired with the icon as a combined mark. Variants for light, dark, mono, and outline contexts kept the identity consistent without ever feeling rigid.",
+        ],
+      },
+      {
         eyebrow: "Design system",
         title: "A shared visual language",
         image: "assets/tidings/tidings-design-system.jpg",
         imageAlt: "Tidings design system spec sheet covering typography, colour palette, core components and common patterns",
         body: [
-          "With the skeleton agreed, the next step was a small but strict design system. Typography, colour palette, core components, and common patterns lived on a single spec so every screen pulled from the same source of truth.",
+          "With the skeleton agreed and the brand defined, the next step was a small but strict design system. Typography, colour palette, core components, and common patterns lived on a single spec so every screen pulled from the same source of truth.",
           "Choices were made with reading in mind: a neutral surface scale anchored by Synapse Black, a single teal accent for action, and pattern rules for cards, lists, and notifications so dense article content never felt noisy.",
         ],
       },
