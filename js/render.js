@@ -571,18 +571,6 @@
       })
       .join("");
 
-    var stats = p.outcomes.stats
-      .map(function (s) {
-        return (
-          '<div class="cs-stat reveal"><div class="cs-stat__value">' +
-          esc(s.value) +
-          '</div><div class="cs-stat__label">' +
-          esc(s.label) +
-          "</div></div>"
-        );
-      })
-      .join("");
-
     var mockup = p.mockup
       ? '<figure class="cs-mockup reveal"><img src="' +
         escAttr(p.mockup) +
@@ -772,16 +760,14 @@
       cards(p.features) +
       "</div>" +
       "</div></section>" +
-      // Outcomes
-      '<section class="cs-block cs-block--alt"><div class="wrap">' +
-      '<p class="eyebrow reveal">Results</p>' +
-      '<h2 class="cs-block__title reveal" style="--i:1">Outcomes</h2>' +
+      // End — summary + thank you
+      '<section class="cs-block cs-block--alt cs-end"><div class="wrap">' +
+      '<p class="eyebrow reveal">End</p>' +
+      '<h2 class="cs-block__title reveal" style="--i:1">Summary</h2>' +
       '<p class="cs-block__lead reveal" style="--i:2">' +
-      esc(p.outcomes.lead) +
+      esc((p.outcomes && p.outcomes.lead) || p.summary) +
       "</p>" +
-      '<div class="cs-stats reveal" style="--i:3">' +
-      stats +
-      "</div>" +
+      '<p class="cs-end__thanks reveal" style="--i:3">Thank you for reading.</p>' +
       "</div></section>" +
       // Pager
       '<nav class="cs-pager wrap" aria-label="More projects">' +
