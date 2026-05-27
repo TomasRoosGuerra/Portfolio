@@ -19,11 +19,24 @@ window.PROJECTS = [
     coverAlt: "Tidings news app interface",
     mockup: "assets/tidings/tidings-phone.jpg",
     mockupAlt: "Tidings mobile reading interface",
-    images: [
-      { src: "assets/tidings/tidings.png", alt: "Tidings news app interface" },
-      { src: "assets/tidings/tidings-phone.jpg", alt: "Tidings mobile reading interface" },
-      { src: "assets/tidings/tidings-slide.jpg", alt: "Tidings launch slide" },
-    ],
+    screens: {
+      eyebrow: "Screens",
+      title: "Reading, on the phone",
+      body:
+        "The mobile experience kept the rules from the design system: one accent for action, calm surfaces, and content first. A few screens from the app and a presentation slide that sums up the pitch.",
+      images: [
+        {
+          src: "assets/tidings/tidings-phone.jpg",
+          alt: "Tidings mobile reading interface",
+          caption: "Article reader, single accent for action.",
+        },
+        {
+          src: "assets/tidings/tidings-slide.jpg",
+          alt: "Tidings launch presentation slide",
+          caption: "Launch slide, summarising the proposition.",
+        },
+      ],
+    },
     cardDesc:
       "AI powered news app that lets you read the way you want. Sources you choose, no algorithmic feed.",
     summary:

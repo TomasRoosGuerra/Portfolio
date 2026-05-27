@@ -591,11 +591,6 @@
         '" loading="lazy" decoding="async"></figure>'
       : "";
 
-    var imageCount = (Array.isArray(p.images) && p.images.length) || 1;
-    var coverHint = imageCount > 1
-      ? '<span class="cs-cover__hint" aria-hidden="true">Click to view ' + imageCount + ' slides</span>'
-      : "";
-
     root.innerHTML =
       '<div class="wrap"><a class="back-link" href="index.html#work">' +
       ARROW_LEFT +
@@ -623,11 +618,11 @@
       meta("Impact", p.impact) +
       "</dl>" +
       "</header>" +
-      '<div class="wrap"><figure class="cs-cover cs-cover--clickable reveal" data-cs-cover tabindex="0" role="button" aria-label="Open image viewer"><img src="' +
+      '<div class="wrap"><figure class="cs-cover reveal"><img src="' +
       escAttr(p.cover) +
       '" alt="' +
       escAttr(p.coverAlt || p.title) +
-      '">' + coverHint + '</figure></div>' +
+      '" loading="lazy" decoding="async"></figure></div>' +
       // Overview
       '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Overview</p>' +
@@ -707,6 +702,39 @@
       "</div>" +
       mockup +
       "</div></section>" +
+      // Screens gallery (optional)
+      (p.screens && Array.isArray(p.screens.images) && p.screens.images.length
+        ? '<section class="cs-block"><div class="wrap">' +
+          '<p class="eyebrow reveal">' +
+          esc(p.screens.eyebrow || "Screens") +
+          "</p>" +
+          '<h2 class="cs-block__title reveal" style="--i:1">' +
+          esc(p.screens.title || "In the app") +
+          "</h2>" +
+          (p.screens.body
+            ? '<p class="cs-block__lead reveal" style="--i:2">' +
+              esc(p.screens.body) +
+              "</p>"
+            : "") +
+          '<div class="cs-screens reveal" style="--i:3">' +
+          p.screens.images
+            .map(function (im) {
+              return (
+                '<figure class="cs-screens__item"><img src="' +
+                escAttr(im.src) +
+                '" alt="' +
+                escAttr(im.alt || "") +
+                '" loading="lazy" decoding="async">' +
+                (im.caption
+                  ? '<figcaption>' + esc(im.caption) + "</figcaption>"
+                  : "") +
+                "</figure>"
+              );
+            })
+            .join("") +
+          "</div>" +
+          "</div></section>"
+        : "") +
       // Features
       '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Features</p>' +
@@ -741,19 +769,6 @@
       esc(next.title) +
       "</span></a>" +
       "</nav>";
-
-    // Wire cover to lightbox
-    var cover = root.querySelector("[data-cs-cover]");
-    if (cover) {
-      var imgs = Array.isArray(p.images) && p.images.length
-        ? p.images
-        : [{ src: p.cover, alt: p.coverAlt || p.title }];
-      function openIt() { openLightbox(imgs, 0); }
-      cover.addEventListener("click", openIt);
-      cover.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openIt(); }
-      });
-    }
 
     rescan();
   }
