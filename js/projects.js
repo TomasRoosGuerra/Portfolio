@@ -17,11 +17,11 @@ window.PROJECTS = [
     tags: ["Mobile", "UX/UI", "News"],
     cover: "assets/tidings/tidings.png",
     coverAlt: "Tidings news app interface",
-    mockup: "assets/tidings/tidings-phone.png",
+    mockup: "assets/tidings/tidings-phone.jpg",
     mockupAlt: "Tidings mobile reading interface",
     images: [
       { src: "assets/tidings/tidings.png", alt: "Tidings news app interface" },
-      { src: "assets/tidings/tidings-phone.png", alt: "Tidings mobile reading interface" },
+      { src: "assets/tidings/tidings-phone.jpg", alt: "Tidings mobile reading interface" },
       { src: "assets/tidings/tidings-slide.jpg", alt: "Tidings launch slide" },
     ],
     cardDesc:
@@ -534,7 +534,7 @@ window.VISUAL_WORK = [
   {
     title: "BurkXceed branding",
     desc: "Brand identity and visual system",
-    img: "assets/burkxceed/burkxceed.png",
+    img: "assets/burkxceed/burkxceed.jpg",
   },
   {
     title: "Brygg website",
@@ -554,7 +554,7 @@ window.VISUAL_WORK = [
   {
     title: "Tidings mobile",
     desc: "Mobile interface mockups",
-    img: "assets/tidings/tidings-phone.png",
+    img: "assets/tidings/tidings-phone.jpg",
   },
   {
     title: "Portfolio concepts",
