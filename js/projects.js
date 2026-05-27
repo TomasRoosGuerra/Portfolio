@@ -49,16 +49,28 @@ window.PROJECTS = [
         ],
       },
     },
-    process: {
-      eyebrow: "Process",
-      title: "Sketching & wireframing",
-      image: "assets/tidings/tidings-sketches.jpg",
-      imageAlt: "Hand-drawn wireframes mapping the Tidings home feed, article detail, search, and user profile screens",
-      body: [
-        "Before any pixels, the core flows were sketched on paper. Home feed, article detail, search and discover, and user profile each got their own page so structure and hierarchy could be argued with before fidelity was added.",
-        "Notes in the margin captured the constraints driving each choice: quick load times, clean UI, category filters, and a clear path from headline to read detail. The wireframes set the skeleton everything else later snapped to.",
-      ],
-    },
+    phases: [
+      {
+        eyebrow: "Process",
+        title: "Sketching & wireframing",
+        image: "assets/tidings/tidings-sketches.jpg",
+        imageAlt: "Hand-drawn wireframes mapping the Tidings home feed, article detail, search, and user profile screens",
+        body: [
+          "Before any pixels, the core flows were sketched on paper. Home feed, article detail, search and discover, and user profile each got their own page so structure and hierarchy could be argued with before fidelity was added.",
+          "Notes in the margin captured the constraints driving each choice: quick load times, clean UI, category filters, and a clear path from headline to read detail. The wireframes set the skeleton everything else later snapped to.",
+        ],
+      },
+      {
+        eyebrow: "Design system",
+        title: "A shared visual language",
+        image: "assets/tidings/tidings-design-system.jpg",
+        imageAlt: "Tidings design system spec sheet covering typography, colour palette, core components and common patterns",
+        body: [
+          "With the skeleton agreed, the next step was a small but strict design system. Typography, colour palette, core components, and common patterns lived on a single spec so every screen pulled from the same source of truth.",
+          "Choices were made with reading in mind: a neutral surface scale anchored by Synapse Black, a single teal accent for action, and pattern rules for cards, lists, and notifications so dense article content never felt noisy.",
+        ],
+      },
+    ],
     ux: [
       {
         h: "Onboarding & source selection",

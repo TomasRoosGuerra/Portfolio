@@ -654,34 +654,45 @@
           "</div>"
         : "") +
       "</div></section>" +
-      // Process (optional)
-      (p.process
-        ? '<section class="cs-block cs-block--alt"><div class="wrap">' +
-          '<p class="eyebrow reveal">' +
-          esc(p.process.eyebrow || "Process") +
-          "</p>" +
-          '<h2 class="cs-block__title reveal" style="--i:1">' +
-          esc(p.process.title) +
-          "</h2>" +
-          (p.process.image
-            ? '<figure class="cs-process__figure reveal" style="--i:2"><img src="' +
-              escAttr(p.process.image) +
-              '" alt="' +
-              escAttr(p.process.imageAlt || "") +
-              '" loading="lazy" decoding="async"></figure>'
-            : "") +
-          '<div class="cs-process__body reveal" style="--i:3">' +
-          (p.process.body || [])
-            .map(function (para) {
-              return "<p>" + esc(para) + "</p>";
+      // Phases (optional, alternating background)
+      (Array.isArray(p.phases) && p.phases.length
+        ? p.phases
+            .map(function (ph, pi) {
+              var alt = pi % 2 === 0; // first phase alt-bg
+              return (
+                '<section class="cs-block' +
+                (alt ? " cs-block--alt" : "") +
+                '"><div class="wrap">' +
+                '<p class="eyebrow reveal">' +
+                esc(ph.eyebrow || "Process") +
+                "</p>" +
+                '<h2 class="cs-block__title reveal" style="--i:1">' +
+                esc(ph.title) +
+                "</h2>" +
+                (ph.image
+                  ? '<figure class="cs-process__figure reveal" style="--i:2"><img src="' +
+                    escAttr(ph.image) +
+                    '" alt="' +
+                    escAttr(ph.imageAlt || "") +
+                    '" loading="lazy" decoding="async"></figure>'
+                  : "") +
+                '<div class="cs-process__body reveal" style="--i:3">' +
+                (ph.body || [])
+                  .map(function (para) {
+                    return "<p>" + esc(para) + "</p>";
+                  })
+                  .join("") +
+                "</div>" +
+                "</div></section>"
+              );
             })
-            .join("") +
-          "</div>" +
-          "</div></section>"
+            .join("")
         : "") +
-      // Experience
+      // Experience — alternate bg based on last phase
       '<section class="cs-block' +
-      (p.process ? "" : " cs-block--alt") +
+      ((Array.isArray(p.phases) && p.phases.length && (p.phases.length % 2 === 0))
+        ? " cs-block--alt"
+        : (Array.isArray(p.phases) && p.phases.length ? "" : " cs-block--alt")) +
       '"><div class="wrap">' +
       '<p class="eyebrow reveal">Experience</p>' +
       '<h2 class="cs-block__title reveal" style="--i:1">How it works</h2>' +
