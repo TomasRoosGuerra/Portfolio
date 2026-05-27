@@ -545,8 +545,19 @@
     function cards(arr) {
       return arr
         .map(function (c) {
+          var img = c.img
+            ? '<figure class="cs-card__media"><img src="' +
+              escAttr(c.img) +
+              '" alt="' +
+              escAttr(c.imgAlt || c.h || "") +
+              '" loading="lazy" decoding="async"></figure>'
+            : "";
           return (
-            '<div class="cs-card"><h3>' +
+            '<div class="cs-card' +
+            (c.img ? " cs-card--media" : "") +
+            '">' +
+            img +
+            "<h3>" +
             esc(c.h) +
             "</h3><p>" +
             esc(c.p) +
@@ -611,6 +622,39 @@
       '" alt="' +
       escAttr(p.coverAlt || p.title) +
       '" loading="lazy" decoding="async"></figure></div>' +
+      // Devices showcase (optional)
+      (p.devices && Array.isArray(p.devices.images) && p.devices.images.length
+        ? '<section class="cs-block"><div class="wrap">' +
+          '<p class="eyebrow reveal">' +
+          esc(p.devices.eyebrow || "Devices") +
+          "</p>" +
+          '<h2 class="cs-block__title reveal" style="--i:1">' +
+          esc(p.devices.title || "Across devices") +
+          "</h2>" +
+          (p.devices.body
+            ? '<p class="cs-block__lead reveal" style="--i:2">' +
+              esc(p.devices.body) +
+              "</p>"
+            : "") +
+          '<div class="cs-devices reveal" style="--i:3">' +
+          p.devices.images
+            .map(function (im) {
+              return (
+                '<figure class="cs-devices__item"><img src="' +
+                escAttr(im.src) +
+                '" alt="' +
+                escAttr(im.alt || "") +
+                '" loading="lazy" decoding="async">' +
+                (im.caption
+                  ? '<figcaption>' + esc(im.caption) + "</figcaption>"
+                  : "") +
+                "</figure>"
+              );
+            })
+            .join("") +
+          "</div>" +
+          "</div></section>"
+        : "") +
       // Overview
       '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Overview</p>' +
@@ -756,7 +800,11 @@
       '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Features</p>' +
       '<h2 class="cs-block__title reveal" style="--i:1">Key features</h2>' +
-      '<div class="cs-cards reveal" style="--i:2">' +
+      '<div class="cs-cards' +
+      (p.features && p.features.some(function (f) { return f.img; })
+        ? " cs-cards--media"
+        : "") +
+      ' reveal" style="--i:2">' +
       cards(p.features) +
       "</div>" +
       "</div></section>" +

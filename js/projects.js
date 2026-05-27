@@ -19,6 +19,24 @@ window.PROJECTS = [
     coverAlt: "Tidings news app interface",
     mockup: "assets/tidings/tidings-phone.jpg",
     mockupAlt: "Tidings mobile reading interface",
+    devices: {
+      eyebrow: "Across devices",
+      title: "Built for the screen you're already on",
+      body:
+        "Tidings keeps the same calm reading layout on desktop, tablet, and phone. The same content, the same accent, the same hierarchy, sized for the hand or the desk.",
+      images: [
+        {
+          src: "assets/tidings/tidings-desktop.jpg",
+          alt: "Tidings on a desktop display, showing the Second Brain Reader collections panel and an article",
+          caption: "Desktop — Second Brain Reader.",
+        },
+        {
+          src: "assets/tidings/tidings-ipad.jpg",
+          alt: "Tidings on iPad showing the All collections view alongside an article",
+          caption: "iPad — collections at a glance.",
+        },
+      ],
+    },
     screens: {
       eyebrow: "Product features",
       title: "What Tidings actually does",
@@ -135,20 +153,22 @@ window.PROJECTS = [
     ],
     features: [
       {
-        h: "Source transparency",
-        p: "Every article surfaces its source, date, and author. Transparency is what builds trust.",
+        h: "Instant AI Summaries",
+        p: "Digest key articles in moments, not minutes. Bullet takeaways generated on demand, with a clear AI-generated tag so the source is never confused with the original.",
+        img: "assets/tidings/tidings-aisummary.jpg",
+        imgAlt: "Tidings AI Summary card showing bullet-point takeaways from an article",
       },
       {
-        h: "Customisable feed",
-        p: "Full control over feed order and categories. No hidden algorithm deciding for you.",
+        h: "Knowledge Dashboard",
+        p: "A visual overview of your reading and collections. Folder tiles, a monthly reading chart, and recommended collections, all on one calm board.",
+        img: "assets/tidings/tidings-collections.jpg",
+        imgAlt: "Tidings Knowledge Dashboard with folder tiles for Productivity Hacks, Green Tech and Product Management plus a monthly reading chart",
       },
       {
-        h: "Reading modes",
-        p: "List, card, and article views let people consume news their way. Reader mode strips every distraction.",
-      },
-      {
-        h: "Offline support",
-        p: "Save articles to read offline, built for commutes and weak connections.",
+        h: "Granular Sub-Topic Mapping",
+        p: "Advanced control over feed precision. Toggle sub-topics under Science, Business, or Global Issues so the feed shows exactly the slice you want.",
+        img: "assets/tidings/tidings-deepdive.jpg",
+        imgAlt: "Tidings Granular Sub-Topic Mapping settings with toggles for Artificial Intelligence, Venture Capital and Resource Scarcity",
       },
     ],
     outcomes: {
