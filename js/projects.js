@@ -49,6 +49,16 @@ window.PROJECTS = [
         ],
       },
     },
+    process: {
+      eyebrow: "Process",
+      title: "Sketching & wireframing",
+      image: "assets/tidings/tidings-sketches.jpg",
+      imageAlt: "Hand-drawn wireframes mapping the Tidings home feed, article detail, search, and user profile screens",
+      body: [
+        "Before any pixels, the core flows were sketched on paper. Home feed, article detail, search and discover, and user profile each got their own page so structure and hierarchy could be argued with before fidelity was added.",
+        "Notes in the margin captured the constraints driving each choice: quick load times, clean UI, category filters, and a clear path from headline to read detail. The wireframes set the skeleton everything else later snapped to.",
+      ],
+    },
     ux: [
       {
         h: "Onboarding & source selection",

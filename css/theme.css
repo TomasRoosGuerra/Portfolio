@@ -910,6 +910,25 @@ h1, h2, h3, h4 {
   .cs-research__figure { grid-area: figure; }
   .cs-research__body { grid-area: body; }
 }
+
+.cs-process__figure {
+  margin: var(--sp-3) 0 var(--sp-4);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.cs-process__figure img { width: 100%; height: auto; display: block; }
+.cs-process__body {
+  display: grid;
+  gap: var(--sp-2);
+  max-width: 64ch;
+}
+.cs-process__body p {
+  color: var(--text-muted);
+  font-size: var(--t-base);
+  line-height: 1.7;
+}
 .cs-card h3 {
   font-size: var(--t-xs);
   letter-spacing: 0.1em;

@@ -654,8 +654,35 @@
           "</div>"
         : "") +
       "</div></section>" +
+      // Process (optional)
+      (p.process
+        ? '<section class="cs-block cs-block--alt"><div class="wrap">' +
+          '<p class="eyebrow reveal">' +
+          esc(p.process.eyebrow || "Process") +
+          "</p>" +
+          '<h2 class="cs-block__title reveal" style="--i:1">' +
+          esc(p.process.title) +
+          "</h2>" +
+          (p.process.image
+            ? '<figure class="cs-process__figure reveal" style="--i:2"><img src="' +
+              escAttr(p.process.image) +
+              '" alt="' +
+              escAttr(p.process.imageAlt || "") +
+              '" loading="lazy" decoding="async"></figure>'
+            : "") +
+          '<div class="cs-process__body reveal" style="--i:3">' +
+          (p.process.body || [])
+            .map(function (para) {
+              return "<p>" + esc(para) + "</p>";
+            })
+            .join("") +
+          "</div>" +
+          "</div></section>"
+        : "") +
       // Experience
-      '<section class="cs-block cs-block--alt"><div class="wrap">' +
+      '<section class="cs-block' +
+      (p.process ? "" : " cs-block--alt") +
+      '"><div class="wrap">' +
       '<p class="eyebrow reveal">Experience</p>' +
       '<h2 class="cs-block__title reveal" style="--i:1">How it works</h2>' +
       '<div class="cs-timeline">' +
