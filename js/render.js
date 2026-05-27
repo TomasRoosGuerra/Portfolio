@@ -702,38 +702,67 @@
       "</div>" +
       mockup +
       "</div></section>" +
-      // Screens gallery (optional)
-      (p.screens && Array.isArray(p.screens.images) && p.screens.images.length
-        ? '<section class="cs-block"><div class="wrap">' +
-          '<p class="eyebrow reveal">' +
-          esc(p.screens.eyebrow || "Screens") +
-          "</p>" +
-          '<h2 class="cs-block__title reveal" style="--i:1">' +
-          esc(p.screens.title || "In the app") +
-          "</h2>" +
-          (p.screens.body
-            ? '<p class="cs-block__lead reveal" style="--i:2">' +
-              esc(p.screens.body) +
-              "</p>"
-            : "") +
-          '<div class="cs-screens reveal" style="--i:3">' +
-          p.screens.images
-            .map(function (im) {
-              return (
-                '<figure class="cs-screens__item"><img src="' +
-                escAttr(im.src) +
-                '" alt="' +
-                escAttr(im.alt || "") +
-                '" loading="lazy" decoding="async">' +
-                (im.caption
-                  ? '<figcaption>' + esc(im.caption) + "</figcaption>"
-                  : "") +
-                "</figure>"
-              );
-            })
-            .join("") +
-          "</div>" +
-          "</div></section>"
+      // Screens / product features (optional)
+      (p.screens
+        ? (function () {
+            var screenImages = Array.isArray(p.screens.images) && p.screens.images.length
+              ? p.screens.images
+              : (p.screens.image ? [p.screens.image] : []);
+            var hasList = Array.isArray(p.screens.list) && p.screens.list.length;
+            var single = screenImages.length === 1;
+            var figures = screenImages
+              .map(function (im) {
+                return (
+                  '<figure class="cs-screens__item"><img src="' +
+                  escAttr(im.src) +
+                  '" alt="' +
+                  escAttr(im.alt || "") +
+                  '" loading="lazy" decoding="async">' +
+                  (im.caption
+                    ? '<figcaption>' + esc(im.caption) + "</figcaption>"
+                    : "") +
+                  "</figure>"
+                );
+              })
+              .join("");
+            var list = hasList
+              ? '<ul class="cs-screens__list">' +
+                p.screens.list
+                  .map(function (it) {
+                    if (typeof it === "string") {
+                      return "<li>" + esc(it) + "</li>";
+                    }
+                    return (
+                      "<li><h4>" + esc(it.h) + "</h4>" +
+                      (it.p ? "<p>" + esc(it.p) + "</p>" : "") +
+                      "</li>"
+                    );
+                  })
+                  .join("") +
+                "</ul>"
+              : "";
+            return (
+              '<section class="cs-block"><div class="wrap">' +
+              '<p class="eyebrow reveal">' +
+              esc(p.screens.eyebrow || "Screens") +
+              "</p>" +
+              '<h2 class="cs-block__title reveal" style="--i:1">' +
+              esc(p.screens.title || "In the app") +
+              "</h2>" +
+              (p.screens.body
+                ? '<p class="cs-block__lead reveal" style="--i:2">' +
+                  esc(p.screens.body) +
+                  "</p>"
+                : "") +
+              '<div class="cs-screens' +
+              (single && hasList ? " cs-screens--split" : "") +
+              ' reveal" style="--i:3">' +
+              figures +
+              list +
+              "</div>" +
+              "</div></section>"
+            );
+          })()
         : "") +
       // Features
       '<section class="cs-block"><div class="wrap">' +

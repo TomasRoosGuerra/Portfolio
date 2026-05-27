@@ -20,20 +20,39 @@ window.PROJECTS = [
     mockup: "assets/tidings/tidings-phone.jpg",
     mockupAlt: "Tidings mobile reading interface",
     screens: {
-      eyebrow: "Screens",
-      title: "Reading, on the phone",
+      eyebrow: "Product features",
+      title: "What Tidings actually does",
       body:
-        "The mobile experience kept the rules from the design system: one accent for action, calm surfaces, and content first. A few screens from the app and a presentation slide that sums up the pitch.",
-      images: [
+        "The launch slide summed up the proposition in one frame. Underneath the pitch sat a tight set of product features, each one designed to keep the reading experience calm, clear, and in the reader's hands.",
+      image: {
+        src: "assets/tidings/tidings-slide.jpg",
+        alt: "Tidings launch presentation slide",
+        caption: "Launch slide, summarising the proposition.",
+      },
+      list: [
         {
-          src: "assets/tidings/tidings-phone.jpg",
-          alt: "Tidings mobile reading interface",
-          caption: "Article reader, single accent for action.",
+          h: "Reader-picked sources",
+          p: "No algorithmic feed. Choose the outlets you trust and the order they appear in.",
         },
         {
-          src: "assets/tidings/tidings-slide.jpg",
-          alt: "Tidings launch presentation slide",
-          caption: "Launch slide, summarising the proposition.",
+          h: "One-time-read payments",
+          p: "Pay only for the articles you read. No subscriptions, no paywalls between you and a single story.",
+        },
+        {
+          h: "Distraction-free reader",
+          p: "Adjustable text size, dark mode, and stripped chrome so the article is what you see.",
+        },
+        {
+          h: "Source transparency",
+          p: "Every article shows its outlet, author, date, and reading time up front.",
+        },
+        {
+          h: "Offline reading",
+          p: "Save anything for the commute or the next bad connection.",
+        },
+        {
+          h: "AI roadmap",
+          p: "A planned AI layer to summarise, cluster, and surface related coverage without hiding the source.",
         },
       ],
     },
