@@ -788,6 +788,14 @@ h1, h2, h3, h4 {
   letter-spacing: -0.03em;
   margin: var(--sp-2) 0 var(--sp-3);
 }
+.cs-title__logo {
+  display: block;
+  width: auto;
+  max-width: min(100%, 460px);
+  height: auto;
+  max-height: clamp(64px, 9vw, 120px);
+  background: transparent;
+}
 .cs-summary {
   font-size: var(--t-md);
   color: var(--text-muted);

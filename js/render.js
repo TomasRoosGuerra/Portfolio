@@ -605,7 +605,13 @@
       pad2(idx + 1) +
       "</p>" +
       '<h1 class="cs-title reveal" style="--i:1">' +
-      esc(p.title) +
+      (p.logo
+        ? '<img class="cs-title__logo" src="' +
+          escAttr(p.logo) +
+          '" alt="' +
+          escAttr(p.logoAlt || p.title) +
+          '" decoding="async">'
+        : esc(p.title)) +
       "</h1>" +
       '<p class="cs-summary reveal" style="--i:2">' +
       esc(p.summary) +

@@ -8,6 +8,8 @@ window.PROJECTS = [
   {
     slug: "tidings",
     title: "Tidings",
+    logo: "assets/tidings/tidings-logo.png",
+    logoAlt: "Tidings wordmark",
     year: "2023",
     role: "Design",
     platform: "iOS & Android",
