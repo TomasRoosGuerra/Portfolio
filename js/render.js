@@ -545,19 +545,19 @@
     function cards(arr) {
       return arr
         .map(function (c) {
-          var img = c.img
-            ? '<figure class="cs-card__media"><img src="' +
+          if (c.img) {
+            return (
+              '<div class="cs-card cs-card--media">' +
+              '<figure class="cs-card__media"><img src="' +
               escAttr(c.img) +
               '" alt="' +
               escAttr(c.imgAlt || c.h || "") +
-              '" loading="lazy" decoding="async"></figure>'
-            : "";
+              '" loading="lazy" decoding="async"></figure>' +
+              "</div>"
+            );
+          }
           return (
-            '<div class="cs-card' +
-            (c.img ? " cs-card--media" : "") +
-            '">' +
-            img +
-            "<h3>" +
+            '<div class="cs-card"><h3>' +
             esc(c.h) +
             "</h3>" +
             (c.p ? "<p>" + esc(c.p) + "</p>" : "") +
