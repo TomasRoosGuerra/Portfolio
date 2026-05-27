@@ -865,6 +865,51 @@ h1, h2, h3, h4 {
   padding: var(--sp-3);
 }
 .cs-block--alt .cs-card { background: var(--surface-2); }
+
+.cs-research {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: var(--sp-3);
+}
+.cs-research__title {
+  font-family: var(--font-display);
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.cs-research__figure {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.cs-research__figure img { width: 100%; height: auto; display: block; }
+.cs-research__body {
+  display: grid;
+  gap: var(--sp-2);
+  max-width: 60ch;
+}
+.cs-research__body p {
+  color: var(--text-muted);
+  font-size: var(--t-base);
+  line-height: 1.7;
+}
+@media (min-width: 901px) {
+  .cs-research {
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "figure body";
+    align-items: start;
+    gap: var(--sp-4);
+  }
+  .cs-research__title { grid-area: title; }
+  .cs-research__figure { grid-area: figure; }
+  .cs-research__body { grid-area: body; }
+}
 .cs-card h3 {
   font-size: var(--t-xs);
   letter-spacing: 0.1em;

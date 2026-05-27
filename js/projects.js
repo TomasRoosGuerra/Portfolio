@@ -38,6 +38,16 @@ window.PROJECTS = [
           p: "A minimal interface where people choose their own sources and shape their feed. No algorithm. Just news, the way you want it.",
         },
       ],
+      research: {
+        title: "User research and competitor analysis",
+        image: "assets/tidings/tidings-research.jpg",
+        imageAlt: "Tidings research process: User research, Synthesize Insights, Competitor Analysis, Define Opportunities, Design Solution",
+        body: [
+          "Core problem: users want to read articles without paywalls. Solution: a one-time-read payment model, with plans for a future AI-driven news app.",
+          "Competitors analysed included Artifact, Google News, and SnapNews, with competitor formats evaluated based on user intent and use case.",
+          "Interviews with 50 users informed persona development. Affinity diagrams transformed qualitative insights into quantitative patterns. Competitor reviews were also analysed to identify leverage points and market opportunities.",
+        ],
+      },
     },
     ux: [
       {

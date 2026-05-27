@@ -632,6 +632,27 @@
       '<div class="cs-cards reveal" style="--i:3">' +
       cards(p.overview.cards) +
       "</div>" +
+      (p.overview.research
+        ? '<div class="cs-research reveal" style="--i:4">' +
+          '<h3 class="cs-research__title">' +
+          esc(p.overview.research.title) +
+          "</h3>" +
+          (p.overview.research.image
+            ? '<figure class="cs-research__figure"><img src="' +
+              escAttr(p.overview.research.image) +
+              '" alt="' +
+              escAttr(p.overview.research.imageAlt || "") +
+              '" loading="lazy" decoding="async"></figure>'
+            : "") +
+          '<div class="cs-research__body">' +
+          (p.overview.research.body || [])
+            .map(function (para) {
+              return "<p>" + esc(para) + "</p>";
+            })
+            .join("") +
+          "</div>" +
+          "</div>"
+        : "") +
       "</div></section>" +
       // Experience
       '<section class="cs-block cs-block--alt"><div class="wrap">' +
