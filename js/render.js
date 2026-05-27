@@ -63,7 +63,7 @@
     text = text.replace(
       /!\[([^\]]*)\]\(([^)\s]+)\)/g,
       function (m, alt, src) {
-        return '<img src="' + src + '" alt="' + alt + '" loading="lazy">';
+        return '<img src="' + src + '" alt="' + alt + '" loading="lazy" decoding="async">';
       }
     );
     text = text.replace(
@@ -187,7 +187,7 @@
             escAttr(imgOnly[2]) +
             '" alt="' +
             escAttr(imgOnly[1]) +
-            '" loading="lazy"></figure>'
+            '" loading="lazy" decoding="async"></figure>'
         );
         i++;
         continue;
@@ -224,7 +224,7 @@
             escAttr(im.src) +
             '" alt="' +
             escAttr(im.alt || p.title) +
-            '" loading="lazy" draggable="false">' +
+            '" loading="lazy" decoding="async" draggable="false">' +
             "</span>"
           );
         })
@@ -343,7 +343,7 @@
         escAttr(v.img) +
         '" alt="' +
         escAttr(v.title) +
-        '" loading="lazy">' +
+        '" loading="lazy" decoding="async">' +
         '<figcaption class="gallery__cap">' +
         "<h3>" +
         esc(v.title) +
@@ -588,7 +588,7 @@
         escAttr(p.mockup) +
         '" alt="' +
         escAttr(p.mockupAlt || p.title + " interface") +
-        '" loading="lazy"></figure>'
+        '" loading="lazy" decoding="async"></figure>'
       : "";
 
     var imageCount = (Array.isArray(p.images) && p.images.length) || 1;
