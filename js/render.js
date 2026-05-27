@@ -465,7 +465,7 @@
     var posts = Array.isArray(window.POSTS) ? window.POSTS : [];
     if (!posts.length) {
       list.innerHTML =
-        '<p class="muted" style="padding:var(--sp-3) 0">No posts yet — check back soon.</p>';
+        '<p class="muted" style="padding:var(--sp-3) 0">No posts yet. Check back soon.</p>';
       return;
     }
     list.innerHTML = posts
@@ -524,7 +524,7 @@
       if (list[k].slug === slug) idx = k;
     }
     if (idx === -1) {
-      document.title = "Project not found — Tomas Roos";
+      document.title = "Project not found | Tomas Roos";
       emptyState(
         root,
         "Project not found",
@@ -539,7 +539,7 @@
     var prev = list[(idx - 1 + list.length) % list.length];
     var next = list[(idx + 1) % list.length];
 
-    document.title = p.title + " — Tomas Roos";
+    document.title = p.title + " | Tomas Roos";
     setMeta("description", p.summary);
 
     function cards(arr) {
@@ -854,7 +854,7 @@
       if (posts[k].slug === slug) post = posts[k];
     }
     if (!post) {
-      document.title = "Post not found — Tomas Roos";
+      document.title = "Post not found | Tomas Roos";
       emptyState(
         root,
         "Post not found",
@@ -865,7 +865,7 @@
       return;
     }
 
-    document.title = post.title + " — Tomas Roos";
+    document.title = post.title + " | Tomas Roos";
     setMeta("description", post.excerpt);
 
     var cover = "";

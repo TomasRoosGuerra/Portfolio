@@ -21,19 +21,19 @@ window.PROJECTS = [
     mockupAlt: "Tidings mobile reading interface",
     devices: {
       eyebrow: "Across devices",
-      title: "Built for the screen you're already on",
+      title: "News on all platforms",
       body:
         "Tidings keeps the same calm reading layout on desktop, tablet, and phone. The same content, the same accent, the same hierarchy, sized for the hand or the desk.",
       images: [
         {
           src: "assets/tidings/tidings-desktop.jpg",
           alt: "Tidings on a desktop display, showing the Second Brain Reader collections panel and an article",
-          caption: "Desktop — Second Brain Reader.",
+          caption: "Desktop. Second Brain Reader.",
         },
         {
           src: "assets/tidings/tidings-ipad.jpg",
           alt: "Tidings on iPad showing the All collections view alongside an article",
-          caption: "iPad — collections at a glance.",
+          caption: "iPad. Collections at a glance.",
         },
       ],
     },
