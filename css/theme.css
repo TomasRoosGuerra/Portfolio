@@ -1017,13 +1017,16 @@ h1, h2, h3, h4 {
   aspect-ratio: 16 / 11;
 }
 .cs-card--media h3 {
-  padding: var(--sp-3) var(--sp-3) 0;
+  padding: var(--sp-3);
   font-size: var(--t-base);
   letter-spacing: -0.005em;
   text-transform: none;
   color: var(--text);
   font-family: var(--font-display);
   font-weight: 600;
+}
+.cs-card--media h3:not(:last-child) {
+  padding-bottom: 0;
 }
 .cs-card--media p {
   padding: 0.5rem var(--sp-3) var(--sp-3);

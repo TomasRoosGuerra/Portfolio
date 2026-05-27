@@ -559,9 +559,9 @@
             img +
             "<h3>" +
             esc(c.h) +
-            "</h3><p>" +
-            esc(c.p) +
-            "</p></div>"
+            "</h3>" +
+            (c.p ? "<p>" + esc(c.p) + "</p>" : "") +
+            "</div>"
           );
         })
         .join("");
@@ -800,11 +800,16 @@
       '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Features</p>' +
       '<h2 class="cs-block__title reveal" style="--i:1">Key features</h2>' +
+      (p.featuresLead
+        ? '<p class="cs-block__lead reveal" style="--i:2">' +
+          esc(p.featuresLead) +
+          "</p>"
+        : "") +
       '<div class="cs-cards' +
       (p.features && p.features.some(function (f) { return f.img; })
         ? " cs-cards--media"
         : "") +
-      ' reveal" style="--i:2">' +
+      ' reveal" style="--i:3">' +
       cards(p.features) +
       "</div>" +
       "</div></section>" +

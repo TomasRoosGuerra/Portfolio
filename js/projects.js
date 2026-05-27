@@ -151,22 +151,21 @@ window.PROJECTS = [
         p: "Discovery suggests articles from selected interests, not behaviour tracking. People explore without feeling manipulated.",
       },
     ],
+    featuresLead:
+      "Three features carry most of the experience: instant AI summaries for fast triage, a knowledge dashboard for everything you've saved, and granular sub-topic mapping so the feed is exactly the slice you want. Together they turn news from a flood into a tool.",
     features: [
       {
         h: "Instant AI Summaries",
-        p: "Digest key articles in moments, not minutes. Bullet takeaways generated on demand, with a clear AI-generated tag so the source is never confused with the original.",
         img: "assets/tidings/tidings-aisummary.jpg",
         imgAlt: "Tidings AI Summary card showing bullet-point takeaways from an article",
       },
       {
         h: "Knowledge Dashboard",
-        p: "A visual overview of your reading and collections. Folder tiles, a monthly reading chart, and recommended collections, all on one calm board.",
         img: "assets/tidings/tidings-collections.jpg",
         imgAlt: "Tidings Knowledge Dashboard with folder tiles for Productivity Hacks, Green Tech and Product Management plus a monthly reading chart",
       },
       {
         h: "Granular Sub-Topic Mapping",
-        p: "Advanced control over feed precision. Toggle sub-topics under Science, Business, or Global Issues so the feed shows exactly the slice you want.",
         img: "assets/tidings/tidings-deepdive.jpg",
         imgAlt: "Tidings Granular Sub-Topic Mapping settings with toggles for Artificial Intelligence, Venture Capital and Resource Scarcity",
       },
