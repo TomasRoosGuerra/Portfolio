@@ -170,6 +170,24 @@ window.PROJECTS = [
         imgAlt: "Tidings Granular Sub-Topic Mapping settings with toggles for Artificial Intelligence, Venture Capital and Resource Scarcity",
       },
     ],
+    gallery: {
+      eyebrow: "More of the app",
+      title: "A closer look",
+      body:
+        "Two more screens from the app: a personal insights view that tracks what you read, and the full collections library where everything saved lives.",
+      images: [
+        {
+          src: "assets/tidings/tidings-yourinsights.jpg",
+          alt: "Tidings personal insights screen tracking reading activity",
+          caption: "Your insights.",
+        },
+        {
+          src: "assets/tidings/tidings-mycollections.jpg",
+          alt: "Tidings collections library showing all saved articles",
+          caption: "My collections.",
+        },
+      ],
+    },
     outcomes: {
       lead: "Clear improvements in engagement and satisfaction. The focus on clarity and control resonated with readers tired of conventional news apps.",
       stats: [

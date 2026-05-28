@@ -813,6 +813,39 @@
       cards(p.features) +
       "</div>" +
       "</div></section>" +
+      // Gallery — more app screens (optional)
+      (p.gallery && Array.isArray(p.gallery.images) && p.gallery.images.length
+        ? '<section class="cs-block"><div class="wrap">' +
+          '<p class="eyebrow reveal">' +
+          esc(p.gallery.eyebrow || "Gallery") +
+          "</p>" +
+          '<h2 class="cs-block__title reveal" style="--i:1">' +
+          esc(p.gallery.title || "A closer look") +
+          "</h2>" +
+          (p.gallery.body
+            ? '<p class="cs-block__lead reveal" style="--i:2">' +
+              esc(p.gallery.body) +
+              "</p>"
+            : "") +
+          '<div class="cs-devices reveal" style="--i:3">' +
+          p.gallery.images
+            .map(function (im) {
+              return (
+                '<figure class="cs-devices__item"><img src="' +
+                escAttr(im.src) +
+                '" alt="' +
+                escAttr(im.alt || "") +
+                '" loading="lazy" decoding="async">' +
+                (im.caption
+                  ? '<figcaption>' + esc(im.caption) + "</figcaption>"
+                  : "") +
+                "</figure>"
+              );
+            })
+            .join("") +
+          "</div>" +
+          "</div></section>"
+        : "") +
       // End — summary + thank you
       '<section class="cs-block cs-block--alt cs-end"><div class="wrap">' +
       '<p class="eyebrow reveal">End</p>' +
