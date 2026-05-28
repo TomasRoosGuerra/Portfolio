@@ -999,6 +999,57 @@ h1, h2, h3, h4 {
   line-height: 1.55;
 }
 
+/* Showcase — alternating editorial rows, mixed aspect ratios */
+.cs-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  margin-top: var(--sp-4);
+}
+.cs-showcase__row {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  align-items: center;
+}
+.cs-showcase__text h3 {
+  font-size: var(--t-md);
+  font-weight: 600;
+  margin-bottom: var(--sp-1);
+}
+.cs-showcase__text p {
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 42ch;
+}
+.cs-showcase__media {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.cs-showcase__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 720px) {
+  .cs-showcase { gap: var(--sp-6); }
+  .cs-showcase__row--wide {
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--sp-5);
+  }
+  .cs-showcase__row--tall {
+    grid-template-columns: 320px 1fr;
+    gap: var(--sp-6);
+  }
+  /* tall: portrait image leads, text follows */
+  .cs-showcase__row--tall .cs-showcase__text { order: 2; }
+  .cs-showcase__row--tall .cs-showcase__media { order: 1; }
+}
+
 /* Image-led feature cards */
 .cs-cards--media {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

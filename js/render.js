@@ -827,18 +827,22 @@
               esc(p.gallery.body) +
               "</p>"
             : "") +
-          '<div class="cs-devices reveal" style="--i:3">' +
+          '<div class="cs-showcase reveal" style="--i:3">' +
           p.gallery.images
             .map(function (im) {
               return (
-                '<figure class="cs-devices__item"><img src="' +
+                '<figure class="cs-showcase__row cs-showcase__row--' +
+                escAttr(im.layout || "wide") +
+                '">' +
+                '<div class="cs-showcase__text">' +
+                (im.caption ? "<h3>" + esc(im.caption) + "</h3>" : "") +
+                (im.body ? "<p>" + esc(im.body) + "</p>" : "") +
+                "</div>" +
+                '<div class="cs-showcase__media"><img src="' +
                 escAttr(im.src) +
                 '" alt="' +
                 escAttr(im.alt || "") +
-                '" loading="lazy" decoding="async">' +
-                (im.caption
-                  ? '<figcaption>' + esc(im.caption) + "</figcaption>"
-                  : "") +
+                '" loading="lazy" decoding="async"></div>' +
                 "</figure>"
               );
             })

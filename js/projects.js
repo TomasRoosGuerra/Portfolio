@@ -179,12 +179,16 @@ window.PROJECTS = [
         {
           src: "assets/tidings/tidings-yourinsights.jpg",
           alt: "Tidings personal insights screen tracking reading activity",
-          caption: "Your insights.",
+          caption: "Your insights",
+          body: "A weekly read of your own habits: what you read, how much, and the topics pulling your attention. No vanity streaks, just a quiet mirror.",
+          layout: "wide",
         },
         {
           src: "assets/tidings/tidings-mycollections.jpg",
           alt: "Tidings collections library showing all saved articles",
-          caption: "My collections.",
+          caption: "My collections",
+          body: "Everything you save lives in one library, grouped the way you think. Scroll the full stack or jump straight to a folder.",
+          layout: "tall",
         },
       ],
     },
