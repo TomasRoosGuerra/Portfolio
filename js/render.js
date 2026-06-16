@@ -850,6 +850,42 @@
           "</div>" +
           "</div></section>"
         : "") +
+      // Photo grid — installation shots (optional)
+      (p.photoGrid && Array.isArray(p.photoGrid.images) && p.photoGrid.images.length
+        ? '<section class="cs-block cs-block--alt"><div class="wrap">' +
+          '<p class="eyebrow reveal">' +
+          esc(p.photoGrid.eyebrow || "Photos") +
+          "</p>" +
+          '<h2 class="cs-block__title reveal" style="--i:1">' +
+          esc(p.photoGrid.title || "In the field") +
+          "</h2>" +
+          (p.photoGrid.body
+            ? '<p class="cs-block__lead reveal" style="--i:2">' +
+              esc(p.photoGrid.body) +
+              "</p>"
+            : "") +
+          '<div class="cs-photo-grid reveal" style="--i:3">' +
+          p.photoGrid.images
+            .map(function (im) {
+              return (
+                '<figure class="cs-photo-grid__item">' +
+                '<div class="cs-photo-grid__media"><img src="' +
+                escAttr(im.src) +
+                '" alt="' +
+                escAttr(im.alt || "") +
+                '" loading="lazy" decoding="async"></div>' +
+                (im.caption
+                  ? '<figcaption class="cs-photo-grid__cap">' +
+                    esc(im.caption) +
+                    "</figcaption>"
+                  : "") +
+                "</figure>"
+              );
+            })
+            .join("") +
+          "</div>" +
+          "</div></section>"
+        : "") +
       // End — summary + thank you
       '<section class="cs-block cs-block--alt cs-end"><div class="wrap">' +
       '<p class="eyebrow reveal">End</p>' +

@@ -297,6 +297,44 @@ window.PROJECTS = [
         },
       ],
     },
+    photoGrid: {
+      eyebrow: "Installations",
+      title: "In the field",
+      body:
+        "Real installs across Sweden — rooftops, farms, and coastal sites where the offer turns into panels on the ground.",
+      images: [
+        {
+          src: "assets/brael/brael-install-hamra.jpg",
+          alt: "Solar installation at Hamra Långmyre",
+          caption: "Hamra Långmyre",
+        },
+        {
+          src: "assets/brael/brael-install-salthamn.jpg",
+          alt: "Solar installation at Salthamn",
+          caption: "Salthamn",
+        },
+        {
+          src: "assets/brael/brael-install-gothem.jpg",
+          alt: "Solar installation at Gothem Nors",
+          caption: "Gothem Nors",
+        },
+        {
+          src: "assets/brael/brael-install-01.jpg",
+          alt: "Brael solar panel installation on a residential roof",
+          caption: "Residential roof",
+        },
+        {
+          src: "assets/brael/brael-install-02.jpg",
+          alt: "Brael solar panels installed on a barn roof",
+          caption: "Barn installation",
+        },
+        {
+          src: "assets/brael/brael-install-03.jpg",
+          alt: "Close-up of a completed Brael solar array",
+          caption: "Array detail",
+        },
+      ],
+    },
     outcomes: {
       lead: "Improvement across every key metric. Conversion up, abandonment down, and a measurably calmer path to purchase.",
       stats: [
