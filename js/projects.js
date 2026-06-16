@@ -287,6 +287,14 @@ window.PROJECTS = [
             "Value proposition, partner quality, full-service offer, and a savings breakdown — designed to read left to right as one continuous story.",
           layout: "spread",
         },
+        {
+          src: "assets/brael/brael2sid2.png",
+          alt: "Brael brochure exterior with investment benefits, partner logos, offer overview, and savings chart",
+          caption: "Offer & savings overview",
+          body:
+            "Exterior side of the brochure, highlighting the green investment pitch, partner ecosystem, turnkey offer, and how savings stack up over time.",
+          layout: "spread",
+        },
       ],
     },
     outcomes: {
