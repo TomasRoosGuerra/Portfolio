@@ -293,7 +293,7 @@ window.PROJECTS = [
           caption: "Offer & savings overview",
           body:
             "Exterior side of the brochure, highlighting the green investment pitch, partner ecosystem, turnkey offer, and how savings stack up over time.",
-          layout: "spread",
+          layout: "compact",
         },
       ],
     },

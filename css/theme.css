@@ -1086,6 +1086,25 @@ h1, h2, h3, h4 {
   }
 }
 
+/* Low-res or portrait assets — cap display size, no upscale */
+.cs-showcase__row--compact {
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+.cs-showcase__row--compact .cs-showcase__text {
+  max-width: 52ch;
+}
+.cs-showcase__row--compact .cs-showcase__media {
+  max-width: 36rem;
+  margin-inline: auto;
+}
+.cs-showcase__row--compact .cs-showcase__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
 /* Installation photo grid — compact 3×2 on case studies */
 .cs-photo-grid {
   display: grid;
