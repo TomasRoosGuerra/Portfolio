@@ -218,6 +218,7 @@ window.PROJECTS = [
     images: [
       { src: "assets/brael/brael.png", alt: "Brael e-commerce platform" },
       { src: "assets/brael/brael-erbjudande.png", alt: "Brael special offer page" },
+      { src: "assets/brael/brael-offertsida.png", alt: "Brael offer page design" },
       { src: "assets/brael/brael-insida.png", alt: "Brael brochure inside spread" },
     ],
     cardDesc:
@@ -273,6 +274,19 @@ window.PROJECTS = [
         p: "Security badges, customer reviews, and a clear return policy carried through the whole journey.",
       },
     ],
+    screens: {
+      eyebrow: "Offer page",
+      title: "Offertsida",
+      body:
+        "The offer page layout — pricing, savings breakdown, and next steps in one scannable view built to convert interest into a signed quote.",
+      images: [
+        {
+          src: "assets/brael/brael-offertsida.png",
+          alt: "Brael offer page design with pricing, savings breakdown, and call to action",
+          caption: "Offer page layout",
+        },
+      ],
+    },
     gallery: {
       eyebrow: "Print design",
       title: "Inside spread",
