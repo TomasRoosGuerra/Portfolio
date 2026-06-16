@@ -218,6 +218,7 @@ window.PROJECTS = [
     images: [
       { src: "assets/brael/brael.png", alt: "Brael e-commerce platform" },
       { src: "assets/brael/brael-erbjudande.png", alt: "Brael special offer page" },
+      { src: "assets/brael/brael-insida.png", alt: "Brael brochure inside spread" },
     ],
     cardDesc:
       "An e-commerce redesign focused on conversion, from discovery to a one-page checkout.",
@@ -272,6 +273,22 @@ window.PROJECTS = [
         p: "Security badges, customer reviews, and a clear return policy carried through the whole journey.",
       },
     ],
+    gallery: {
+      eyebrow: "Print design",
+      title: "Inside spread",
+      body:
+        "A four-panel brochure walking through why solar pays off, what Brael delivers, and how savings look over time.",
+      images: [
+        {
+          src: "assets/brael/brael-insida.png",
+          alt: "Brael brochure inside spread — four panels covering investment benefits, turnkey services, and projected savings",
+          caption: "Four-panel spread",
+          body:
+            "Value proposition, partner quality, full-service offer, and a savings breakdown — designed to read left to right as one continuous story.",
+          layout: "spread",
+        },
+      ],
+    },
     outcomes: {
       lead: "Improvement across every key metric. Conversion up, abandonment down, and a measurably calmer path to purchase.",
       stats: [
