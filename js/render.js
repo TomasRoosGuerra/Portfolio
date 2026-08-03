@@ -279,9 +279,6 @@
         tags +
         "</ul>" +
         '<span class="work-card__foot">' +
-        '<span class="work-card__role">' +
-        esc(p.role) +
-        "</span>" +
         '<span class="work-card__link">View case ' +
         ARROW_UR +
         "</span>" +
@@ -888,12 +885,11 @@
         : "") +
       // End — summary + thank you
       '<section class="cs-block cs-block--alt cs-end"><div class="wrap">' +
-      '<p class="eyebrow reveal">End</p>' +
-      '<h2 class="cs-block__title reveal" style="--i:1">Summary</h2>' +
-      '<p class="cs-block__lead reveal" style="--i:2">' +
+      '<h2 class="cs-block__title reveal">Summary</h2>' +
+      '<p class="cs-block__lead reveal" style="--i:1">' +
       esc((p.outcomes && p.outcomes.lead) || p.summary) +
       "</p>" +
-      '<p class="cs-end__thanks reveal" style="--i:3">Thank you for reading.</p>' +
+      '<p class="cs-end__thanks reveal" style="--i:2">Thank you for reading.</p>' +
       "</div></section>" +
       // Pager
       '<nav class="cs-pager wrap" aria-label="More projects">' +
