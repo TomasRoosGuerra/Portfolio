@@ -57,3 +57,29 @@ python3 -m http.server
 ```
 
 Then visit `http://localhost:8000`.
+
+## The hero 3D  ·  `js/gl/`
+
+The homepage hero runs one WebGL canvas. You almost never need to touch it,
+but if you do:
+
+- **`js/gl/core.js`** — the only renderer, RAF loop, resize handler, device
+  tier and pointer smoothing on the site. Nothing else may create a canvas.
+- **`js/gl/theme.js`** — reads `--bg` and `--accent` from `css/theme.css`.
+  Change the accent token and the 3D follows. Never hard-code a colour in a
+  shader.
+- **`js/gl/noise.js`** — the GLSL noise every layer shares.
+- **`js/gl/layers/*.js`** — one file per visual element. A layer is just
+  `{ scene, camera, update(state), resize(state), dispose() }`; `state` carries
+  time, pointer, scroll progress and quality. To add an effect, write a layer
+  and `.add()` it in `js/hero-3d.js` — nothing else changes.
+- **`js/scroll.js`** — the only scroll listener. Subscribe to it; don't add
+  `window.addEventListener("scroll", …)` anywhere else.
+
+Scroll choreography lives in the hero stage: `#hero-stage` is `190vh` tall and
+the hero sticks inside it (`css/theme.css`). That overhang is what drives the
+camera. The pin is off below 901px and under `prefers-reduced-motion`, where
+the scene renders a single static frame instead.
+
+three.js is pinned in the `<script type="importmap">` block in `index.html`.
+No build step, no `node_modules`.

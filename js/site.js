@@ -101,11 +101,8 @@
       })
       .filter(Boolean);
 
-    var ticking = false;
-
-    function update() {
-      ticking = false;
-      var y = window.scrollY || window.pageYOffset || 0;
+    function update(s) {
+      var y = s.y;
 
       if (header) header.classList.toggle("is-scrolled", y > 8);
 
@@ -131,16 +128,7 @@
       }
     }
 
-    function onScroll() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    update();
+    window.__scroll.subscribe(update);
   }
 
   /* ---- Boot ------------------------------------------------- */
