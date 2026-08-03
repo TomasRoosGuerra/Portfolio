@@ -158,9 +158,9 @@ h1, h2, h3, h4 {
 }
 
 /* ---- Ornament kit -------------------------------------------
-   Two marks, used everywhere, and nothing else: a hairline rule
-   that separates, and a guiding pointer that leads the eye into
-   a label. No bullets, no chips — spacing does the grouping.
+   One mark: the hairline rule. It separates sections, rows and
+   card feet, and nothing else decorates. No pointers, no bullets,
+   no chips — spacing and rules do all the grouping.
    ------------------------------------------------------------ */
 .eyebrow {
   display: inline-flex;
@@ -172,15 +172,6 @@ h1, h2, h3, h4 {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
-}
-/* Guiding pointer: a short rule running into the label. */
-.eyebrow::before {
-  content: "";
-  flex: none;
-  width: 1.75em;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
 }
 .eyebrow--plain { color: var(--accent); }
 
@@ -335,8 +326,6 @@ h1, h2, h3, h4 {
 .btn--ghost { border-color: var(--line-2); color: var(--text); }
 .btn--ghost:hover { border-color: var(--line-strong); background: var(--surface-2); transform: translateY(-2px); }
 .btn--ghost:active { transform: translateY(0); }
-.btn .arrow { transition: transform 0.25s var(--ease); }
-.btn:hover .arrow { transform: translate(3px, -3px); }
 
 /* ============================================================
    Hero
@@ -527,9 +516,7 @@ h1, h2, h3, h4 {
   font-weight: 600;
   color: var(--text);
 }
-.work-card__link .arrow { transition: transform 0.25s var(--ease); }
 .work-card:hover .work-card__link { color: var(--accent); }
-.work-card:hover .work-card__link .arrow { transform: translate(3px, -3px); }
 
 /* Stretched link for whole-card click target */
 .stretched-link::after {
@@ -625,15 +612,16 @@ h1, h2, h3, h4 {
 }
 .writing-item {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--sp-3);
+  display: block;
   padding: var(--sp-3) 0.4rem;
   border-bottom: 1px solid var(--line);
-  transition: padding 0.3s var(--ease);
+  transition: padding 0.3s var(--ease), border-color 0.3s var(--ease);
 }
-.writing-item:hover { padding-inline: 1rem; }
+/* Hover lights the separator instead of sliding an arrow. */
+.writing-item:hover {
+  border-bottom-color: var(--line-strong);
+  padding-inline: 1rem;
+}
 .writing-item__main {
   min-width: 0;
   display: flex;
@@ -657,24 +645,6 @@ h1, h2, h3, h4 {
   font-size: var(--t-sm);
   color: var(--text-muted);
   max-width: 60ch;
-}
-.writing-item__arrow {
-  display: inline-flex;
-  width: 42px;
-  height: 42px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  border: 1px solid var(--line-2);
-  color: var(--text);
-  transition: background 0.25s var(--ease), transform 0.25s var(--ease),
-              border-color 0.25s var(--ease);
-}
-.writing-item:hover .writing-item__arrow {
-  background: var(--accent);
-  color: var(--ink-invert);
-  border-color: var(--accent);
-  transform: translate(3px, -3px);
 }
 
 /* ============================================================
@@ -782,8 +752,6 @@ h1, h2, h3, h4 {
   color: var(--text-muted);
 }
 .site-footer__top:hover { color: var(--text); }
-.site-footer__top .arrow { transition: transform 0.25s var(--ease); }
-.site-footer__top:hover .arrow { transform: translateY(-3px); }
 
 /* ============================================================
    Sub-page: back link + page intro
@@ -798,8 +766,6 @@ h1, h2, h3, h4 {
   padding: 0.5rem 0;
 }
 .back-link:hover { color: var(--text); }
-.back-link .arrow { transition: transform 0.25s var(--ease); }
-.back-link:hover .arrow { transform: translateX(-3px); }
 
 /* ============================================================
    Case study
@@ -1314,6 +1280,7 @@ h1, h2, h3, h4 {
   gap: 0.4rem;
   transition: background 0.25s var(--ease);
 }
+.cs-pager__link { border-top: 1px solid var(--line); }
 .cs-pager__link:hover { background: var(--surface-1); }
 .cs-pager__link--next { text-align: right; align-items: flex-end; }
 .cs-pager__kicker { font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
@@ -1480,7 +1447,6 @@ h1, h2, h3, h4 {
   .cs-pager { grid-template-columns: 1fr; }
   .cs-pager__link--next { text-align: left; align-items: flex-start; }
   .cs-pager__link { padding: var(--sp-4) 0; }
-  .cs-pager__link + .cs-pager__link { border-top: 1px solid var(--line); }
   .section-head { flex-direction: column; align-items: flex-start; }
 }
 

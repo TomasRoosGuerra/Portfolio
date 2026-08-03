@@ -46,10 +46,6 @@
     if (typeof window.__observeReveal === "function") window.__observeReveal();
   }
 
-  var ARROW_UR =
-    '<svg class="arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
-  var ARROW_LEFT =
-    '<svg class="arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>';
 
   /* ============================================================
      Markdown → HTML  (paragraphs, headings, lists, quotes,
@@ -279,9 +275,7 @@
         tags +
         "</ul>" +
         '<span class="work-card__foot">' +
-        '<span class="work-card__link">View case ' +
-        ARROW_UR +
-        "</span>" +
+        '<span class="work-card__link">View case</span>' +
         "</span>" +
         "</span>" +
         "</a>"
@@ -486,9 +480,6 @@
           esc(post.excerpt) +
           "</span>" +
           "</span>" +
-          '<span class="writing-item__arrow" aria-hidden="true">' +
-          ARROW_UR +
-          "</span>" +
           "</a>"
         );
       })
@@ -589,8 +580,7 @@
 
     root.innerHTML =
       '<div class="wrap"><a class="back-link" href="index.html#work">' +
-      ARROW_LEFT +
-      " All work</a></div>" +
+      "All work</a></div>" +
       '<header class="cs-header wrap">' +
       '<p class="eyebrow reveal">Case study ' +
       pad2(idx + 1) +
@@ -896,12 +886,12 @@
       '<a class="cs-pager__link cs-pager__link--prev" href="case.html?p=' +
       encodeURIComponent(prev.slug) +
       '"><span class="cs-pager__kicker">' +
-      "&larr; Previous</span><span class=\"cs-pager__name\">" +
+      "Previous</span><span class=\"cs-pager__name\">" +
       esc(prev.title) +
       "</span></a>" +
       '<a class="cs-pager__link cs-pager__link--next" href="case.html?p=' +
       encodeURIComponent(next.slug) +
-      '"><span class="cs-pager__kicker">Next &rarr;</span>' +
+      '"><span class="cs-pager__kicker">Next</span>' +
       '<span class="cs-pager__name">' +
       esc(next.title) +
       "</span></a>" +
@@ -955,8 +945,7 @@
 
     root.innerHTML =
       '<div class="wrap"><a class="back-link" href="index.html#writing">' +
-      ARROW_LEFT +
-      " All writing</a></div>" +
+      "All writing</a></div>" +
       '<article class="article wrap">' +
       '<p class="eyebrow reveal">' +
       esc(post.kicker || "Writing") +
