@@ -6,14 +6,119 @@
 
 window.PROJECTS = [
   {
+    slug: "parkit",
+    title: "Parkit",
+    year: "2025–now",
+    role: "UX Lead",
+    platform: "iOS, Android & B2B",
+    impact: "Tested before build",
+    meta: [
+      { label: "Role", value: "UX Lead" },
+      { label: "Platform", value: "iOS, Android & B2B platform" },
+      { label: "Timeframe", value: "Jan 2025–present" },
+      { label: "Tools", value: "Figma Make, Claude Code, Cursor, GA4, PostHog, Amplitude" },
+    ],
+    tags: ["Mobile", "Payments", "Accessibility"],
+    cover: "assets/parkit/parkit-cover.svg",
+    coverAlt: "Parkit case study cover: onboarding and payment, iOS, Android and B2B",
+    mockup: null,
+    cardDesc:
+      "Onboarding and payment rebuilt for clarity, accessibility and conversion, tested with users before development.",
+    summary:
+      "Onboarding and payment rebuilt for clarity, accessibility and conversion. Every flow is tested with users before development and measured after release.",
+    overview: {
+      lead: "Onboarding and payment are where people decide whether to stay with an app. I rebuilt both for the consumer app on iOS and Android, and own UX for the B2B platform too.",
+      cards: [
+        {
+          h: "Problem",
+          p: "New users have to understand the product, sign up and pay before they get any value. Every unclear step, small touch target or confusing sentence there costs people and revenue.",
+        },
+        {
+          h: "My role",
+          p: "I own the whole UX function for the consumer app and the B2B platform: research, flows, UI, microcopy, user testing and measuring results.",
+        },
+      ],
+    },
+    uxHead: { eyebrow: "Process", title: "How the work runs" },
+    ux: [
+      {
+        h: "Find where it breaks",
+        p: "I use GA4, PostHog and Amplitude to see where people drop off, then write a hypothesis for why.",
+      },
+      {
+        h: "Prototype in code",
+        p: "I build working prototypes with Claude Code, Cursor and Figma Make, so testers react to real behaviour, not static screens.",
+      },
+      {
+        h: "Test before development",
+        p: "Every flow goes through user tests before engineering starts. Development only builds what has already been checked.",
+      },
+      {
+        h: "Ship and measure",
+        p: "After release I track the same funnel to see what changed, and that feeds the next round.",
+      },
+    ],
+    blocks: [
+      {
+        eyebrow: "Decisions",
+        title: "Key decisions and why",
+        items: [
+          {
+            h: "Test before code",
+            p: "User tests run before development starts. It is the cheapest moment to be wrong, and engineering time goes to decisions that hold.",
+          },
+          {
+            h: "Accessibility from the start",
+            p: "Payment has to work for everyone, on a small screen and in a hurry. Clarity and accessibility were goals from day one, not a final check.",
+          },
+          {
+            h: "Words are design",
+            p: "I write the onboarding and payment microcopy myself. In a payment step, an unclear sentence costs as much as an unclear button.",
+          },
+          {
+            h: "Measure every change",
+            p: "Outcomes are tracked in GA4, PostHog and Amplitude, so each change starts with a hypothesis and ends with data.",
+          },
+        ],
+      },
+      {
+        eyebrow: "AI in my process",
+        title: "From idea to tested prototype in days",
+        lead: "AI is part of my everyday design work. It took the step from idea to tested prototype from weeks to days.",
+        items: [
+          {
+            h: "Prototyping",
+            p: "Claude Code and Cursor for coded prototypes that behave like the real app. Figma Make for fast variations.",
+          },
+          {
+            h: "Handoff, tokens and QA",
+            p: "I built agent flows over MCP that connect Figma and the codebase. They automate handoff, design tokens and QA.",
+          },
+        ],
+      },
+    ],
+    outcomes: {
+      lead: "Onboarding and payment now go through user testing before development, and every release is measured against the same funnel. Prototypes reach real users in days instead of weeks.",
+      stats: [],
+    },
+  },
+
+  {
     slug: "tidings",
     title: "Tidings",
     logo: "assets/tidings/tidings-logo.png",
     logoAlt: "Tidings wordmark",
-    year: "2023",
-    role: "Design",
+    year: "2022–2025",
+    role: "Lead Product Designer",
     platform: "iOS & Android",
     impact: "+32% engagement",
+    meta: [
+      { label: "Role", value: "Lead Product Designer / UX Content Manager" },
+      { label: "Team", value: "Led a 12-person cross-functional team" },
+      { label: "Platform", value: "iOS & Android" },
+      { label: "Timeframe", value: "2022–2025" },
+      { label: "Impact", value: "+32% engagement" },
+    ],
     tags: ["Mobile", "UX/UI", "News"],
     cover: "assets/tidings/tidings.png",
     coverAlt: "Tidings news app interface",
@@ -69,15 +174,15 @@ window.PROJECTS = [
           p: "Save anything for the commute or the next bad connection.",
         },
         {
-          h: "AI roadmap",
-          p: "A planned AI layer to summarise, cluster, and surface related coverage without hiding the source.",
+          h: "Labelled AI summaries",
+          p: "Every AI summary is clearly marked and links to its source. Next on the roadmap: clustering and surfacing related coverage, still without hiding the source.",
         },
       ],
     },
     cardDesc:
-      "AI powered news app that lets you read the way you want. Sources you choose, no algorithmic feed.",
+      "An AI news app built on trust: sources readers choose, and AI summaries that always show where they came from.",
     summary:
-      "AI powered news app focused on clarity. Readers pick their sources, shape their feed, and read in peace.",
+      "An AI news app readers can trust. They pick their sources, shape their feed, and every AI summary is clearly labelled and sourced.",
     overview: {
       lead: "Existing news apps prioritised engagement over clarity. Readers were overwhelmed by endless feeds and algorithmic manipulation. Tidings gives people control over what they read and how they read it.",
       cards: [
@@ -88,6 +193,10 @@ window.PROJECTS = [
         {
           h: "Solution",
           p: "A minimal interface where people choose their own sources and shape their feed. No algorithm. Just news, the way you want it.",
+        },
+        {
+          h: "My role",
+          p: "Lead Product Designer and UX Content Manager. I led a 12-person cross-functional team from research to the design system, and checked designs with user tests and A/B tests.",
         },
       ],
       research: {
@@ -151,6 +260,35 @@ window.PROJECTS = [
         p: "Discovery suggests articles from selected interests, not behaviour tracking. People explore without feeling manipulated.",
       },
     ],
+    blocks: [
+      {
+        eyebrow: "Decisions",
+        title: "Key decisions and why",
+        items: [
+          {
+            h: "Readers choose their sources",
+            p: "No algorithmic feed. Research showed readers felt manipulated, so control became the product.",
+          },
+          {
+            h: "Pay per article",
+            p: "The complaint we heard most was paywalls standing between readers and a single story. A one-time-read payment removes that wall.",
+          },
+          {
+            h: "AI that shows its work",
+            p: "Every AI summary is labelled as AI and links to the original. A summary without a source is one more thing to distrust.",
+          },
+          {
+            h: "Source details up front",
+            p: "Outlet, author, date and reading time appear before you open an article. Trust starts before the first tap.",
+          },
+        ],
+      },
+      {
+        eyebrow: "AI in the product",
+        title: "Designing AI people can trust",
+        lead: "The AI features keep a human in the loop. Readers always see which text the AI wrote and can check it against the source in one tap.",
+      },
+    ],
     featuresLead:
       "Three features carry most of the experience: instant AI summaries for fast triage, a knowledge dashboard for everything you've saved, and granular sub-topic mapping so the feed is exactly the slice you want. Together they turn news from a flood into a tool.",
     features: [
@@ -208,9 +346,9 @@ window.PROJECTS = [
     title: "Brael",
     year: "2020",
     role: "Design",
-    platform: "Web",
+    platform: "Web & print",
     impact: "+24% conversion",
-    tags: ["E-commerce", "Conversion", "Web"],
+    tags: ["E-commerce", "Conversion", "Print"],
     cover: "assets/brael/brael.png",
     coverAlt: "Brael e-commerce platform",
     mockup: "assets/brael/brael-erbjudande.png",
@@ -222,7 +360,7 @@ window.PROJECTS = [
       { src: "assets/brael/brael-insida.png", alt: "Brael brochure inside spread" },
     ],
     cardDesc:
-      "An e-commerce redesign focused on conversion, from discovery to a one-page checkout.",
+      "A clearer path from interest to purchase, on screen and in print: a one-page checkout, a scannable offer page and a printed brochure.",
     summary:
       "A storefront losing two-thirds of its carts. The redesign simplified every step from discovery to purchase, and the numbers followed.",
     overview: {
@@ -249,11 +387,11 @@ window.PROJECTS = [
       },
       {
         h: "Product pages",
-        p: "High-quality imagery, clear pricing, honest descriptions, and reviews. Size guides and shipping info live on the page itself.",
+        p: "High-quality imagery, clear pricing, honest descriptions and reviews, with the key details on the page itself.",
       },
       {
         h: "Checkout",
-        p: "Cut from five steps to a single page with a progress indicator. Guest checkout, saved payment, and a clear shipping calculator dropped abandonment by 35%.",
+        p: "Cut from five steps to a single page with a progress indicator. Guest checkout and saved payment dropped abandonment by 35%.",
       },
     ],
     features: [
@@ -263,7 +401,7 @@ window.PROJECTS = [
       },
       {
         h: "Stronger product pages",
-        p: "Zoomable imagery, size guides, reviews, and trust badges, plus a fast Buy Now path.",
+        p: "Zoomable imagery, reviews and trust badges, plus a fast Buy Now path.",
       },
       {
         h: "Mobile-first design",
@@ -272,6 +410,26 @@ window.PROJECTS = [
       {
         h: "Trust & security",
         p: "Security badges, customer reviews, and a clear return policy carried through the whole journey.",
+      },
+    ],
+    blocks: [
+      {
+        eyebrow: "Decisions",
+        title: "Key decisions and why",
+        items: [
+          {
+            h: "One page instead of five steps",
+            p: "Every extra step was a place to drop off, so the whole checkout moved onto one page.",
+          },
+          {
+            h: "Savings first",
+            p: "The buyer's real question is \"does this pay off?\" The offer page answers it before asking for anything.",
+          },
+          {
+            h: "One story, web and print",
+            p: "The brochure follows the same order as the offer page, so the argument is the same in every channel.",
+          },
+        ],
       },
     ],
     screens: {
@@ -361,84 +519,6 @@ window.PROJECTS = [
   },
 
   {
-    slug: "sharely",
-    title: "Sharely",
-    year: "2018",
-    role: "Design",
-    platform: "Web",
-    impact: "+18% activation",
-    tags: ["Music", "Sharing", "Web"],
-    cover: "assets/sharely/Sharely.png",
-    coverAlt: "Sharely music sharing app",
-    mockup: null,
-    images: [
-      { src: "assets/sharely/Sharely.png", alt: "Sharely music sharing app" },
-    ],
-    cardDesc:
-      "A music sharing app that allows for efficient transition between music platforms.",
-    summary:
-      "A music sharing app that allows for efficient transition between music platforms. Send a track from one service, your friend opens it on theirs.",
-    overview: {
-      lead: "Sharing music between people on different streaming services was painful. Sharely bridges the gap, converting links and tracks between platforms so listening continues without friction.",
-      cards: [
-        {
-          h: "Problem",
-          p: "Friends on different music platforms could not share songs cleanly. Links broke, tracks went missing, and discovery stalled at the platform boundary.",
-        },
-        {
-          h: "Solution",
-          p: "A lightweight tool that translates a song link from one platform to another, instantly. Share once, listen anywhere.",
-        },
-      ],
-    },
-    ux: [
-      {
-        h: "Paste and convert",
-        p: "Drop in a link from Spotify, Apple Music, or YouTube Music. The app matches the track and surfaces a link on every supported platform.",
-      },
-      {
-        h: "Personal library bridge",
-        p: "Connect accounts once. Saved playlists and likes are mirrored, so cross-platform listening feels native.",
-      },
-      {
-        h: "Share with one tap",
-        p: "Generated links open in the recipient's preferred platform automatically. No menus, no fallback pages.",
-      },
-      {
-        h: "Discovery feed",
-        p: "See what friends are sharing, regardless of where they listen. Cross-platform charts and recommendations included.",
-      },
-    ],
-    features: [
-      {
-        h: "Cross-platform links",
-        p: "One link, every platform. The recipient's platform opens automatically.",
-      },
-      {
-        h: "Library sync",
-        p: "Mirror likes and playlists across services without re-listing tracks manually.",
-      },
-      {
-        h: "Quick share",
-        p: "Share sheet integration. Copy a track from one app, paste a universal link.",
-      },
-      {
-        h: "No tracking",
-        p: "Built without behavioural ads or third-party tracking. Music first, nothing else.",
-      },
-    ],
-    outcomes: {
-      lead: "Sharely drew in cross-platform listeners who valued the simplicity of sharing across services. Activation and retention both climbed.",
-      stats: [
-        { value: "+18%", label: "Activation" },
-        { value: "+32%", label: "Retention" },
-        { value: "92%", label: "Match accuracy" },
-        { value: "4.7★", label: "Rating" },
-      ],
-    },
-  },
-
-  {
     slug: "check-sync",
     title: "Check Sync",
     year: "2025",
@@ -514,6 +594,86 @@ window.PROJECTS = [
         { value: "+28%", label: "Attendance" },
         { value: "92%", label: "Coach NPS" },
         { value: "4.8★", label: "Rating" },
+      ],
+    },
+  },
+
+  {
+    slug: "venga",
+    title: "Venga",
+    year: "2025",
+    role: "Design",
+    platform: "Web & Mobile",
+    impact: "+28% retention",
+    tags: ["Events", "Social", "Web"],
+    cover: "assets/venga/venga-cover.png",
+    coverAlt: "Venga event discovery platform",
+    mockup: "assets/venga/venga-mockup.png",
+    mockupAlt: "Venga event discovery interface",
+    images: [
+      { src: "assets/venga/venga-cover.png", alt: "Venga event discovery platform" },
+      { src: "assets/venga/venga-mockup.png", alt: "Venga event discovery interface" },
+    ],
+    cardDesc:
+      "An event discovery platform that brings every event into one personalized feed.",
+    summary:
+      "Event discovery was scattered across five platforms. Venga pulls it together into one personalised feed, with planning tools built in.",
+    overview: {
+      lead: "Event discovery was fragmented across Facebook, Eventbrite, Instagram, and local sites. Venga aggregates events from many sources, recommends what fits, and adds planning tools.",
+      cards: [
+        {
+          h: "Problem",
+          p: "Discovery was spread across platforms. People struggled to find events that matched their interests, and to coordinate with friends.",
+        },
+        {
+          h: "Solution",
+          p: "One platform that aggregates events, personalises recommendations, and folds in planning tools, all in a single place.",
+        },
+      ],
+    },
+    ux: [
+      {
+        h: "Personalised discovery",
+        p: "Onboarding captures interests, location, and preferences. The home feed surfaces tailored picks; browse by category, date, or place.",
+      },
+      {
+        h: "Event details",
+        p: "Complete event pages with date, time, location, description, organiser, and tickets, plus imagery, maps, and reviews.",
+      },
+      {
+        h: "Planning & organisation",
+        p: "Save events, build lists, set reminders. Calendar sync covers Google, Apple, and Outlook.",
+      },
+      {
+        h: "Social features",
+        p: "See which friends are going, send invites, and coordinate. Group planning helps friends decide together.",
+      },
+    ],
+    features: [
+      {
+        h: "Smart recommendations",
+        p: "Personalised picks based on interests, history, and location. Sharper over time.",
+      },
+      {
+        h: "Unified aggregation",
+        p: "Events from many sources in one consistent format that's easy to compare.",
+      },
+      {
+        h: "Planning tools",
+        p: "Save, list, remind, and sync to a personal calendar. A planning view holds it all.",
+      },
+      {
+        h: "Social coordination",
+        p: "Friend attendance, invites, and group planning that lift engagement.",
+      },
+    ],
+    outcomes: {
+      lead: "Venga made discovery and planning genuinely easier. People found relevant events faster and planned attendance with less effort.",
+      stats: [
+        { value: "+28%", label: "Retention" },
+        { value: "+35%", label: "Attendance" },
+        { value: "-42%", label: "Time to find" },
+        { value: "4.6★", label: "Rating" },
       ],
     },
   },
@@ -599,81 +759,79 @@ window.PROJECTS = [
   },
 
   {
-    slug: "venga",
-    title: "Venga",
-    year: "2025",
+    slug: "sharely",
+    title: "Sharely",
+    year: "2018",
     role: "Design",
-    platform: "Web & Mobile",
-    impact: "+28% retention",
-    tags: ["Events", "Social", "Web"],
-    cover: "assets/venga/venga-cover.png",
-    coverAlt: "Venga event discovery platform",
-    mockup: "assets/venga/venga-mockup.png",
-    mockupAlt: "Venga event discovery interface",
+    platform: "Web",
+    impact: "+18% activation",
+    tags: ["Music", "Sharing", "Web"],
+    cover: "assets/sharely/Sharely.png",
+    coverAlt: "Sharely music sharing app",
+    mockup: null,
     images: [
-      { src: "assets/venga/venga-cover.png", alt: "Venga event discovery platform" },
-      { src: "assets/venga/venga-mockup.png", alt: "Venga event discovery interface" },
+      { src: "assets/sharely/Sharely.png", alt: "Sharely music sharing app" },
     ],
     cardDesc:
-      "An event discovery platform that brings every event into one personalized feed.",
+      "A music sharing app that allows for efficient transition between music platforms.",
     summary:
-      "Event discovery was scattered across five platforms. Venga pulls it together into one personalised feed, with planning tools built in.",
+      "A music sharing app that allows for efficient transition between music platforms. Send a track from one service, your friend opens it on theirs.",
     overview: {
-      lead: "Event discovery was fragmented across Facebook, Eventbrite, Instagram, and local sites. Venga aggregates events from many sources, recommends what fits, and adds planning tools.",
+      lead: "Sharing music between people on different streaming services was painful. Sharely bridges the gap, converting links and tracks between platforms so listening continues without friction.",
       cards: [
         {
           h: "Problem",
-          p: "Discovery was spread across platforms. People struggled to find events that matched their interests, and to coordinate with friends.",
+          p: "Friends on different music platforms could not share songs cleanly. Links broke, tracks went missing, and discovery stalled at the platform boundary.",
         },
         {
           h: "Solution",
-          p: "One platform that aggregates events, personalises recommendations, and folds in planning tools, all in a single place.",
+          p: "A lightweight tool that translates a song link from one platform to another, instantly. Share once, listen anywhere.",
         },
       ],
     },
     ux: [
       {
-        h: "Personalised discovery",
-        p: "Onboarding captures interests, location, and preferences. The home feed surfaces tailored picks; browse by category, date, or place.",
+        h: "Paste and convert",
+        p: "Drop in a link from Spotify, Apple Music, or YouTube Music. The app matches the track and surfaces a link on every supported platform.",
       },
       {
-        h: "Event details",
-        p: "Complete event pages with date, time, location, description, organiser, and tickets, plus imagery, maps, and reviews.",
+        h: "Personal library bridge",
+        p: "Connect accounts once. Saved playlists and likes are mirrored, so cross-platform listening feels native.",
       },
       {
-        h: "Planning & organisation",
-        p: "Save events, build lists, set reminders. Calendar sync covers Google, Apple, and Outlook.",
+        h: "Share with one tap",
+        p: "Generated links open in the recipient's preferred platform automatically. No menus, no fallback pages.",
       },
       {
-        h: "Social features",
-        p: "See which friends are going, send invites, and coordinate. Group planning helps friends decide together.",
+        h: "Discovery feed",
+        p: "See what friends are sharing, regardless of where they listen. Cross-platform charts and recommendations included.",
       },
     ],
     features: [
       {
-        h: "Smart recommendations",
-        p: "Personalised picks based on interests, history, and location. Sharper over time.",
+        h: "Cross-platform links",
+        p: "One link, every platform. The recipient's platform opens automatically.",
       },
       {
-        h: "Unified aggregation",
-        p: "Events from many sources in one consistent format that's easy to compare.",
+        h: "Library sync",
+        p: "Mirror likes and playlists across services without re-listing tracks manually.",
       },
       {
-        h: "Planning tools",
-        p: "Save, list, remind, and sync to a personal calendar. A planning view holds it all.",
+        h: "Quick share",
+        p: "Share sheet integration. Copy a track from one app, paste a universal link.",
       },
       {
-        h: "Social coordination",
-        p: "Friend attendance, invites, and group planning that lift engagement.",
+        h: "No tracking",
+        p: "Built without behavioural ads or third-party tracking. Music first, nothing else.",
       },
     ],
     outcomes: {
-      lead: "Venga made discovery and planning genuinely easier. People found relevant events faster and planned attendance with less effort.",
+      lead: "Sharely drew in cross-platform listeners who valued the simplicity of sharing across services. Activation and retention both climbed.",
       stats: [
-        { value: "+28%", label: "Retention" },
-        { value: "+35%", label: "Attendance" },
-        { value: "-42%", label: "Time to find" },
-        { value: "4.6★", label: "Rating" },
+        { value: "+18%", label: "Activation" },
+        { value: "+32%", label: "Retention" },
+        { value: "92%", label: "Match accuracy" },
+        { value: "4.7★", label: "Rating" },
       ],
     },
   },
