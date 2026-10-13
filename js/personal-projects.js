@@ -84,6 +84,7 @@ window.PERSONAL_PROJECTS = [
       { src: "assets/personal/shikolo/hero.jpg", alt: "SHIKOLO wordmark in large spaced serif type on black" },
       { src: "assets/personal/shikolo/bag-3d.jpg", alt: "The bag rendered in 3D on a paper-white page" },
       { src: "assets/personal/shikolo/product.jpg", alt: "Product page with the bag, price and material details" },
+      { src: "assets/personal/shikolo/still.jpg", alt: "Studio still of the bag on a stone plinth", fit: "contain" },
       { src: "assets/personal/shikolo/carried.jpg", alt: "The bag carried on a sunlit city street" },
       { src: "assets/personal/shikolo/stitch.jpg", alt: "Close-up of the hand saddle-stitching" },
     ],
