@@ -48,6 +48,15 @@ A paragraph with *emphasis*, a [link](https://example.com), and a list:
 3. Drop the images into `assets/<slug>/`.
 4. Save. It appears in the homepage **Work** grid and at `case.html?p=<slug>`.
 
+## Add a personal project  ·  ~2 minutes
+
+1. Open **`js/personal-projects.js`**.
+2. Copy one project object and change the fields (`title`, `summary`, `body`,
+   `highlights`, `stack`, `url`, `images`).
+3. Drop the screenshots into `assets/personal/<slug>/`. Add `fit: "contain"`
+   to an image so a tall phone screenshot isn't cropped.
+4. Save. It appears in the homepage **Projects** section.
+
 ## Run it locally
 
 Open `index.html` in a browser, or serve the folder:

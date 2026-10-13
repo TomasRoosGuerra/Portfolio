@@ -346,6 +346,163 @@
     }).join("");
   }
 
+  /* ---- Personal projects ------------------------------------ */
+  function renderHomePersonal() {
+    var list = document.getElementById("personal-list");
+    if (!list || !Array.isArray(window.PERSONAL_PROJECTS)) return;
+    var projects = window.PERSONAL_PROJECTS;
+
+    list.innerHTML = projects
+      .map(function (p, idx) {
+        var images = p.images || [];
+        var slides = images
+          .map(function (im, i) {
+            return (
+              '<button type="button" class="pp__slide' +
+              (im.fit === "contain" ? " pp__slide--contain" : "") +
+              '" data-idx="' +
+              i +
+              '" aria-label="' +
+              escAttr("Enlarge image " + (i + 1) + " of " + images.length + ": " + (im.alt || p.title)) +
+              '">' +
+              '<img src="' +
+              escAttr(im.src) +
+              '" alt="' +
+              escAttr(im.alt || p.title) +
+              '" loading="lazy" decoding="async" draggable="false">' +
+              "</button>"
+            );
+          })
+          .join("");
+        var dots =
+          images.length > 1
+            ? '<span class="work-card__dots" aria-hidden="true">' +
+              images
+                .map(function (_, i) {
+                  return '<span class="work-card__dot' + (i === 0 ? " is-active" : "") + '"></span>';
+                })
+                .join("") +
+              "</span>"
+            : "";
+        var nav =
+          images.length > 1
+            ? '<button type="button" class="pp__nav pp__nav--prev" aria-label="Previous image">&#8249;</button>' +
+              '<button type="button" class="pp__nav pp__nav--next" aria-label="Next image">&#8250;</button>'
+            : "";
+        var body = (p.body || [])
+          .map(function (para) {
+            return "<p>" + esc(para) + "</p>";
+          })
+          .join("");
+        var highlights = (p.highlights || [])
+          .map(function (h) {
+            return "<li>" + esc(h) + "</li>";
+          })
+          .join("");
+        var stack = (p.stack || [])
+          .map(function (t) {
+            return '<li class="tag">' + esc(t) + "</li>";
+          })
+          .join("");
+        var link = p.url
+          ? '<a class="pp__link" href="' +
+            escAttr(p.url) +
+            '" target="_blank" rel="noopener noreferrer">Visit ' +
+            esc(p.urlLabel || p.url) +
+            "</a>"
+          : "";
+
+        return (
+          '<article class="pp' +
+          (idx % 2 ? " pp--flip" : "") +
+          ' reveal" id="pp-' +
+          escAttr(p.slug) +
+          '" aria-labelledby="pp-' +
+          escAttr(p.slug) +
+          '-title">' +
+          '<div class="pp__media">' +
+          '<span class="work-card__num" aria-hidden="true">' +
+          pad2(idx + 1) +
+          "</span>" +
+          '<div class="pp__track">' +
+          slides +
+          "</div>" +
+          nav +
+          dots +
+          "</div>" +
+          '<div class="pp__body">' +
+          '<p class="pp__kind">' +
+          esc(p.kind) +
+          '<span class="pp__year">' +
+          esc(p.year) +
+          "</span></p>" +
+          '<h3 class="pp__title" id="pp-' +
+          escAttr(p.slug) +
+          '-title">' +
+          esc(p.title) +
+          "</h3>" +
+          '<p class="pp__summary">' +
+          esc(p.summary) +
+          "</p>" +
+          '<div class="pp__text">' +
+          body +
+          "</div>" +
+          (highlights ? '<ul class="pp__highlights">' + highlights + "</ul>" : "") +
+          '<div class="pp__foot">' +
+          '<ul class="tags" aria-label="Built with">' +
+          stack +
+          "</ul>" +
+          link +
+          "</div>" +
+          "</div>" +
+          "</article>"
+        );
+      })
+      .join("");
+
+    list.querySelectorAll(".pp").forEach(function (card, idx) {
+      var images = projects[idx].images || [];
+      var track = card.querySelector(".pp__track");
+      var dots = card.querySelectorAll(".work-card__dot");
+      if (!track) return;
+
+      function current() {
+        return Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      }
+      function go(n) {
+        var count = images.length;
+        var i = (n + count) % count;
+        track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+      }
+
+      var scrollTimer;
+      track.addEventListener(
+        "scroll",
+        function () {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(function () {
+            var i = current();
+            dots.forEach(function (d, k) {
+              d.classList.toggle("is-active", k === i);
+            });
+          }, 50);
+        },
+        { passive: true }
+      );
+
+      var prev = card.querySelector(".pp__nav--prev");
+      var next = card.querySelector(".pp__nav--next");
+      if (prev) prev.addEventListener("click", function () { go(current() - 1); });
+      if (next) next.addEventListener("click", function () { go(current() + 1); });
+
+      track.querySelectorAll(".pp__slide").forEach(function (s) {
+        s.addEventListener("click", function () {
+          openLightbox(images, +s.getAttribute("data-idx"));
+        });
+      });
+    });
+  }
+
   /* ============================================================
      Lightbox — slideshow over the case study cover image
      ============================================================ */
@@ -976,6 +1133,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("work-grid")) {
       renderHomeWork();
+      renderHomePersonal();
       renderHomeGallery();
       renderHomeWriting();
     }
