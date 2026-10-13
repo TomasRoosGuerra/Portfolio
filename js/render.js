@@ -669,7 +669,7 @@
       if (list[k].slug === slug) idx = k;
     }
     if (idx === -1) {
-      document.title = "Project not found | Tomas Roos";
+      document.title = "Project not found | Tomas Roos Guerra";
       emptyState(
         root,
         "Project not found",
@@ -684,7 +684,7 @@
     var prev = list[(idx - 1 + list.length) % list.length];
     var next = list[(idx + 1) % list.length];
 
-    document.title = p.title + " | Tomas Roos";
+    document.title = p.title + " | Tomas Roos Guerra";
     setMeta("description", p.summary);
 
     function cards(arr) {
@@ -715,7 +715,7 @@
       return "<div><dt>" + esc(label) + "</dt><dd>" + esc(value) + "</dd></div>";
     }
 
-    var timeline = p.ux
+    var timeline = (p.ux || [])
       .map(function (u) {
         return (
           '<div class="cs-timeline__item reveal"><h3>' +
@@ -755,10 +755,12 @@
       esc(p.summary) +
       "</p>" +
       '<dl class="cs-meta reveal" style="--i:3">' +
-      meta("Role", p.role) +
-      meta("Year", p.year) +
-      meta("Platform", p.platform) +
-      meta("Impact", p.impact) +
+      (Array.isArray(p.meta) && p.meta.length
+        ? p.meta.map(function (m) { return meta(m.label, m.value); }).join("")
+        : meta("Role", p.role) +
+          meta("Year", p.year) +
+          meta("Platform", p.platform) +
+          meta("Impact", p.impact)) +
       "</dl>" +
       "</header>" +
       '<div class="wrap"><figure class="cs-cover reveal"><img src="' +
@@ -866,18 +868,51 @@
             .join("")
         : "") +
       // Experience — alternate bg based on last phase
-      '<section class="cs-block' +
+      (Array.isArray(p.ux) && p.ux.length
+        ? '<section class="cs-block' +
       ((Array.isArray(p.phases) && p.phases.length && (p.phases.length % 2 === 0))
         ? " cs-block--alt"
         : (Array.isArray(p.phases) && p.phases.length ? "" : " cs-block--alt")) +
       '"><div class="wrap">' +
-      '<p class="eyebrow reveal">Experience</p>' +
-      '<h2 class="cs-block__title reveal" style="--i:1">How it works</h2>' +
+      '<p class="eyebrow reveal">' +
+      esc((p.uxHead && p.uxHead.eyebrow) || "Experience") +
+      "</p>" +
+      '<h2 class="cs-block__title reveal" style="--i:1">' +
+      esc((p.uxHead && p.uxHead.title) || "How it works") +
+      "</h2>" +
       '<div class="cs-timeline">' +
       timeline +
       "</div>" +
       mockup +
-      "</div></section>" +
+      "</div></section>"
+        : "") +
+      // Extra blocks — key decisions, AI in the process, … (optional)
+      (Array.isArray(p.blocks)
+        ? p.blocks
+            .map(function (b) {
+              return (
+                '<section class="cs-block"><div class="wrap">' +
+                '<p class="eyebrow reveal">' +
+                esc(b.eyebrow) +
+                "</p>" +
+                '<h2 class="cs-block__title reveal" style="--i:1">' +
+                esc(b.title) +
+                "</h2>" +
+                (b.lead
+                  ? '<p class="cs-block__lead reveal" style="--i:2">' +
+                    esc(b.lead) +
+                    "</p>"
+                  : "") +
+                (Array.isArray(b.items) && b.items.length
+                  ? '<div class="cs-cards reveal" style="--i:3">' +
+                    cards(b.items) +
+                    "</div>"
+                  : "") +
+                "</div></section>"
+              );
+            })
+            .join("")
+        : "") +
       // Screens / product features (optional)
       (p.screens
         ? (function () {
@@ -940,8 +975,9 @@
             );
           })()
         : "") +
-      // Features
-      '<section class="cs-block"><div class="wrap">' +
+      // Features (optional)
+      (Array.isArray(p.features) && p.features.length
+        ? '<section class="cs-block"><div class="wrap">' +
       '<p class="eyebrow reveal">Features</p>' +
       '<h2 class="cs-block__title reveal" style="--i:1">Key features</h2>' +
       (p.featuresLead
@@ -956,7 +992,8 @@
       ' reveal" style="--i:3">' +
       cards(p.features) +
       "</div>" +
-      "</div></section>" +
+      "</div></section>"
+        : "") +
       // Gallery — more app screens (optional)
       (p.gallery && Array.isArray(p.gallery.images) && p.gallery.images.length
         ? '<section class="cs-block"><div class="wrap">' +
@@ -1070,7 +1107,7 @@
       if (posts[k].slug === slug) post = posts[k];
     }
     if (!post) {
-      document.title = "Post not found | Tomas Roos";
+      document.title = "Post not found | Tomas Roos Guerra";
       emptyState(
         root,
         "Post not found",
@@ -1081,7 +1118,7 @@
       return;
     }
 
-    document.title = post.title + " | Tomas Roos";
+    document.title = post.title + " | Tomas Roos Guerra";
     setMeta("description", post.excerpt);
 
     var cover = "";

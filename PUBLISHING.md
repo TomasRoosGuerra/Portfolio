@@ -48,6 +48,12 @@ A paragraph with *emphasis*, a [link](https://example.com), and a list:
 3. Drop the images into `assets/<slug>/`.
 4. Save. It appears in the homepage **Work** grid and at `case.html?p=<slug>`.
 
+Optional case fields: `meta` (a list of `{ label, value }` for the header row,
+e.g. Role, Team, Timeframe, Tools), `uxHead` (renames the timeline section,
+e.g. "Process"), and `blocks` (extra sections such as "Key decisions" or
+"AI in my process", each with `eyebrow`, `title`, `lead` and `items`).
+`ux` and `features` can be left out.
+
 ## Add a personal project  ·  ~2 minutes
 
 1. Open **`js/personal-projects.js`**.

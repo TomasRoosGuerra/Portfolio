@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="1600" height="1100" role="img" aria-labelledby="t">
+  <title id="t">Parkit: onboarding and payment, iOS, Android and B2B</title>
+  <rect width="1600" height="1100" fill="#161618"/>
+  <g fill="none" stroke="rgba(243,242,239,0.10)" stroke-width="2">
+    <rect x="980" y="170" width="380" height="760" rx="56"/>
+    <rect x="1010" y="200" width="320" height="700" rx="34"/>
+  </g>
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+    <rect x="1050" y="270" width="240" height="14" rx="7" fill="rgba(243,242,239,0.30)"/>
+    <rect x="1050" y="300" width="160" height="14" rx="7" fill="rgba(243,242,239,0.18)"/>
+    <rect x="1050" y="370" width="240" height="64" rx="14" fill="none" stroke="rgba(243,242,239,0.18)" stroke-width="2"/>
+    <rect x="1050" y="450" width="240" height="64" rx="14" fill="none" stroke="rgba(243,242,239,0.18)" stroke-width="2"/>
+    <rect x="1050" y="530" width="240" height="64" rx="14" fill="none" stroke="rgba(243,242,239,0.18)" stroke-width="2"/>
+    <rect x="1050" y="790" width="240" height="68" rx="34" fill="#E0A458"/>
+    <circle cx="1070" cy="402" r="10" fill="#E0A458"/>
+    <text x="160" y="250" fill="#E0A458" font-size="30" font-weight="600" letter-spacing="5">UX LEAD · 2025–PRESENT</text>
+    <text x="152" y="440" fill="#F3F2EF" font-size="170" font-weight="700" letter-spacing="-6">Parkit</text>
+    <text x="160" y="560" fill="#ABAAA6" font-size="50" font-weight="500">Onboarding &amp; payment,</text>
+    <text x="160" y="625" fill="#ABAAA6" font-size="50" font-weight="500">rebuilt and tested.</text>
+    <text x="160" y="900" fill="#8C8B86" font-size="28" font-weight="600" letter-spacing="4">iOS · ANDROID · B2B PLATFORM</text>
+  </g>
+</svg>
