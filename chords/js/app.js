@@ -1,7 +1,7 @@
 // Chord Finder — UI.
 import {
   ANALYSIS_RATE, NOTE_NAMES, QUALITIES, SIMPLIFY, SIMPLE_QUALITIES,
-  chordName, beatSync, decodeChords, refineQualities, rescaleBeats, trackBeats,
+  chordName, beatSync, decodeChords, refineQualities, rescaleBeats, trackBeats, resample, extractFeatures,
 } from "./analysis.js";
 import { voicing, suggestCapo, diagramSVG } from "./guitar.js";
 
@@ -33,6 +33,13 @@ fileInput.addEventListener("change", () => fileInput.files[0] && load(fileInput.
 ["dragenter", "dragover"].forEach((ev) => document.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("over"); }));
 ["dragleave", "drop"].forEach((ev) => document.addEventListener(ev, (e) => { e.preventDefault(); if (ev === "drop" || e.target === document.documentElement) drop.classList.remove("over"); }));
 document.addEventListener("drop", (e) => { const f = e.dataTransfer?.files?.[0]; if (f) load(f); });
+$("demo")?.addEventListener("click", async () => {
+  try {
+    const res = await fetch(new URL("../demo.mp3", import.meta.url));
+    if (!res.ok) throw new Error();
+    load(new File([await res.blob()], "Demo song (synthesized).mp3", { type: "audio/mpeg" }));
+  } catch { $("error").textContent = "Couldn't load the demo song. Drop your own file instead."; $("error").hidden = false; }
+});
 $("new-song").addEventListener("click", () => { audio.pause(); showStart(); fileInput.value = ""; fileInput.click(); });
 
 function showStart() {
@@ -67,20 +74,9 @@ async function load(file) {
     setStage("decode", 0.08);
     const { samples, rate } = await toMono(decoded);
 
-    const worker = new Worker(new URL("./worker.js", import.meta.url), { type: "module" });
-    const result = await new Promise((res, rej) => {
-      worker.onmessage = (e) => {
-        const m = e.data;
-        if (m.type === "progress") setStage(m.stage, 0.1 + 0.88 * m.p);
-        else if (m.type === "done") res(m);
-        else if (m.type === "error") rej(new Error(m.message));
-      };
-      worker.onerror = (e) => rej(new Error(e.message || "Analysis failed"));
-      worker.postMessage({ samples, sampleRate: rate }, [samples.buffer]);
-    });
-    worker.terminate();
-
+    const result = await runAnalysis(samples, rate);
     if (state.url) URL.revokeObjectURL(state.url);
+
     state.url = URL.createObjectURL(file);
     state.name = file.name.replace(/\.[^.]+$/, "");
     state.fileKey = `chords:${file.name}:${file.size}`;
@@ -100,6 +96,35 @@ async function load(file) {
       : (err && err.message) || "Something went wrong.";
     $("error").textContent = msg; $("error").hidden = false;
   }
+}
+
+// Heavy work runs in a worker; if workers are unavailable, run it here instead.
+async function runAnalysis(samples, rate) {
+  let worker;
+  try { worker = new Worker(new URL("./worker.js", import.meta.url), { type: "module" }); }
+  catch { worker = null; }
+  if (worker) {
+    try {
+      return await new Promise((res, rej) => {
+        worker.onmessage = (e) => {
+          const m = e.data;
+          if (m.type === "progress") setStage(m.stage, 0.1 + 0.88 * m.p);
+          else if (m.type === "done") res(m);
+          else if (m.type === "error") rej(new Error(m.message));
+        };
+        worker.onerror = (e) => { e.preventDefault?.(); rej(Object.assign(new Error("worker"), { workerFailed: true })); };
+        worker.postMessage({ samples: samples.slice(), sampleRate: rate });
+      });
+    } catch (err) {
+      if (!err.workerFailed) throw err;
+    } finally { worker.terminate(); }
+  }
+  setStage("harmony", 0.4);
+  await new Promise((r) => setTimeout(r, 30));
+  const x = rate === ANALYSIS_RATE ? samples : resample(samples, rate, ANALYSIS_RATE);
+  const feat = extractFeatures(x);
+  const { bpm, beats } = trackBeats(feat);
+  return { feat, bpm, beats };
 }
 
 // Mix to mono at the analysis rate. Uses the browser's resampler when it can.
@@ -562,17 +587,23 @@ function chartText() {
   return lines.join("\n");
 }
 $("copy").addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(chartText()); toast("Chart copied"); }
-  catch { toast("Couldn't copy. Try Download instead"); }
+  const text = chartText();
+  try { await navigator.clipboard.writeText(text); toast("Chart copied"); }
+  catch {
+    // Clipboard refused: show the text selected so it can be copied by hand.
+    const ta = $("copy-fallback");
+    ta.value = text; ta.hidden = false; ta.focus(); ta.select();
+    toast("Press Ctrl/⌘+C to copy the selected chart");
+  }
 });
-$("download").addEventListener("click", () => {
+$("download")?.addEventListener("click", () => {
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([chartText()], { type: "text/plain" }));
   a.download = `${state.name} - chords.txt`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 });
-$("print").addEventListener("click", () => print());
+$("print")?.addEventListener("click", () => print());
 
 /* ------------------------------------------------------------------ */
 /* Persistence (per file, this browser only)                            */

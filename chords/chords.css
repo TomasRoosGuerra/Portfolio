@@ -47,7 +47,7 @@ button { cursor: pointer; }
 .top-title { color: var(--text-muted); font-size: 14px; padding-left: 16px; border-left: 1px solid var(--line-2); }
 .top .ghost { margin-left: auto; }
 
-main { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+main { max-width: 1120px; margin: 0 auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
 
 /* ---- Buttons ---- */
 .ghost {
@@ -131,7 +131,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
 
 /* Now playing */
 .now {
-  position: sticky; top: 0; z-index: 5;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
   display: grid; grid-template-columns: 1fr auto 1fr auto; align-items: center; gap: 12px 20px;
   padding: 14px 20px; margin: 0 calc(-1 * min(var(--gutter), 20px)) 16px;
   background: color-mix(in oklab, var(--bg) 88%, transparent);
@@ -177,13 +177,15 @@ main { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
 .beats { display: flex; gap: 3px; padding: 6px 0 2px; }
 .beats i { flex: 1; height: 3px; border-radius: 2px; background: var(--line-2); }
 .beats i.on { background: var(--accent); }
+.demo { margin-top: 14px; font-size: 14px; }
+.copy-fallback { width: 100%; margin-bottom: 16px; background: var(--surface-1); color: var(--text); border: 1px solid var(--line-2); border-radius: 10px; padding: 12px; font: 12px/1.5 ui-monospace, Menlo, monospace; }
 .hint { color: var(--text-dim); font-size: 13px; margin-top: 16px; }
 
 /* ---- Transport ---- */
 .transport {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
   display: flex; align-items: center; gap: 12px;
-  padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+  padding: 12px max(var(--gutter), env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px));
   background: color-mix(in oklab, var(--surface-1) 92%, transparent);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--line);

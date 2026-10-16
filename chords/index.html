@@ -33,6 +33,7 @@
           <span class="drop-main">Drop an audio file here</span>
           <span class="drop-sub">or <u>choose a file</u></span>
         </label>
+        <button class="link demo" id="demo">No file handy? Try a demo song</button>
         <p class="fine">The song never leaves your device: all listening happens in this browser tab. Streaming links (Spotify, YouTube) can't be read; use a file you own.</p>
 
         <div class="progress" id="progress" hidden>
@@ -62,6 +63,8 @@
             <button class="ghost" id="print">Print</button>
           </div>
         </div>
+
+        <textarea id="copy-fallback" class="copy-fallback" rows="8" readonly hidden aria-label="Chord chart text"></textarea>
 
         <div class="controls" role="group" aria-label="Chart settings">
           <div class="ctl">
