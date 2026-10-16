@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chord Finder | Tomas Roos Guerra</title>
+    <meta name="description" content="Drop in a song and get its guitar chords: beat-synced chart, capo suggestion and chord shapes. Runs entirely in your browser." />
+    <meta name="theme-color" content="#0B0B0C" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="../assets/tomas-roos-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="chords.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="../" aria-label="Back to portfolio"><b>TOMAS</b><span>ROOS</span></a>
+      <span class="top-title">Chord Finder</span>
+      <button class="ghost" id="new-song" hidden>New song</button>
+    </header>
+
+    <main id="main">
+      <!-- ═══ Start: drop a song ═══ -->
+      <section class="start" id="start">
+        <h1>Drop a song.<br /><span>Get the chords.</span></h1>
+        <p class="lead">Any audio file on your device works: MP3, M4A, WAV, FLAC, or a voice memo of you playing. You get a beat-synced chord chart, guitar shapes and a capo suggestion.</p>
+        <label class="drop" id="drop" tabindex="0">
+          <input type="file" id="file" accept="audio/*,video/*,.mp3,.m4a,.wav,.flac,.ogg,.aac,.mp4" hidden />
+          <span class="drop-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </span>
+          <span class="drop-main">Drop an audio file here</span>
+          <span class="drop-sub">or <u>choose a file</u></span>
+        </label>
+        <p class="fine">The song never leaves your device: all listening happens in this browser tab. Streaming links (Spotify, YouTube) can't be read; use a file you own.</p>
+
+        <div class="progress" id="progress" hidden>
+          <div class="progress-name" id="progress-name"></div>
+          <div class="pbar"><i id="progress-bar"></i></div>
+          <ol class="stages" id="stages">
+            <li data-stage="decode">Decoding audio</li>
+            <li data-stage="rhythm">Listening for the rhythm</li>
+            <li data-stage="harmony">Hearing the harmony</li>
+            <li data-stage="beats">Finding the beat</li>
+            <li data-stage="chart">Writing the chart</li>
+          </ol>
+        </div>
+        <p class="error" id="error" role="alert" hidden></p>
+      </section>
+
+      <!-- ═══ Result ═══ -->
+      <section class="result" id="result" hidden>
+        <div class="song-head">
+          <div>
+            <h2 id="song-title"></h2>
+            <p class="facts" id="facts"></p>
+          </div>
+          <div class="export">
+            <button class="ghost" id="copy">Copy chart</button>
+            <button class="ghost" id="download">Download .txt</button>
+            <button class="ghost" id="print">Print</button>
+          </div>
+        </div>
+
+        <div class="controls" role="group" aria-label="Chart settings">
+          <div class="ctl">
+            <span class="ctl-label">Chords</span>
+            <div class="seg" id="mode">
+              <button data-v="simple" aria-pressed="true">Simple</button>
+              <button data-v="full" aria-pressed="false">With 7ths &amp; sus</button>
+            </div>
+          </div>
+          <div class="ctl">
+            <span class="ctl-label">Capo</span>
+            <div class="stepper">
+              <button id="capo-dn" aria-label="Capo down">−</button>
+              <output id="capo-val">0</output>
+              <button id="capo-up" aria-label="Capo up">+</button>
+            </div>
+            <button class="link" id="capo-best" title="Use the easiest capo position">Easiest</button>
+          </div>
+          <div class="ctl">
+            <span class="ctl-label">Transpose</span>
+            <div class="stepper">
+              <button id="tr-dn" aria-label="Transpose down a semitone">−</button>
+              <output id="tr-val">0</output>
+              <button id="tr-up" aria-label="Transpose up a semitone">+</button>
+            </div>
+          </div>
+          <div class="ctl">
+            <span class="ctl-label">Beats / bar</span>
+            <div class="seg" id="bpb">
+              <button data-v="4" aria-pressed="true">4</button>
+              <button data-v="3" aria-pressed="false">3</button>
+            </div>
+          </div>
+          <div class="ctl">
+            <span class="ctl-label" id="tempo-label">Tempo</span>
+            <div class="seg" id="tempo">
+              <button data-v="0.5" title="Beats feel too fast: halve them">½×</button>
+              <button data-v="2" title="Beats feel too slow: double them">2×</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="shapes" id="shapes" aria-label="Chords in this song"></div>
+
+        <div class="now" id="now">
+          <div class="now-cur">
+            <span class="now-label">Now</span>
+            <span class="now-name" id="now-name">–</span>
+            <span class="now-sound" id="now-sound"></span>
+            <div class="now-beats" id="now-beats"></div>
+          </div>
+          <div class="now-dia" id="now-dia"></div>
+          <div class="now-next">
+            <span class="now-label">Next</span>
+            <span class="next-name" id="next-name">–</span>
+            <span class="next-in" id="next-in"></span>
+          </div>
+          <div class="now-dia small" id="next-dia"></div>
+        </div>
+
+        <div class="chart" id="chart"></div>
+        <p class="hint">Tap a bar to jump there. Shift-tap a second bar to loop that section. Tap a chord name to fix it.</p>
+      </section>
+    </main>
+
+    <!-- ═══ Transport (sticky) ═══ -->
+    <div class="transport" id="transport" hidden>
+      <button class="play" id="play" aria-label="Play">
+        <svg class="i-play" viewBox="0 0 24 24" width="22" height="22"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" width="22" height="22"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg>
+      </button>
+      <span class="time" id="time">0:00</span>
+      <div class="timeline" id="timeline" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0">
+        <div class="tl-chords" id="tl-chords"></div>
+        <div class="tl-loop" id="tl-loop" hidden></div>
+        <div class="tl-head" id="tl-head"></div>
+      </div>
+      <span class="time" id="dur">0:00</span>
+      <button class="ghost small" id="loop" aria-pressed="false" title="Loop the selected bars">Loop</button>
+      <label class="speed">
+        <span class="visually-hidden">Speed</span>
+        <select id="speed">
+          <option value="0.5">50%</option>
+          <option value="0.65">65%</option>
+          <option value="0.8">80%</option>
+          <option value="0.9">90%</option>
+          <option value="1" selected>100%</option>
+        </select>
+      </label>
+      <audio id="audio" preload="auto"></audio>
+    </div>
+
+    <!-- ═══ Chord editor ═══ -->
+    <dialog class="editor" id="editor">
+      <form method="dialog">
+        <h3>Change chord</h3>
+        <p class="ed-sub" id="ed-sub"></p>
+        <div class="ed-grid" id="ed-roots"></div>
+        <div class="ed-grid q" id="ed-quals"></div>
+        <div class="ed-preview"><span id="ed-name"></span><span id="ed-dia"></span></div>
+        <label class="ed-all"><input type="checkbox" id="ed-all" /> Change every <b id="ed-orig"></b> in the song</label>
+        <div class="ed-actions">
+          <button class="link" value="reset" id="ed-reset">Restore detected</button>
+          <span></span>
+          <button class="ghost" value="cancel">Cancel</button>
+          <button class="primary" value="ok" id="ed-ok">Apply</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
